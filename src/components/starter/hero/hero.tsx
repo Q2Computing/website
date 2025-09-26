@@ -1,6 +1,5 @@
 import { component$ } from "@builder.io/qwik";
 import styles from "./hero.module.css";
-import ImgThunder from "../../../media/thunder.png?jsx";
 import ImgInterpolation from "../../../media/interpolation.jpg?jsx";
 
 export default component$(() => {
@@ -75,7 +74,7 @@ export default component$(() => {
           target="_blank"
           class="button button-dark"
         >
-          Explore the docs
+          Explore the research
         </a>
       </div>
     </div>
