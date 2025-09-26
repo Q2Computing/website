@@ -1,42 +1,42 @@
 import { component$ } from "@builder.io/qwik";
-import { Q2Logo } from "../icons/q2";
+import { Link } from '@builder.io/qwik-city';
+import ImgQ2Icon from '../../../media/icon.png?w=96&h=96&jsx';
 import styles from "./header.module.css";
 
 export default component$(() => {
+
+  const navLinks = [
+    { href: '/about', text: 'About Us'},
+    { href: '/services', text: 'Services' },
+    { href: '/research', text: 'Research'},
+    { href: '/blog', text: 'Blog'},
+    { href: '/contact', text: 'Contact'},
+  ];
+
   return (
-    <header class={styles.header}>
+    <header class={["header", styles.header]}>
       <div class={["container", styles.wrapper]}>
         <div class={styles.logo}>
-          <a href="/" title="q2">
-            <Q2Logo height={50} width={143} />
+          <a href="/">
+            <ImgQ2Icon alt="Q2-Computing Icon"/>
           </a>
+          <p>Q2-Computing
+          <br />
+          Reality, Rationalized</p>
         </div>
-        <ul>
-          <li>
-            <a
-              href="https://q2computing.com/research/"
-              target="_blank"
-            >
-              Research
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://q2computing.com/blog/"
-              target="_blank"
-            >
-              Blog
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://q2computing.com/FAQ/"
-              target="_blank"
-            >
-              FAQ
-            </a>
-          </li>
-        </ul>
+        <nav>
+          <ul>
+            {navLinks.map((link) =>(
+              <li key={link.text}>
+                <Link
+                  href={link.href}
+                >
+                  {link.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </header>
   );

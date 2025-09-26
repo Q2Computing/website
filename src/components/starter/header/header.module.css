@@ -1,28 +1,37 @@
 .wrapper {
   display: flex;
-  align-items: center;
+  align-items: top;
   justify-content: space-between;
 }
 
 .logo {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 }
+
+.logo txt {
+  font-family: Arial, sans-serif;
+}
+
 .logo a {
   display: block;
 }
 
-.header ul {
+.header nav {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .header li {
   display: none;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   font-size: 1.5rem;
 }
 

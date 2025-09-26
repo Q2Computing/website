@@ -1,5 +1,6 @@
 import { component$, $, useOnWindow, useSignal } from "@builder.io/qwik";
-import styles from "./next-steps.module.css";
+import ImgQ2Hero from "../../../media/hero.jpg?jsx";
+import styles from "./introduction.module.css";
 
 export const GETTING_STARTED_STEPS = [
   {
@@ -43,7 +44,8 @@ export default component$(() => {
   );
 
   return (
-    <div class="container container-purple container-center">
+    <div class="hero-banner container-center">
+      <ImgQ2Hero class="hero-image"/>
       <h2>
         Time for a
         <br />

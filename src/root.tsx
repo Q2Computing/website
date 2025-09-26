@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import { isDev } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
-
+import { header }  from "./components/starter/header/header";
 import "./global.css";
 
 export default component$(() => {
@@ -26,6 +26,7 @@ export default component$(() => {
         <RouterHead />
       </head>
       <body lang="en">
+        {/* The RouterOutlet renders the content of your current page */}
         <RouterOutlet />
       </body>
     </QwikCityProvider>

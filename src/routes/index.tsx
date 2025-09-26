@@ -4,13 +4,12 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import Counter from "../components/starter/counter/counter";
 import Hero from "../components/starter/hero/hero";
 import Infobox from "../components/starter/infobox/infobox";
-import Starter from "../components/starter/next-steps/next-steps";
+import Introduction from "../components/starter/introduction/introduction";
 
 export default component$(() => {
   return (
     <>
-      <Hero />
-      <Starter />
+      <Introduction />
 
       <div role="presentation" class="ellipsis"></div>
       <div role="presentation" class="ellipsis ellipsis-purple"></div>

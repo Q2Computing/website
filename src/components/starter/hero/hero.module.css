@@ -1,6 +1,5 @@
 .hero {
   display: flex;
-  vertical-align: middle;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;

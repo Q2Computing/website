@@ -28,6 +28,7 @@
     "@builder.io/qwik-city": "^1.16.1",
     "@eslint/js": "latest",
     "@types/node": "20.19.0",
+    "@unpic/qwik": "^1.0.0",
     "eslint": "9.32.0",
     "eslint-plugin-qwik": "^1.16.1",
     "globals": "16.3.0",
@@ -38,5 +39,8 @@
     "undici": "*",
     "vite": "7.1.4",
     "vite-tsconfig-paths": "^4.2.1"
+  },
+  "dependencies": {
+    "@unpic/react": "^1.0.1"
   }
 }
