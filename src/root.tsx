@@ -2,12 +2,11 @@ import { component$ } from "@builder.io/qwik";
 import { isDev } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
-import { header }  from "./components/starter/header/header";
 import "./global.css";
 
 export default component$(() => {
   /**
-   * The root of a QwikCity site always start with the <QwikCityProvider> component,
+   * The root of a QwikCity site always starts with the <QwikCityProvider> component,
    * immediately followed by the document's <head> and <body>.
    *
    * Don't remove the `<head>` and `<body>` elements.
