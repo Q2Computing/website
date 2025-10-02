@@ -1,0 +1,24 @@
+.quote {
+    font-style: italic;
+    border-left: 4px solid #0056b3;
+    padding-left: 20px;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.cta-link {
+    font-weight: bold;
+    color: #0056b3;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.cta-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.image-left {
+    float: left;
+}

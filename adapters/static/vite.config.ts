@@ -12,7 +12,7 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [
       staticAdapter({
-        origin: "https://yoursite.qwik.dev",
+        origin: "http://127.0.0.1",
       }),
     ],
   };
