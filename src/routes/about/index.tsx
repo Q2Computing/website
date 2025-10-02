@@ -2,7 +2,6 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { ContactForm } from '../../components/contactform/contactform';
 import PiFormula from '../../../public/media/pi.png?w=300h=200&jsx';
-import styles from './styles.css';
 
 export default component$(() => {
   return (
