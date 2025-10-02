@@ -4,11 +4,8 @@ import { ContactForm } from '../../components/contactform/contactform';
 
 export default component$(() => {
   return (
-    <div class="container container-center">
-      <h1>Contact Us</h1>
-      <h6>Have a question or want to work together? Fill out the form below.</h6>
-      
-      <ContactForm />
+    <div>
+      <h1>Research Page</h1>      
     </div>
   );
 });

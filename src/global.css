@@ -13,8 +13,9 @@
   --qwik-dark-purple: #713fc2;
   --qwik-dirty-black: #1d2033;
   --qwik-dark-background: #151934;
-  --qwik-dark-text: #ffffff;
+  --qwik-dark-text: #000000;
   --qwik-light-orange: #ff5349;
+  --qwik-dark-orange: ;
 }
 
 html {
@@ -43,5 +44,4 @@ html {
 body {
   padding: 0;
   margin: 0;
-  line-height: inherit;
 }

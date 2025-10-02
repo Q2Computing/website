@@ -24,9 +24,10 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "^1.16.1",
-    "@builder.io/qwik-city": "^1.16.1",
+    "@builder.io/qwik": "latest",
+    "@builder.io/qwik-city": "latest",
     "@eslint/js": "latest",
+    "@modular-forms/qwik": "^0.29.1",
     "@types/node": "20.19.0",
     "@unpic/qwik": "^1.0.0",
     "eslint": "9.32.0",
@@ -41,6 +42,7 @@
     "vite-tsconfig-paths": "^4.2.1"
   },
   "dependencies": {
-    "@unpic/react": "^1.0.1"
+    "@unpic/react": "^1.0.1",
+    "zod": "^4.1.11"
   }
 }
