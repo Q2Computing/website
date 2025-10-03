@@ -15,6 +15,12 @@ import qwikCityPlan from "@qwik-city-plan";
 import render from "./entry.ssr";
 
 declare global {
+  /**
+   * This empty interface is the standard way to extend Qwik's global platform types
+   * for a specific adapter. We disable the ESLint rule for this line as it is
+   * intentional and necessary for correct type inference.
+  */
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface QwikCityPlatform extends PlatformNetlify {}
 }
 
