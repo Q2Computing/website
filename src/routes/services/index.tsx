@@ -1,9 +1,9 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import styles from './styles.css'
+
 export default component$(() => {
   return (
-    <div class="services-container">
+    <div class="container">
 
         <h1>Our Services</h1>
         <p class="page-subtitle">We offer a spectrum of high-impact services designed to solve complex challenges by integrating cutting-edge research with principled, multi-disciplinary engineering.</p>

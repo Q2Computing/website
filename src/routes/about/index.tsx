@@ -1,7 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { ContactForm } from '../../components/contactform/contactform';
-import PiFormula from '../../../public/media/pi.png?w=300h=200&jsx';
+import PiFormula from '../../media/pi.png?w=300h=200&jsx';
 
 export default component$(() => {
   return (
@@ -37,7 +36,7 @@ export default component$(() => {
 
         <section class="section">
             <h2>The Breakthrough: Positional Confidence</h2>
-            <p>This insight is the foundation of our "object-blind" navigation technology. By combining the discipline learned in the military, the hard physics of engineering, and the abstract logic of computer science, we developed a system that doesn't need to know *what* an object is, only that its presence is an anomaly that can refine its understanding of *where* it is.</p>
+            <p>This insight is the foundation of our "object-blind" navigation technology. By combining the discipline learned in the military, the hard physics of engineering, and the abstract logic of computer science, we developed a system that doesn't need to know <strong>what</strong> an object is, only that its presence is an anomaly that can refine its understanding of <strong>where</strong> it is.</p>
             <p>Q2-Computing was founded not just to build software, but to provide a competitive advantage by leveraging a unique, multidisciplinary understanding of computer science. We believe in building solutions that are not just powerful, but principled, efficient, and trustworthy—engineered to succeed from first principles.</p>
         </section>
 

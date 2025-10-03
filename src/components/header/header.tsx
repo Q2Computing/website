@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
-import ImgQ2Icon from '../../../public/media/icon.png?w=96&h=96&jsx';
+import ImgQ2Icon from '../../media/icon.png?w=96&h=96&jsx';
 import styles from './header.module.css';
 
 export default component$(() => {

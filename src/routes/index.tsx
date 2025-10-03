@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import { Link } from '@builder.io/qwik-city';
 import type { DocumentHead } from "@builder.io/qwik-city";
 
 export default component$(() => {
@@ -27,7 +26,7 @@ export default component$(() => {
 
           <section class="section innovation">
               <h2>The Future of Autonomy: True Resilience When Connection is Lost</h2>
-              <p>Our core innovation is a paradigm shift in autonomous navigation, born from a universal challenge: what happens when the network fails? Whether it's a first responder's drone in a hurricane-stricken area, an agricultural robot in a remote field, or a defense asset in a contested environment, the loss of GPS or communication can mean mission failure. We solve this by generating <strong>Positional Confidence Scores</strong>.</p>
+              <p>Our core innovation is a paradigm shift in autonomous navigation, born from a universal challenge: what happens when the network fails? Whether it's a first responder's drone in a hurricane-stricken area, an agricultural robot in a remote field, or a defense asset in a contested environment, the loss of GPS or communication can mean mission failure. We solve this by evaluating <strong>positional confidence</strong>.</p>
               <p>Inspired by groundbreaking research that trained competent flight policies with lean neural networks, our "object-blind" method allows autonomous systems to interpolate their location with astonishing accuracy.</p>
               
               <h3>How it works:</h3>
