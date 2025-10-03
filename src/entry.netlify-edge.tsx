@@ -20,7 +20,7 @@ declare global {
    * for a specific adapter. We disable the ESLint rule for this line as it is
    * intentional and necessary for correct type inference.
   */
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface QwikCityPlatform extends PlatformNetlify {}
 }
 
