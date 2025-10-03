@@ -1,6 +1,5 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { ContactForm } from '../../components/contactform/contactform';
 
 export default component$(() => {
   return (
