@@ -12,7 +12,7 @@ export default component$(() => {
           <span class="image">
             <div class="text">
               <h2>Mission Driven: Optimal Solutions</h2>
-              <p>The mission of Q2-Computing began long before its founding, sparked by a simple portfolio problem in a 3rd-grade classroom: given a set amount of fence, what geometric shape maximizes the area? Intuitively, the answer was a circle. But proving it—understanding the fundamental principles that made it true—ignited a lifelong passion.</p>
+              <p>The mission of Q2-Computing began long before its founding, sparked by a simple portfolio problem in a 3rd-grade classroom: given a set amount of fence, what geometric shape maximizes the area? Intuitively, the answer is a circle. But proving it—understanding the fundamental principles that made it true—ignited a lifelong passion.</p>
               <p>This drive to move beyond intuition to empirical proof became the guiding principle of a journey through the seemingly disparate worlds of mathematics, military service, and multiple engineering disciplines. It's a journey about rationalizing reality—finding the most elegant and efficient solution, not just the obvious one.</p>
             </div>
             <PiFormula />
@@ -20,15 +20,17 @@ export default component$(() => {
         </section>
         
         <section class="section">
-            <h2>Values Guided: Service, Integrity, and Strategy</h2>
-            <p>This pursuit of knowledge continued through a combat deployment to Iraq and a commission as a U.S. Army officer. It led to the study of Aerospace Engineering at Boston University and later, Electrical Engineering at the University of Vermont. But this path was also guided by a core set of principles: a commitment to service, and a refusal to compromise on intellectual integrity, even declining a graduate position over the predatory intellectual property practices of the American collegiate system.</p>
-            <p class="quote">Recognizing that computational models were outperforming traditional heuristic constructs, the focus shifted to computer science—a tool to improve technology for all of humanity.</p>
-            <p>Today, the rise of LLMs demonstrates what has always been possible at the intersection of mathematics, software, and hardware. However, their immense computational cost is unsustainable, creating a volatile economic crisis. The only viable path forward is to empower nimble, innovative businesses to discover the true limits of efficient robotic autonomy.</p>
+          <h2>Values Guided: Service, Integrity, and Strategy</h2>
+          <p>Our journey is rooted in a lifelong commitment to service, a principle that was strengthened during a combat deployment to Iraq and as a commissioned U.S. Army officer. This drive led to the study of Aerospace Engineering at Boston University and Electrical Engineering at the University of Vermont, always with a focus on solving real-world problems.</p>
+          <p>This path has been consistently guided by a core belief in intellectual integrity and open innovation. We believe that transformative technology should be accessible and serve the broader community, a principle that has informed every major decision, including choosing a path dedicated to open-source and collaborative development.</p>
+          <p>We recognized early on that advanced computational models held more promise than traditional methods. This insight prompted a dedicated shift into computer science, viewing it as the most powerful tool to develop technology that benefits all of humanity.</p>
+          <p>Today's Large Language Models (LLMs) showcase the incredible potential at the intersection of mathematics, software, and hardware. However, their high computational requirements present a significant challenge to widespread adoption. We see this not as a roadblock, but as the next great opportunity.</p>
+          <p>Our mission is to pioneer computational efficiency. We empower nimble, innovative businesses to unlock the true potential of robotic autonomy, creating sustainable and scalable solutions for a better future.</p>
         </section>
 
         <section class="section">
             <h2>Focused Vision: From a Backyard Challenge to Competitive Dominance</h2>
-            <p>The moment that focused these diverse experiences into a singular mission came from a simple challenge from a brother-in-law: simulate a land navigation mission from one home to another. The result was a stark realization—the simulation was using an excessive amount of computational resources to achieve a simple objective.</p>
+            <p>The moment that focused these diverse experiences into a singular mission came from a simple challenge from a brother-in-law: simulate a land navigation mission from one home to another. The result was a stark realization—top software companies moving in to last mile logistics were using an excessive amount of computational resources to achieve a simple objective.</p>
             <p>This practical experiment crystallized a core problem with modern AI: inefficiency. It was further reinforced by peer-reviewed research demonstrating that lean neural networks could achieve remarkable competence without the computational overhead of brute-force methods. The hypothesis for Q2-Computing was formed: there had to be a more rational, efficient, and ultimately more effective way to achieve autonomy.</p>
         </section>
 

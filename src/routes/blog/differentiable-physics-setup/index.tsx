@@ -3,7 +3,6 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
   return (
-    <>
     <article class="container mx-auto p-8">
       <div class="max-w-4xl mx-auto">
 
