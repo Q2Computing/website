@@ -95,7 +95,7 @@ export const ContactFormComponent = component$(() => {
             {(field, props) => (
               <div class="form-group">
                 <label for={field.name}>First Name</label>
-                <input {...props} type="text" id={field.name} />
+                <input {...props} type="text" />
                 {field.error && <div class="field-error">{field.error}</div>}
               </div>
             )}
@@ -104,7 +104,7 @@ export const ContactFormComponent = component$(() => {
             {(field, props) => (
               <div class="form-group">
                 <label for={field.name}>Last Name</label>
-                <input {...props} type="text" id={field.name} />
+                <input {...props} type="text" />
                 {field.error && <div class="field-error">{field.error}</div>}
               </div>
             )}
@@ -113,7 +113,7 @@ export const ContactFormComponent = component$(() => {
             {(field, props) => (
               <div class="form-group">
                 <label for={field.name}>Email</label>
-                <input {...props} type="email" id={field.name} />
+                <input {...props} type="email" />
                 {field.error && <div class="field-error">{field.error}</div>}
               </div>
             )}
@@ -122,7 +122,7 @@ export const ContactFormComponent = component$(() => {
             {(field, props) => (
               <div class="form-group">
                 <label for={field.name}>Message</label>
-                <textarea {...props} rows={5} id={field.name} />
+                <textarea {...props} rows={5} />
                 {field.error && <div class="field-error">{field.error}</div>}
               </div>
             )}
