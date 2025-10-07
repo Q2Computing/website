@@ -1,20 +1,48 @@
 import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { type DocumentHead, Link } from '@builder.io/qwik-city';
 
 export default component$(() => {
   return (
-    <div class="container container-center">
-      <h1>Blog Page</h1>
+    <div class="container mx-auto p-8">
+      <h1 class="text-4xl font-bold mb-6 border-b pb-4">The Q2-Computing Blog</h1>
+      <p class="text-lg text-gray-600 mb-8">
+        Exploring the intersection of physics, AI, and autonomous systems.
+      </p>
+
+      {/* Blog Post Entry */}
+      <div class="py-6">
+        <p class="text-sm text-gray-500">October 7, 2025</p>
+        <h2 class="text-3xl font-semibold my-2">
+          <Link
+            href="/blog/differentiable-physics-setup/"
+            class="hover:text-blue-600 transition-colors"
+          >
+            From Pixels to Physics: Setting Up Your Differentiable Simulation Lab
+          </Link>
+        </h2>
+        <p class="text-gray-700 mb-4">
+          This is the first step in our journey to build and explore differentiable physics simulations. In this post, we cover the foundational setup for macOS, Windows, and Linux.
+        </p>
+        <Link
+          href="/blog/differentiable-physics-setup/"
+          class="font-bold text-blue-600 hover:underline"
+        >
+          Read More →
+        </Link>
+      </div>
+
+      {/* Add more blog post entries here as you write them */}
+
     </div>
   );
 });
 
 export const head: DocumentHead = {
-  title: 'Contact Us',
+  title: 'The Q2-Computing Blog',
   meta: [
     {
       name: 'description',
-      content: 'Get in touch with us through our contact page.',
+      content: 'Exploring the intersection of physics, AI, and autonomous systems.',
     },
   ],
 };
