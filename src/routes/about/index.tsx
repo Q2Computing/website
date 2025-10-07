@@ -9,15 +9,13 @@ export default component$(() => {
         <h1>About the Founder</h1>
 
         <section class="section">
-          <span class="image-left">
+          <span class="image">
             <div class="text">
               <h2>Mission Driven: Optimal Solutions</h2>
               <p>The mission of Q2-Computing began long before its founding, sparked by a simple portfolio problem in a 3rd-grade classroom: given a set amount of fence, what geometric shape maximizes the area? Intuitively, the answer was a circle. But proving it—understanding the fundamental principles that made it true—ignited a lifelong passion.</p>
               <p>This drive to move beyond intuition to empirical proof became the guiding principle of a journey through the seemingly disparate worlds of mathematics, military service, and multiple engineering disciplines. It's a journey about rationalizing reality—finding the most elegant and efficient solution, not just the obvious one.</p>
             </div>
-            <div class="image">
-              <PiFormula />
-            </div>
+            <PiFormula />
           </span>
         </section>
         
@@ -35,14 +33,15 @@ export default component$(() => {
         </section>
 
         <section class="section">
-            <h2>The Breakthrough: Positional Confidence</h2>
-            <p>This insight is the foundation of our "object-blind" navigation technology. By combining the discipline learned in the military, the hard physics of engineering, and the abstract logic of computer science, we developed a system that doesn't need to know <strong>what</strong> an object is, only that its presence is an anomaly that can refine its understanding of <strong>where</strong> it is.</p>
-            <p>Q2-Computing was founded not just to build software, but to provide a competitive advantage by leveraging a unique, multidisciplinary understanding of computer science. We believe in building solutions that are not just powerful, but principled, efficient, and trustworthy—engineered to succeed from first principles.</p>
+            <h2>The Breakthrough: Physics-Informed Autonomy</h2>
+            <p>Our core breakthrough is a new paradigm for autonomous navigation, shifting from brittle, recognition-based systems to a resilient, physics-informed approach. By combining the discipline of aerospace engineering with the adaptive power of modern AI, we've developed a system that can navigate reliably, even when GPS and communication fail.</p>
+            <p>Instead of relying on recognizing specific objects, our system learns the fundamental principles of physics and geometry. Using a novel technique called <strong>differentiable physics</strong>, we train lightweight neural networks in a virtual environment to understand motion, terrain, and spatial relationships. This allows an autonomous swarm to collaboratively determine its location with high confidence by fusing sensor data through a learned, physics-driven model. This method is engineered from first principles to be inherently robust and adaptable to the real world.</p>
+            <p>Q2-Computing was founded not just to build software, but to provide a competitive advantage by leveraging a unique, multidisciplinary understanding of computer science. We believe in building solutions that are not just powerful, but principled, efficient, and trustworthy—engineered to succeed from the ground up.</p>
         </section>
 
         <section class="section">
             <h2>Our Commitment to the Research Frontier</h2>
-            <p>Innovation is a collaborative endeavor. The breakthrough for our Positional Confidence Scores was made possible by standing on the shoulders of giants—the dedicated researchers and programmers whose public work pushes the boundaries of what's possible. We believe that transparency and collaboration are essential for building trustworthy and effective technology.</p>
+            <p>Innovation is a collaborative endeavor. The breakthrough for positional confidence based on differentiable physics modeling was made possible by standing on the shoulders of giants—the dedicated researchers and programmers whose public work pushes the boundaries of what's possible. We believe that transparency and collaboration are essential for building trustworthy and effective technology.</p>
             <p>In that spirit, we are committed to contributing back to this vibrant ecosystem. Our <a href="/research/" class="cta-link">Research</a> section serves as a curated library of the pivotal public works that inspire our own, and will be the home for future publications from Q2-Computing as we continue to rationalize the complex realities of autonomous systems.</p>
         </section>
 
