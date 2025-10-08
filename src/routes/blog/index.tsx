@@ -12,14 +12,7 @@ export default component$(() => {
       {/* Blog Post Entry */}
       <div class="py-6">
         <p class="text-sm text-gray-500">October 7, 2025</p>
-        <h2 class="text-3xl font-semibold my-2">
-          <Link
-            href="/blog/differentiable-physics-setup/"
-            class="hover:text-blue-600 transition-colors"
-          >
-            From Pixels to Physics: Setting Up Your Differentiable Simulation Lab
-          </Link>
-        </h2>
+        <h2 class="text-3xl font-semibold my-2">From Pixels to Physics: Setting Up Your Differentiable Simulation Lab</h2>
         <p class="text-gray-700 mb-4">
           This is the first step in our journey to build and explore differentiable physics simulations. In this post, we cover the foundational setup for macOS, Windows, and Linux.
         </p>
