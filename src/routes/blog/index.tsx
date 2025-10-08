@@ -22,9 +22,6 @@ export default component$(() => {
           Read More →
         </Link>
       </div>
-
-      {/* Add more blog post entries here as you write them */}
-
     </div>
   );
 });
