@@ -1,0 +1,7 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name   = "q2-workspace"
+region       = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket    = "q2-sam-artifacts-826496717739"
