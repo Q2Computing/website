@@ -43,3 +43,6 @@ lerna-debug.log*
 
 # Netlify
 .netlify
+
+# Temp
+/tmp
