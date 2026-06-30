@@ -61,6 +61,8 @@ Resources:
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ConnectionsTable
+        - SSMParameterReadPolicy:
+            ParameterName: q2/workspace/owner-token
 
   AuthorizerPermission:
     Type: AWS::Lambda::Permission

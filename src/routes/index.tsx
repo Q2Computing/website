@@ -1,61 +1,69 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { QuantumCanvas } from "../components/quantum-canvas/quantum-canvas";
+import styles from "./index.module.css";
 
 export default component$(() => {
   return (
     <>
+      <section class={styles.hero}>
+        <QuantumCanvas />
+        <div class={styles.heroContent}>
+          <h1>Engineering built to work without you watching it</h1>
+          <p class={styles.heroSub}>
+            Q2 Computing builds automation, autonomous systems, and hardware solutions
+            for small businesses and operators who are done waiting for someone else to solve their problems
+          </p>
+          <a href="/work-with-us/" class={styles.heroBtn}>Work With Us</a>
+        </div>
+      </section>
+
       <div class="container">
 
-          <section class="section hero">
-              <h1>From Complex Data to Competitive Dominance</h1>
-              <p class="subheading">We don't just solve technical problems—we rationalize reality. Q2-Computing integrates elite expertise across aerospace, AI, and full-stack engineering to deliver solutions that are not only intelligent but resilient, robust, and ready for the real world.</p>
-          </section>
+        <section class="section">
+          <h2>What we deliver today</h2>
+          <p>The infrastructure keeping small businesses behind is not an accident. It was designed that way.</p>
+          <p><strong>Process automation:</strong> If your people are doing the same thing on repeat, we build the systems that liberate them. Using physics-based simulation, we can produce realizable results in days and have them operationally ready within months. We do not replace people. We teach them the power they already possess, because the human brain is faster, more resilient, more capable, and more energy efficient than any AI system ever built. Our job is to put that power to work on the problems only humans can solve, and let the machines make your people money whether they are a laborer, a technician, an engineer, or a staff member.</p>
+          <p><strong>Robotic automation:</strong> Major tech firms have made robotic automation sound like something only large organizations can afford or deploy. We use physics-based simulation to validate and replicate those same systems using open source tooling, producing realizable results in days. You get precision manufacturing, circuit testing, and physical automation with the same outcomes, without the enterprise price tag or the vendor lock-in.</p>
+          <p><strong>Resilient autonomous systems:</strong> Most autonomous systems are designed assuming reliable infrastructure, and when that infrastructure fails, the system fails with it. We design from the ground up for degraded environments, treating GPS, communications, and power as a bonus rather than a requirement. Your systems maintain operational continuity when the grid goes down, the signal drops, or the supply chain breaks.</p>
+          <p><strong>Hardware and embedded systems:</strong> Most engineering firms stop at the software layer and hand off hardware integration to someone else, which is precisely where real problems live. We work across the full stack from circuit design and PCB layout to signal analysis and embedded deployment because the intersection of hardware and software is where the hardest problems actually are. You get a system that works end to end, not a handoff chain where nobody owns the seams.</p>
+        </section>
 
-          <section class="section approach">
-              <h2>Bridging the Gap Between Disciplines</h2>
-              <p>In today's hyper-specialized world, the most critical challenges lie at the intersection of different fields. A brilliant aerospace concept fails without robust software; a powerful AI remains useless without the electrical engineering to support it. Q2-Computing was founded on a simple principle: true innovation requires a holistic approach.</p>
-              <p>We believe the next generation of autonomy must be built on a foundation of trust. That's why we approach every problem not just as engineers, but as responsible stewards of powerful technology, ensuring that every solution we build is engineered for success from first principles.</p>
-          </section>
-          
-          <section class="section experience">
-              <h2>Battle-Tested in the Enterprise Arena</h2>
-              <p>Conceptual brilliance is not enough. Our strategies are forged from hands-on experience delivering mission-critical solutions for global technology leaders.</p>
-              <p>Working with a premier global technology consulting firm, we were at the core of developing enterprise-grade AI services that automated complex IT support resolutions—a task requiring a deep understanding of the entire web development stack. Our work extended to providing critical, data-driven insights for the titans of the semiconductor industry, helping to analyze and optimize everything from intricate metrology data to global logistics.</p>
-              <p>This experience proved a core truth: the statistical process for uncovering powerful insights is universal. We have a proven track record of applying this rigorous analytical process to solve high-stakes problems, turning vast corporate data stores into actionable intelligence and a clear competitive advantage.</p>
-          </section>
+        <section class={styles.patriot}>
+          <div class={styles.patriotInner}>
+            <h2>What we are building toward</h2>
+            <p>This is not a political statement. It is a competitive product, and it will win for the same reason asymmetric warfare works: the indigenous force has time, and nothing left to lose.</p>
+            <p>Big tech, billionaires, and the corporate machines built on centralized AI development have capital. We have time. Those are not equivalent resources. Capital defends what already exists. Time builds what comes next. Distributed manufacturing, distributed AI development, and small business operational support do not require permission from the organizations they will eventually replace.</p>
+            <p>Every person your competitors discarded as a low performer is a node in a network they do not control and cannot shut down. We are building the economic infrastructure that pays those people directly for what they contribute, whether they succeed or fail, because both outcomes teach the system something your competitors will never have access to. That data compounds. The network grows. The cost of entry drops toward zero.</p>
+            <p>Our parents and grandparents did not serve so that citizens could be sorted by productivity score and thrown away. Reasonable accommodation was always an American competitive advantage, not a burden. We are building a product that proves it. The only organizations that lose are the ones that bet everything on keeping knowledge expensive.</p>
+            <p>This system is in active development. If your organization wants to be part of building it, reach out now.</p>
+          </div>
+        </section>
 
-          <section class="section innovation">
-              <h2>The Future of Autonomy: True Resilience When Connection is Lost</h2>
-              <p>Our core innovation is a paradigm shift in autonomous navigation, born from a universal challenge: what happens when the network fails? Whether it's a first responder's drone in a hurricane-stricken area, an agricultural robot in a remote field, or a defense asset in a contested environment, the loss of GPS or communication can mean mission failure. We solve this by evaluating <strong>positional confidence</strong>.</p>
-              <p>Inspired by groundbreaking research that trained competent flight policies with lean neural networks, our "object-blind" method allows autonomous systems to interpolate their location with astonishing accuracy.</p>
-              
-              <h3>How it works:</h3>
-              <p>Instead of relying on pre-labeled objects, our software trains a neural network to rapidly observe environmental anomalies. By treating each new observation as a point in a Markov chain, a swarm can iteratively update its collective confidence in its location. This approach, honed in a digital simulation, is designed for zero-shot generalization to the real world, providing a level of resilience and adaptability that traditional systems cannot match.</p>
-              
-              <p>This technology has profound implications across all sectors:</p>
-              <ul class="benefits">
-                  <li><strong>Disaster Response & Public Safety:</strong> Drones that can map a disaster zone or find survivors long after cell towers have gone down.</li>
-                  <li><strong>Industrial & Civil Operations:</strong> High-precision tasks like automated infrastructure inspection, construction, and agriculture, using less expensive hardware without total reliance on satellite connectivity.</li>
-                  <li><strong>Defense & National Security:</strong> Ensuring operational overmatch and mission continuity for autonomous systems in DDIL (Denied, Degraded, Intermittent, and Limited) environments.</li>
-              </ul>
-          </section>
+        <section class="section">
+          <h2>No middlemen</h2>
+          <p>You talk directly to the engineer doing the work, not a sales rep, not a project manager, not someone reading off a brief.</p>
+          <p>We agree on scope, timeline, and rate upfront. No surprise invoices, no scope creep passed off as standard practice.</p>
+          <p>Active clients get a private workspace with live updates so you always know exactly where your project stands.</p>
+        </section>
 
-          <section class="section cta">
-              <h2>Ready to turn your most complex challenge into your greatest strength?</h2>
-              <p>Let's discuss how our integrated approach to engineering and artificial intelligence can rationalize your reality and deliver a decisive competitive edge.</p>
-              <a href="/contact/" class="cta-button">Contact Us</a>
-          </section>
+        <section class="section cta">
+          <h2>Building something the old guard said couldn't be done?</h2>
+          <p>Tell us what you are working on and we will tell you honestly if we can help.</p>
+          <a href="/work-with-us/" class="cta-button">Work With Us</a>
+        </section>
+
       </div>
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Q2-Computing",
+  title: "Q2 Computing",
   meta: [
     {
       name: "description",
-      content: "Q2-Computing software and hardware services",
+      content: "Q2 Computing builds automation, autonomous systems, and hardware solutions for small businesses and operators who are done waiting for someone else to solve their problems.",
     },
   ],
 };
