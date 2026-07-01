@@ -23,32 +23,19 @@ export default component$(() => {
         <section class="section">
           <h2>What we deliver today</h2>
           <p>The infrastructure keeping small businesses behind is not an accident. It was designed that way.</p>
-          <p><strong>Process automation:</strong> If your people are doing the same thing on repeat, we build the systems that liberate them. Using physics-based simulation, we can produce realizable results in days and have them operationally ready within months. We do not replace people. We teach them the power they already possess, because the human brain is faster, more resilient, more capable, and more energy efficient than any AI system ever built. Our job is to put that power to work on the problems only humans can solve, and let the machines make your people money whether they are a laborer, a technician, an engineer, or a staff member.</p>
+          <p><strong>Process automation:</strong> If your people are doing the same thing on repeat, we build the systems that liberate them. Using physics-based simulation, we can produce realizable results in days and have them operationally ready within months. We do not replace people. We teach them the power they already possess, because the human brain is faster, more resilient, more capable, and more energy efficient than any AI system ever built. Our job is to put that power to work on the problems only humans can solve, and let the machines make your people money no matter the role they currently fulfill in your organization.</p>
           <p><strong>Robotic automation:</strong> Major tech firms have made robotic automation sound like something only large organizations can afford or deploy. We use physics-based simulation to validate and replicate those same systems using open source tooling, producing realizable results in days. You get precision manufacturing, circuit testing, and physical automation with the same outcomes, without the enterprise price tag or the vendor lock-in.</p>
           <p><strong>Resilient autonomous systems:</strong> Most autonomous systems are designed assuming reliable infrastructure, and when that infrastructure fails, the system fails with it. We design from the ground up for degraded environments, treating GPS, communications, and power as a bonus rather than a requirement. Your systems maintain operational continuity when the grid goes down, the signal drops, or the supply chain breaks.</p>
           <p><strong>Hardware and embedded systems:</strong> Most engineering firms stop at the software layer and hand off hardware integration to someone else, which is precisely where real problems live. We work across the full stack from circuit design and PCB layout to signal analysis and embedded deployment because the intersection of hardware and software is where the hardest problems actually are. You get a system that works end to end, not a handoff chain where nobody owns the seams.</p>
         </section>
 
-        <section class={styles.patriot}>
-          <div class={styles.patriotInner}>
-            <h2>What we are building toward</h2>
-            <p>This is not a political statement. It is a competitive product, and it will win for the same reason asymmetric warfare works: the indigenous force has time, and nothing left to lose.</p>
-            <p>Big tech, billionaires, and the corporate machines built on centralized AI development have capital. We have time. Those are not equivalent resources. Capital defends what already exists. Time builds what comes next. Distributed manufacturing, distributed AI development, and small business operational support do not require permission from the organizations they will eventually replace.</p>
-            <p>Every person your competitors discarded as a low performer is a node in a network they do not control and cannot shut down. We are building the economic infrastructure that pays those people directly for what they contribute, whether they succeed or fail, because both outcomes teach the system something your competitors will never have access to. That data compounds. The network grows. The cost of entry drops toward zero.</p>
-            <p>Our parents and grandparents did not serve so that citizens could be sorted by productivity score and thrown away. Reasonable accommodation was always an American competitive advantage, not a burden. We are building a product that proves it. The only organizations that lose are the ones that bet everything on keeping knowledge expensive.</p>
-            <p>This system is in active development. If your organization wants to be part of building it, reach out now.</p>
-          </div>
-        </section>
-
         <section class="section">
-          <h2>No middlemen</h2>
-          <p>You talk directly to the engineer doing the work, not a sales rep, not a project manager, not someone reading off a brief.</p>
-          <p>We agree on scope, timeline, and rate upfront. No surprise invoices, no scope creep passed off as standard practice.</p>
-          <p>Active clients get a private workspace with live updates so you always know exactly where your project stands.</p>
+          <h2>Direct line to the engineer</h2>
+          <p>We agree on what needs to be built, how long it will take, and what it will cost before any work begins. You will never open an invoice that surprises you, and the scope we agree on is the scope we deliver. As work progresses, you have direct access to a private workspace with live updates so you always know exactly where things stand. No hand-offs, no translation layers, no one between you and the work being done on your behalf.</p>
         </section>
 
         <section class="section cta">
-          <h2>Building something the old guard said couldn't be done?</h2>
+          <h2>Have a problem that keeps getting handed off and never solved?</h2>
           <p>Tell us what you are working on and we will tell you honestly if we can help.</p>
           <a href="/work-with-us/" class="cta-button">Work With Us</a>
         </section>
