@@ -5,6 +5,14 @@ import styles from "./research.module.css";
 const supportingResearch = [
   {
     num: 1,
+    title: "Back to Newton's Laws: Learning Vision-Based Agile Flight via Differentiable Physics",
+    citation: "Zhang, Y., Hu, Y., Song, Y., Zou, D. & Lin, W. Nature Mach. Intell. (2025).",
+    summary: "The primary source that triggered Q2's research direction. Demonstrates autonomous multi-agent flight at 20 m/s with a 90% success rate using differentiable physics simulation, no state estimation, and sub-$21 edge compute. Directly establishes the viability of physics-informed policy learning for the hardware class Q2 targets.",
+    href: "https://arxiv.org/abs/2407.10648",
+    analysis: "/research/back-to-newtons-laws/",
+  },
+  {
+    num: 2,
     title: "Teach-Repeat-Replan: A Complete and Robust System for Aggressive Flight in Complex Environments",
     citation: "Gao, F. et al. IEEE Trans. Robot. 36, 1526–1545 (2020).",
     summary: "Establishes the complete autonomous flight stack (global planning, local re-planning, and VIO localization) that defines the infrastructure problem Q2's work is designed to operate without.",
@@ -12,7 +20,7 @@ const supportingResearch = [
     analysis: "/research/teach-repeat-replan/",
   },
   {
-    num: 2,
+    num: 3,
     title: "EGO-Planner: An ESDF-Free Gradient-Based Local Planner for Quadrotors",
     citation: "Zhou, X., Wang, Z., Ye, H., Xu, C. & Gao, F. IEEE Robot. Autom. Lett. 6, 478–485 (2020).",
     summary: "Demonstrates gradient-based local planning without expensive distance field computation, directly informing the efficiency constraints of Q2's edge-compute deployment target.",
@@ -20,147 +28,149 @@ const supportingResearch = [
     analysis: "/research/ego-planner/",
   },
   {
-    num: 3,
-    title: "Swarm of Micro Flying Robots in the Wild",
-    citation: "Zhou, X. et al. Sci. Robot. 7, eabm5954 (2022).",
-    summary: "Validates multi-agent coordination at physical scale in unstructured environments, establishing the real-world benchmark Q2's distributed confidence framework is designed to meet.",
-    href: "https://www.science.org/doi/10.1126/scirobotics.abm5954",
+    num: 4,
+    title: "EGO-Swarm: A Fully Autonomous and Decentralized Quadrotor Swarm System in Cluttered Environments",
+    citation: "Zhou, X., Zhu, J., Zhou, H., Xu, C. & Gao, F. arXiv:2011.04183 (2020).",
+    summary: "First systematic solution for fully autonomous decentralized quadrotor swarms in unknown cluttered environments using only onboard resources. Extends EGO-Planner with implicit topological planning, reciprocal collision avoidance as a soft barrier penalty, and VIO drift correction via agent detection in depth images.",
+    href: "https://arxiv.org/abs/2011.04183",
+    analysis: "/research/ego-swarm/",
   },
   {
-    num: 4,
+    num: 5,
     title: "Learning High-Speed Flight in the Wild",
     citation: "Loquercio, A. et al. Sci. Robot. 6, eabg5810 (2021).",
     summary: "Proves that lean neural networks operating on minimal sensor input can support competent high-speed navigation, motivating Q2's efficiency-first policy architecture.",
     href: "https://www.science.org/doi/10.1126/scirobotics.abg5810",
   },
   {
-    num: 5,
+    num: 6,
     title: "Perception-Aware Receding Horizon Navigation for MAVs",
     citation: "Zhang, Z. & Scaramuzza, D. ICRA 2534–2541 (IEEE, 2018).",
     summary: "Integrates perception quality directly into trajectory optimization, a complementary approach to Q2's anomaly-observation confidence model.",
     href: "https://ieeexplore.ieee.org/document/8460684",
   },
   {
-    num: 6,
-    title: "Are We Ready for Autonomous Drone Racing? The UZH-FPV Drone Racing Dataset",
-    citation: "Delmerico, J. et al. ICRA 6713–6719 (IEEE, 2019).",
-    summary: "Provides aggressive-flight benchmarking infrastructure that contextualizes the performance ceiling Q2's GPS-denied framework is designed to operate within.",
-    href: "https://ieeexplore.ieee.org/document/8793887",
+    num: 7,
+    title: "AlphaPilot: Autonomous Drone Racing",
+    citation: "Foehn, P. et al. arXiv:2005.12813 (2020).",
+    summary: "Documents the DARPA-backed AlphaPilot Challenge system, establishing aggressive vision-based flight benchmarks at speeds exceeding 8 m/s. Provides the open-access American performance baseline that contextualizes the ceiling Q2's GPS-denied framework is designed to operate within.",
+    href: "https://arxiv.org/abs/2005.12813",
   },
   {
-    num: 7,
+    num: 8,
     title: "TartanAir: A Dataset to Push the Limits of Visual SLAM",
     citation: "Wang, W. et al. IROS 4909–4916 (IEEE, 2020).",
     summary: "Diverse simulation dataset spanning degraded visual conditions, validating the simulation-first approach Q2 uses for zero-shot physical generalization.",
     href: "https://arxiv.org/abs/2003.14338",
   },
   {
-    num: 8,
+    num: 9,
     title: "DROID-SLAM: Deep Visual SLAM for Monocular, Stereo, and RGB-D Cameras",
     citation: "Teed, Z. & Deng, J. NeurIPS (2021).",
     summary: "Establishes the mature visual SLAM baseline for onboard localization across camera modalities without external reference. Q2's anomaly-based approach deliberately departs from this to remove the camera dependency entirely.",
     href: "https://arxiv.org/abs/2108.10869",
   },
   {
-    num: 9,
+    num: 10,
     title: "Learned Inertial Odometry for Autonomous Drone Racing",
     citation: "Cioffi, G., Bauersfeld, L., Kaufmann, E. & Scaramuzza, D. IEEE Robot. Autom. Lett. 8, 2684–2691 (2023).",
     summary: "Inertial-only odometry for drone racing validates dead-reckoning under GPS denial, directly informing Q2's sensor-minimal navigation assumption.",
     href: "https://ieeexplore.ieee.org/document/10015592",
   },
   {
-    num: 10,
+    num: 11,
     title: "Champion-Level Drone Racing Using Deep Reinforcement Learning",
     citation: "Kaufmann, E. et al. Nature 620, 982–987 (2023).",
-    summary: "Sets the upper bound of learned flight policy capability at human-champion level, motivating Q2's pursuit of comparable swarm coordination performance under infrastructure denial.",
+    summary: "Sets the upper bound of learned flight policy capability at human-champion level, demonstrating that PPO-trained policies with empirical sim-to-real residual models can achieve world-champion performance on embedded hardware.",
     href: "https://www.nature.com/articles/s41586-023-06419-4",
+    analysis: "/research/swift-drone-racing/",
   },
   {
-    num: 11,
+    num: 12,
     title: "Deep Drone Acrobatics",
     citation: "Kaufmann, E. et al. Robotics: Science and Systems (2020).",
     summary: "Demonstrates extreme maneuver learning transferable from simulation, establishing the sim-to-real transfer methodology Q2 applies to swarm coordination policies.",
     href: "https://arxiv.org/abs/2006.05768",
   },
   {
-    num: 12,
+    num: 13,
     title: "Agilicious: Open-Source and Open-Hardware Agile Quadrotor for Vision-Based Flight",
     citation: "Foehn, P. et al. Sci. Robot. 7, eabl6259 (2022).",
     summary: "Open-source agile quadrotor platform that provides the physical deployment reference architecture and performance envelope for Q2's hardware target.",
     href: "https://www.science.org/doi/10.1126/scirobotics.abl6259",
   },
   {
-    num: 13,
+    num: 14,
     title: "Differentiable Physics Simulation",
     citation: "Liang, J. & Lin, M. C. ICLR Workshop (2020).",
     summary: "Physics-based simulation for differentiable policy training, the foundational technique behind Q2's digital validation methodology and zero-shot generalization approach.",
     href: "https://arxiv.org/abs/2110.05965",
   },
   {
-    num: 14,
+    num: 15,
     title: "Proximal Policy Optimization Algorithms",
     citation: "Schulman, J. et al. arXiv:1707.06347 (2017).",
     summary: "The proximal policy optimization algorithm Q2 applies for reinforcement learning-based policy training within the swarm coordination framework.",
     href: "https://arxiv.org/abs/1707.06347",
   },
   {
-    num: 15,
+    num: 16,
     title: "A Machine Learning Approach to Visual Perception of Forest Trails for Mobile Robots",
     citation: "Giusti, A. et al. IEEE Robot. Autom. Lett. 1, 661–667 (2015).",
     summary: "Early demonstration of visual navigation policy learning in unstructured environments with no pre-labeled map, a direct analogue to Q2's object-blind positional confidence approach.",
     href: "https://ieeexplore.ieee.org/document/7358076",
   },
   {
-    num: 16,
+    num: 17,
     title: "An End-to-End Trainable Neural Network for Image-Based Sequence Recognition",
     citation: "Shi, B., Bai, X. & Yao, C. IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298–2304 (2016).",
     summary: "End-to-end sequence recognition architecture that informs the temporal modeling of successive anomaly observations in Q2's Markov chain confidence framework.",
     href: "https://arxiv.org/abs/1507.05717",
   },
   {
-    num: 17,
+    num: 18,
     title: "Learning Phrase Representations Using RNN Encoder-Decoder for Statistical Machine Translation",
     citation: "Cho, K. et al. arXiv:1406.1078 (2014).",
     summary: "Foundational sequence-to-sequence architecture underlying the recurrent modeling of state transition probabilities in Q2's confidence update model.",
     href: "https://arxiv.org/abs/1406.1078",
   },
   {
-    num: 18,
+    num: 19,
     title: "VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator",
     citation: "Qin, T., Li, P. & Shen, S. IEEE Trans. Robot. 34, 1004–1020 (2018).",
     summary: "The most widely deployed GPS-denied localization baseline in the field. Q2's framework is positioned as an alternative that removes the camera dependency entirely.",
     href: "https://arxiv.org/abs/1708.03852",
   },
   {
-    num: 19,
+    num: 20,
     title: "PyTorch: An Imperative Style, High-Performance Deep Learning Library",
     citation: "Paszke, A. et al. NeurIPS (2019).",
     summary: "The deep learning framework used for implementing and training Q2's policy networks and confidence estimation models.",
     href: "https://arxiv.org/abs/1912.01703",
   },
   {
-    num: 20,
+    num: 21,
     title: "Deep Drone Racing: From Simulation to Reality with Domain Randomization",
     citation: "Loquercio, A. et al. IEEE Trans. Robot. 36, 1–14 (2019).",
     summary: "Domain randomization for sim-to-real transfer in aggressive flight, directly informing Q2's zero-shot generalization methodology from digital simulation to physical deployment.",
     href: "https://arxiv.org/abs/1905.09294",
   },
   {
-    num: 21,
+    num: 22,
     title: "Gradients Are Not All You Need",
     citation: "Metz, L. et al. arXiv:2111.05803 (2021).",
     summary: "Characterizes failure modes of gradient-based optimization in chaotic dynamical systems, informing Q2's hybrid approach to policy training under non-smooth swarm dynamics.",
     href: "https://arxiv.org/abs/2111.05803",
   },
   {
-    num: 22,
+    num: 23,
     title: "Learning Long-Term Dependencies with Gradient Descent Is Difficult",
     citation: "Bengio, Y., Simard, P. & Frasconi, P. IEEE Trans. Neural Netw. 5, 157–166 (1994).",
     summary: "Foundational characterization of the vanishing gradient problem in recurrent networks, directly relevant to Q2's Markov chain formulation for iterative confidence updating across distributed nodes.",
     href: "https://ieeexplore.ieee.org/document/279181",
   },
   {
-    num: 23,
+    num: 24,
     title: "Mango Pi MQ Quad",
     citation: "mangopi.org (2023).",
     summary: "The low-cost edge compute hardware target for Q2's physical deployment architecture, chosen for its power efficiency, compact form factor, and open ecosystem.",
@@ -176,7 +186,6 @@ export default component$(() => {
         <h1>Research</h1>
         <p>
           Original contributions from Q2 Computing alongside the foundational body of work that supports them.
-          Every author cited has earned their credit.
         </p>
       </div>
 
@@ -212,7 +221,7 @@ export default component$(() => {
               prior is geographic, not object-classified. No feature-labeled dataset of the
               environment is required. The method was developed and validated in physics-based
               digital simulation and is designed for zero-shot generalization to physical
-              deployment on low-cost edge hardware <a href="#ref-23">[23]</a>.
+              deployment on low-cost edge hardware <a href="#ref-24">[24]</a>.
             </p>
 
             <p><strong>Key contributions:</strong></p>

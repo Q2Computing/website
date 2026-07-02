@@ -44,3 +44,20 @@ lerna-debug.log*
 
 # Netlify
 .netlify
+
+# Claude Code — session data, memory, and scratchpad must never leave this machine
+.claude/
+*.jsonl
+
+# Lean / Lake — build artifacts and cached Mathlib binaries only (source and lockfile are tracked)
+proofs/.lake/
+
+# AWS credentials and environment secrets
+.env*
+*.pem
+*.key
+credentials
+aws-exports.js
+
+# OS artifacts
+Thumbs.db
