@@ -41,6 +41,7 @@ const supportingResearch = [
     citation: "Loquercio, A. et al. Sci. Robot. 6, eabg5810 (2021).",
     summary: "Proves that lean neural networks operating on minimal sensor input can support competent high-speed navigation, motivating Q2's efficiency-first policy architecture.",
     href: "https://www.science.org/doi/10.1126/scirobotics.abg5810",
+    analysis: "/research/learning-high-speed-flight/",
   },
   {
     num: 6,
@@ -48,6 +49,7 @@ const supportingResearch = [
     citation: "Zhang, Z. & Scaramuzza, D. ICRA 2534–2541 (IEEE, 2018).",
     summary: "Integrates perception quality directly into trajectory optimization, a complementary approach to Q2's anomaly-observation confidence model.",
     href: "https://ieeexplore.ieee.org/document/8460684",
+    analysis: "/research/perception-aware-navigation/",
   },
   {
     num: 7,
@@ -55,6 +57,7 @@ const supportingResearch = [
     citation: "Foehn, P. et al. arXiv:2005.12813 (2020).",
     summary: "Documents the DARPA-backed AlphaPilot Challenge system, establishing aggressive vision-based flight benchmarks at speeds exceeding 8 m/s. Provides the open-access American performance baseline that contextualizes the ceiling Q2's GPS-denied framework is designed to operate within.",
     href: "https://arxiv.org/abs/2005.12813",
+    analysis: "/research/alphapilot/",
   },
   {
     num: 8,
@@ -62,6 +65,7 @@ const supportingResearch = [
     citation: "Wang, W. et al. IROS 4909–4916 (IEEE, 2020).",
     summary: "Diverse simulation dataset spanning degraded visual conditions, validating the simulation-first approach Q2 uses for zero-shot physical generalization.",
     href: "https://arxiv.org/abs/2003.14338",
+    analysis: "/research/tartanair/",
   },
   {
     num: 9,
@@ -69,6 +73,7 @@ const supportingResearch = [
     citation: "Teed, Z. & Deng, J. NeurIPS (2021).",
     summary: "Establishes the mature visual SLAM baseline for onboard localization across camera modalities without external reference. Q2's anomaly-based approach deliberately departs from this to remove the camera dependency entirely.",
     href: "https://arxiv.org/abs/2108.10869",
+    analysis: "/research/droid-slam/",
   },
   {
     num: 10,
@@ -76,6 +81,7 @@ const supportingResearch = [
     citation: "Cioffi, G., Bauersfeld, L., Kaufmann, E. & Scaramuzza, D. IEEE Robot. Autom. Lett. 8, 2684–2691 (2023).",
     summary: "Inertial-only odometry for drone racing validates dead-reckoning under GPS denial, directly informing Q2's sensor-minimal navigation assumption.",
     href: "https://ieeexplore.ieee.org/document/10015592",
+    analysis: "/research/learned-inertial-odometry/",
   },
   {
     num: 11,
@@ -91,6 +97,7 @@ const supportingResearch = [
     citation: "Kaufmann, E. et al. Robotics: Science and Systems (2020).",
     summary: "Demonstrates extreme maneuver learning transferable from simulation, establishing the sim-to-real transfer methodology Q2 applies to swarm coordination policies.",
     href: "https://arxiv.org/abs/2006.05768",
+    analysis: "/research/deep-drone-acrobatics/",
   },
   {
     num: 13,
@@ -98,6 +105,7 @@ const supportingResearch = [
     citation: "Foehn, P. et al. Sci. Robot. 7, eabl6259 (2022).",
     summary: "Open-source agile quadrotor platform that provides the physical deployment reference architecture and performance envelope for Q2's hardware target.",
     href: "https://www.science.org/doi/10.1126/scirobotics.abl6259",
+    analysis: "/research/agilicious/",
   },
   {
     num: 14,
@@ -105,6 +113,7 @@ const supportingResearch = [
     citation: "Liang, J. & Lin, M. C. ICLR Workshop (2020).",
     summary: "Physics-based simulation for differentiable policy training, the foundational technique behind Q2's digital validation methodology and zero-shot generalization approach.",
     href: "https://arxiv.org/abs/2110.05965",
+    analysis: "/research/differentiable-physics/",
   },
   {
     num: 15,
@@ -112,6 +121,7 @@ const supportingResearch = [
     citation: "Schulman, J. et al. arXiv:1707.06347 (2017).",
     summary: "The proximal policy optimization algorithm Q2 applies for reinforcement learning-based policy training within the swarm coordination framework.",
     href: "https://arxiv.org/abs/1707.06347",
+    analysis: "/research/ppo/",
   },
   {
     num: 16,
@@ -119,6 +129,7 @@ const supportingResearch = [
     citation: "Giusti, A. et al. IEEE Robot. Autom. Lett. 1, 661–667 (2015).",
     summary: "Early demonstration of visual navigation policy learning in unstructured environments with no pre-labeled map, a direct analogue to Q2's object-blind positional confidence approach.",
     href: "https://ieeexplore.ieee.org/document/7358076",
+    analysis: "/research/forest-trails/",
   },
   {
     num: 17,
@@ -126,6 +137,7 @@ const supportingResearch = [
     citation: "Shi, B., Bai, X. & Yao, C. IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298–2304 (2016).",
     summary: "End-to-end sequence recognition architecture that informs the temporal modeling of successive anomaly observations in Q2's Markov chain confidence framework.",
     href: "https://arxiv.org/abs/1507.05717",
+    analysis: "/research/crnn-sequence-recognition/",
   },
   {
     num: 18,
@@ -133,13 +145,15 @@ const supportingResearch = [
     citation: "Cho, K. et al. arXiv:1406.1078 (2014).",
     summary: "Foundational sequence-to-sequence architecture underlying the recurrent modeling of state transition probabilities in Q2's confidence update model.",
     href: "https://arxiv.org/abs/1406.1078",
+    analysis: "/research/rnn-encoder-decoder/",
   },
   {
     num: 19,
     title: "VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator",
     citation: "Qin, T., Li, P. & Shen, S. IEEE Trans. Robot. 34, 1004–1020 (2018).",
-    summary: "The most widely deployed GPS-denied localization baseline in the field. Q2's framework is positioned as an alternative that removes the camera dependency entirely.",
+    summary: "The most widely deployed GPS-denied localization baseline in the field. Informs Q2's multi-sensor integration approach: low-resolution camera frames evaluating terrain conformation with computationally simple algorithms improve positional accuracy and precision beyond inertial sensing alone.",
     href: "https://arxiv.org/abs/1708.03852",
+    analysis: "/research/vins-mono/",
   },
   {
     num: 20,
@@ -147,13 +161,15 @@ const supportingResearch = [
     citation: "Paszke, A. et al. NeurIPS (2019).",
     summary: "The deep learning framework used for implementing and training Q2's policy networks and confidence estimation models.",
     href: "https://arxiv.org/abs/1912.01703",
+    analysis: "/research/pytorch/",
   },
   {
     num: 21,
     title: "Deep Drone Racing: From Simulation to Reality with Domain Randomization",
     citation: "Loquercio, A. et al. IEEE Trans. Robot. 36, 1–14 (2019).",
     summary: "Domain randomization for sim-to-real transfer in aggressive flight, directly informing Q2's zero-shot generalization methodology from digital simulation to physical deployment.",
-    href: "https://arxiv.org/abs/1905.09294",
+    href: "https://arxiv.org/abs/1905.09727",
+    analysis: "/research/deep-drone-racing/",
   },
   {
     num: 22,
@@ -161,6 +177,7 @@ const supportingResearch = [
     citation: "Metz, L. et al. arXiv:2111.05803 (2021).",
     summary: "Characterizes failure modes of gradient-based optimization in chaotic dynamical systems, informing Q2's hybrid approach to policy training under non-smooth swarm dynamics.",
     href: "https://arxiv.org/abs/2111.05803",
+    analysis: "/research/gradients-not-all-you-need/",
   },
   {
     num: 23,
@@ -168,6 +185,7 @@ const supportingResearch = [
     citation: "Bengio, Y., Simard, P. & Frasconi, P. IEEE Trans. Neural Netw. 5, 157–166 (1994).",
     summary: "Foundational characterization of the vanishing gradient problem in recurrent networks, directly relevant to Q2's Markov chain formulation for iterative confidence updating across distributed nodes.",
     href: "https://ieeexplore.ieee.org/document/279181",
+    analysis: "/research/learning-long-term-dependencies/",
   },
   {
     num: 24,

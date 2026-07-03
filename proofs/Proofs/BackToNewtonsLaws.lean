@@ -21,7 +21,7 @@
   (v < 7 m/s) consistent with the Q2 deployment target.
 -/
 
-import Mathlib
+import Proofs.Imports
 open Real Finset
 
 /-!
@@ -51,7 +51,8 @@ theorem smoothL1_nonneg (beta e : ℝ) (hb : 0 < beta) (_he : 0 ≤ e) :
 /-- Both branches agree at the threshold: continuity of SmoothL1 at e = beta -/
 theorem smoothL1_continuous_at_threshold (beta : ℝ) (hb : 0 < beta) :
     beta ^ 2 / (2 * beta) = beta - beta / 2 := by
-  field_simp; ring
+  have h2b : (2 : ℝ) * beta ≠ 0 := mul_ne_zero two_ne_zero hb.ne'
+  rw [div_eq_iff h2b, sq]; ring
 
 /-- The quadratic branch has derivative e / beta -/
 theorem smoothL1_quadratic_hasDerivAt (beta e : ℝ) (hb : 0 < beta) :
@@ -62,7 +63,8 @@ theorem smoothL1_quadratic_hasDerivAt (beta e : ℝ) (hb : 0 < beta) :
     exact raw
   have h3 : HasDerivAt (fun x : ℝ => x ^ 2 / (2 * beta)) (2 * e / (2 * beta)) e :=
     h2.div_const (2 * beta)
-  have heq : 2 * e / (2 * beta) = e / beta := by field_simp [hb.ne']
+  have heq : 2 * e / (2 * beta) = e / beta := by
+    rw [div_eq_div_iff (mul_ne_zero two_ne_zero hb.ne') hb.ne']; ring
   rwa [heq] at h3
 
 /-- The linear branch has derivative 1 -/

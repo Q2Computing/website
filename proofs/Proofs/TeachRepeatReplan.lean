@@ -9,7 +9,7 @@
   Dynamic proofs carry `hv_env : v < 7` where the regime matters.
 -/
 
-import Mathlib
+import Proofs.Imports
 
 open Real Finset
 
@@ -54,13 +54,13 @@ to bring all segments within dynamic bounds simultaneously.
     gamma' * (1/T). Scaling T by k > 0 scales velocity by 1/k. -/
 theorem velocity_scale_factor (gamma' T k : ℝ) (hT : 0 < T) (hk : 0 < k) :
     gamma' / (k * T) = (gamma' / T) / k := by
-  field_simp [hT.ne', hk.ne']
+  rw [div_div, mul_comm k T]
 
 /-- Under linear time parameterization, the physical acceleration is
     gamma'' * (1/T^2). Scaling T by k > 0 scales acceleration by 1/k^2. -/
 theorem accel_scale_factor (gamma'' T k : ℝ) (hT : 0 < T) (hk : 0 < k) :
     gamma'' / (k * T) ^ 2 = (gamma'' / T ^ 2) / k ^ 2 := by
-  field_simp [hT.ne', hk.ne']
+  rw [mul_pow, div_div, mul_comm (k ^ 2) (T ^ 2)]
 
 /-- If k >= v / v_max and k > 0, then the scaled velocity v / k <= v_max.
     This is the velocity bound guaranteed by the TRR time reallocation step. -/
@@ -73,7 +73,8 @@ theorem velocity_feasible_after_scaling
     have hcancel : v / v_max * v_max = v := div_mul_cancel₀ v hvm.ne'
     linarith
   have hineq : v - v_max * k ≤ 0 := by linarith [mul_comm k v_max]
-  have hkey : v / k - v_max = (v - v_max * k) / k := by field_simp [hk.ne']
+  have hkey : v / k - v_max = (v - v_max * k) / k := by
+    rw [sub_div, mul_div_cancel_right₀ _ hk.ne']
   linarith [div_nonpos_of_nonpos_of_nonneg hineq hk.le, hkey.le]
 
 /-- If k >= sqrt(a / a_max) and k > 0 and a >= 0, then the scaled
@@ -97,7 +98,7 @@ theorem accel_feasible_after_scaling
   have hk2pos : (0 : ℝ) < k ^ 2 := by positivity
   have hineq2 : a - a_max * k ^ 2 ≤ 0 := by linarith [mul_comm (k ^ 2) a_max]
   have hkey2 : a / k ^ 2 - a_max = (a - a_max * k ^ 2) / k ^ 2 := by
-    field_simp [hk2pos.ne']
+    rw [sub_div, mul_div_cancel_right₀ _ hk2pos.ne']
   linarith [div_nonpos_of_nonpos_of_nonneg hineq2 hk2pos.le, hkey2.le]
 
 /-- The minimum scale factor k = max(v / v_max, sqrt(a / a_max)) simultaneously
@@ -186,5 +187,6 @@ theorem scale_factor_ge_one_at_limit
     (v v_max : ℝ) (hv : v_max ≤ v) (hvm : 0 < v_max) :
     1 ≤ v / v_max := by
   have hnn : 0 ≤ v - v_max := by linarith
-  have hkey3 : v / v_max - 1 = (v - v_max) / v_max := by field_simp [hvm.ne']
+  have hkey3 : v / v_max - 1 = (v - v_max) / v_max := by
+    rw [sub_div, div_self hvm.ne']
   linarith [div_nonneg hnn hvm.le, hkey3.ge]

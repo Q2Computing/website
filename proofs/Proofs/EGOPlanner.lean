@@ -14,7 +14,7 @@
   TeachRepeatReplan.lean for the primary versions imported here.
 -/
 
-import Mathlib
+import Proofs.Imports
 import Proofs.TeachRepeatReplan
 
 open Real Finset

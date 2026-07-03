@@ -12,7 +12,7 @@
   5. Total objective: non-negativity of J_EGO + lambda_w * J_{w,k}
 -/
 
-import Mathlib
+import Proofs.Imports
 import Proofs.TeachRepeatReplan
 import Proofs.EGOPlanner
 
@@ -173,8 +173,8 @@ theorem mean_deviations_sum_zero {n : ℕ} (hn : 0 < n) (p : Fin n → ℝ) :
   rw [sum_sub_distrib, sum_const, card_univ, Fintype.card_fin]
   simp only [nsmul_eq_mul]
   have hn' : (n : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr hn.ne'
-  field_simp
-  ring
+  rw [sub_eq_zero]
+  exact (mul_div_cancel_left₀ _ hn').symm
 
 /-- The centroid minimizes the sum of squared distances from any cluster P.
     For all x in R: sum_i (p_i - mu)^2 <= sum_i (p_i - x)^2.
