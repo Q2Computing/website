@@ -40,8 +40,7 @@ theorem ensemble_deviations_sum_zero {N : ℕ} (hN : 0 < N) (mu : Fin N → ℝ)
   rw [sum_sub_distrib, sum_const, card_univ, Fintype.card_fin]
   simp only [nsmul_eq_mul]
   have hN' : (N : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr hN.ne'
-  rw [sub_eq_zero]
-  exact (mul_div_cancel_left₀ _ hN').symm
+  rw [sub_eq_zero, mul_comm, div_mul_cancel₀ _ hN']
 
 /-- The ensemble variance decomposition holds:
     total = mean_aleatoric + epistemic (variance of means) -/

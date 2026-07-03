@@ -30,9 +30,14 @@ We prove: if all Jacobian norms exceed 1, the product exceeds 1^T = 1.
 /-- Product of values > 1 exceeds 1 -/
 theorem product_gt_one {n : ℕ} (hn : 0 < n) (J : Fin n → ℝ)
     (hJ : ∀ i, 1 < J i) :
-    1 < ∏ i : Fin n, J i :=
-  lt_of_lt_of_le (hJ ⟨0, hn⟩)
-    (Finset.single_le_prod' (fun i _ => (hJ i).le) (Finset.mem_univ _))
+    1 < ∏ i : Fin n, J i := by
+  have hpos : ∀ i : Fin n, 0 < J i := fun i => by linarith [hJ i]
+  have hprod : 0 < ∏ i : Fin n, J i :=
+    Finset.prod_pos (fun i _ => hpos i)
+  rw [← Real.exp_log hprod, ← Real.exp_zero]
+  apply Real.exp_lt_exp.mpr
+  rw [Real.log_prod (fun i _ => (hpos i).ne')]
+  exact Finset.sum_pos (fun i _ => Real.log_pos (hJ i)) ⟨⟨0, hn⟩, Finset.mem_univ _⟩
 
 /-- Gradient norm grows at least exponentially with lambda^T when lambda > 1 -/
 theorem gradient_explosion_lower_bound (lam : ℝ) (hlam : 1 < lam) (T : ℕ) :
@@ -80,11 +85,12 @@ theorem geom_series_bound (gamma : ℝ) (hγ0 : 0 ≤ gamma) (hγ1 : gamma < 1)
   have hpow : 0 ≤ gamma ^ T := pow_nonneg hγ0 T
   have hsum_bound : (1 - gamma) * ∑ k ∈ Finset.range T, gamma ^ k ≤ 1 := by linarith
   have hsum_le : ∑ k ∈ Finset.range T, gamma ^ k ≤ 1 / (1 - gamma) := by
-    rw [le_div_iff h1]
-    have heq : ∑ k ∈ Finset.range T, gamma ^ k * (1 - gamma) =
-               (1 - gamma) * ∑ k ∈ Finset.range T, gamma ^ k := by
-      rw [← Finset.sum_mul, mul_comm]
-    rw [heq]; exact hsum_bound
+    have h2 : (∑ k ∈ Finset.range T, gamma ^ k) * (1 - gamma) ≤ 1 := by
+      linarith [mul_comm (1 - gamma) (∑ k ∈ Finset.range T, gamma ^ k)]
+    calc ∑ k ∈ Finset.range T, gamma ^ k
+        = (∑ k ∈ Finset.range T, gamma ^ k) * (1 - gamma) / (1 - gamma) :=
+          (mul_div_cancel_right₀ _ h1.ne').symm
+      _ ≤ 1 / (1 - gamma) := (div_le_div_right h1).mpr h2
   calc ∑ k ∈ Finset.range T, gamma ^ k * g0
       = (∑ k ∈ Finset.range T, gamma ^ k) * g0 := (Finset.sum_mul _ _ _).symm
     _ ≤ (1 / (1 - gamma)) * g0 := mul_le_mul_of_nonneg_right hsum_le hg0

@@ -77,8 +77,15 @@ the gradient norm grows exponentially with T - k.
 /-- Gradient explodes when λ > γ: ratio > 1 implies T-th power grows -/
 theorem gradient_explodes (lam gamma : ℝ) (hlam : 0 < lam) (hgamma : 0 < gamma)
     (h : gamma < lam) (T : ℕ) (hT : 0 < T) :
-    1 < (lam / gamma) ^ T :=
-  one_lt_pow' ((one_lt_div hgamma).mpr h) hT.ne'
+    1 < (lam / gamma) ^ T := by
+  have hr : 1 < lam / gamma := (one_lt_div hgamma).mpr h
+  have h0 : 0 < lam / gamma := by linarith
+  obtain ⟨n, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hT.ne'
+  induction n with
+  | zero => simpa
+  | succ k ihk =>
+    rw [pow_succ]
+    exact lt_of_lt_of_le hr (le_mul_of_one_le_left h0.le (le_of_lt ihk))
 
 /-- Exploding gradient norm lower bound -/
 theorem gradient_explosion_bound (lam gamma grad_T : ℝ)
@@ -86,7 +93,7 @@ theorem gradient_explosion_bound (lam gamma grad_T : ℝ)
     (hgrad : 0 < grad_T) (gap : ℕ) (hgap : 0 < gap) :
     grad_T < (lam / gamma) ^ gap * grad_T := by
   nth_rw 1 [← one_mul grad_T]
-  exact mul_lt_mul_of_pos_right (one_lt_pow' ((one_lt_div hgamma).mpr h) hgap.ne') hgrad
+  exact mul_lt_mul_of_pos_right (gradient_explodes lam gamma hlam hgamma h gap hgap) hgrad
 
 /-!
 ## Information Compression Through Time

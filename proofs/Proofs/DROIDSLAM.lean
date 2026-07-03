@@ -46,7 +46,10 @@ theorem reprojection_zero_iff {n : ℕ} (err : Fin n → ℝ) (w : Fin n → ℝ
     have heq : ∑ i : Fin n, w i * err i ^ 2 = 0 := le_antisymm hge hle
     intro k
     have hk : w k * err k ^ 2 ≤ 0 := by
-      nlinarith [sum_nonneg (fun i _ => mul_nonneg (hw i).le (sq_nonneg (err i)))]
+      have hfk : w k * err k ^ 2 ≤ ∑ i : Fin n, w i * err i ^ 2 :=
+        Finset.single_le_sum (fun i _ => mul_nonneg (hw i).le (sq_nonneg (err i)))
+          Finset.univ (Finset.mem_univ k)
+      linarith
     have hk2 : 0 ≤ w k * err k ^ 2 := mul_nonneg (hw k).le (sq_nonneg _)
     have hk3 : w k * err k ^ 2 = 0 := le_antisymm hk hk2
     rcases mul_eq_zero.mp hk3 with hw0 | he0

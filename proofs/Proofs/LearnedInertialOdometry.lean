@@ -2,7 +2,7 @@
   Formal verification of mathematical claims in:
   "Learned Inertial Odometry for Autonomous Drone Racing"
   Cioffi, G., Bauersfeld, L., Kaufmann, E. & Scaramuzza, D.
-  IEEE Robot. Autom. Lett. 8, 2684â€“2691 (2023).
+  IEEE Robot. Autom. Lett. 8, 2684–2691 (2023).
 
   We prove:
   1. IMU preintegration: velocity and position update consistency
@@ -24,31 +24,31 @@ The IMU measures specific force a_measured = a_true - g (in body frame).
 After rotating to world frame and subtracting gravity:
 
   v_{k+1} = v_k + (a_k - g) * dt
-  p_{k+1} = p_k + v_k * dt + (1/2) * (a_k - g) * dtÂ²
+  p_{k+1} = p_k + v_k * dt + (1/2) * (a_k - g) * dt²
 
 We verify these updates and their derivatives.
 -/
 
 /-- Velocity preintegration step -/
-noncomputable def imu_vel_update (vk ak g dt : â„) : â„ :=
+noncomputable def imu_vel_update (vk ak g dt : ℝ) : ℝ :=
   vk + (ak - g) * dt
 
 /-- Position preintegration step -/
-noncomputable def imu_pos_update (pk vk ak g dt : â„) : â„ :=
+noncomputable def imu_pos_update (pk vk ak g dt : ℝ) : ℝ :=
   pk + vk * dt + (1 / 2) * (ak - g) * dt ^ 2
 
 /-- The velocity update with zero acceleration (hover) reduces to constant velocity -/
-theorem imu_vel_update_zero_accel (vk g dt : â„) :
+theorem imu_vel_update_zero_accel (vk g dt : ℝ) :
     imu_vel_update vk g g dt = vk := by
   unfold imu_vel_update; ring
 
 /-- The position update with constant velocity reduces to pk + vk * dt + 0 -/
-theorem imu_pos_update_zero_net_accel (pk vk g dt : â„) :
+theorem imu_pos_update_zero_net_accel (pk vk g dt : ℝ) :
     imu_pos_update pk vk g g dt = pk + vk * dt := by
   unfold imu_pos_update; ring
 
 /-- The velocity preintegration is linear in the true acceleration -/
-theorem imu_vel_update_linear_accel (vk ak1 ak2 g dt lam : â„) :
+theorem imu_vel_update_linear_accel (vk ak1 ak2 g dt lam : ℝ) :
     imu_vel_update vk (lam * ak1 + (1 - lam) * ak2) g dt =
     lam * imu_vel_update vk ak1 g dt + (1 - lam) * imu_vel_update vk ak2 g dt := by
   unfold imu_vel_update; ring
@@ -65,19 +65,19 @@ This grows linearly in time, bounding the dead-reckoning drift rate.
 -/
 
 /-- Position error from constant velocity bias grows linearly in time -/
-theorem dead_reckoning_error_linear (b T : â„) (hT : 0 â‰¤ T) :
+theorem dead_reckoning_error_linear (b T : ℝ) (hT : 0 ≤ T) :
     |b * T| = |b| * T := by
   rw [abs_mul, abs_of_nonneg hT]
 
 /-- Dead-reckoning position error is bounded by |b| * T -/
-theorem dead_reckoning_bound (b T : â„) (hT : 0 â‰¤ T) :
-    0 â‰¤ |b| * T :=
+theorem dead_reckoning_bound (b T : ℝ) (hT : 0 ≤ T) :
+    0 ≤ |b| * T :=
   mul_nonneg (abs_nonneg b) hT
 
 /-- Larger time horizon gives larger dead-reckoning error bound -/
-theorem dead_reckoning_monotone (b T1 T2 : â„) (hb : 0 â‰¤ |b|)
-    (h : T1 â‰¤ T2) :
-    |b| * T1 â‰¤ |b| * T2 :=
+theorem dead_reckoning_monotone (b T1 T2 : ℝ) (hb : 0 ≤ |b|)
+    (h : T1 ≤ T2) :
+    |b| * T1 ≤ |b| * T2 :=
   mul_le_mul_of_nonneg_left h hb
 
 /-!
@@ -94,16 +94,16 @@ formal guarantee: if |delta_v - err_imu| < |err_imu|, the correction helps.
 
 /-- The correction reduces error when the residual is closer to zero than
     the original IMU error -/
-theorem correction_reduces_error (v_true v_imu delta_v : â„)
+theorem correction_reduces_error (v_true v_imu delta_v : ℝ)
     (h : |delta_v - (v_true - v_imu)| < |v_true - v_imu|) :
     |v_imu + delta_v - v_true| < |v_imu - v_true| := by
   have : |v_imu + delta_v - v_true| = |delta_v - (v_true - v_imu)| := by ring_nf; congr 1; ring
   have : |v_imu - v_true| = |v_true - v_imu| := abs_sub_comm v_imu v_true
-  linarith [this â–¸ h]
+  linarith [this ▸ h]
 
 /-!
 ## Physical Operating Envelope
 -/
 
 /-- Q2 target speed is within the 7 m/s point-mass envelope -/
-theorem q2_within_envelope (v : â„) (hv : v < 7) : v â‰¤ 7 := le_of_lt hv
+theorem q2_within_envelope (v : ℝ) (hv : v < 7) : v ≤ 7 := le_of_lt hv

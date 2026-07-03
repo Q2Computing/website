@@ -21,29 +21,29 @@ open Real Finset
 ## Privileged Learning (Teacher-Student)
 
 The paper uses privileged information at train time (full state) that is
-unavailable at test time (only onboard sensors). The student network Ï€_student
-is trained to mimic the teacher Ï€_teacher. The DAgger-style bound states that
+unavailable at test time (only onboard sensors). The student network π_student
+is trained to mimic the teacher π_teacher. The DAgger-style bound states that
 the student's compounded error grows at most linearly with the horizon H:
 
-  E[||s_t^student - s_t^teacher||] â‰¤ H * Îµ_1 + H^2 * Îµ_2
+  E[||s_t^student - s_t^teacher||] ≤ H * ε_1 + H^2 * ε_2
 
-where Îµ_1 is the per-step imitation error and Îµ_2 is the dynamics sensitivity.
+where ε_1 is the per-step imitation error and ε_2 is the dynamics sensitivity.
 We prove the per-step tracking error is non-negative.
 -/
 
 /-- Per-step imitation error is non-negative -/
-theorem imitation_error_nonneg {n : â„•} (err : Fin n â†’ â„) :
-    0 â‰¤ âˆ‘ k : Fin n, err k ^ 2 :=
+theorem imitation_error_nonneg {n : ℕ} (err : Fin n → ℝ) :
+    0 ≤ ∑ k : Fin n, err k ^ 2 :=
   sum_nonneg fun _ _ => sq_nonneg _
 
 /-- Student-teacher gap is non-negative -/
-theorem student_teacher_gap_nonneg (a_student a_teacher : â„) :
-    0 â‰¤ (a_student - a_teacher) ^ 2 :=
+theorem student_teacher_gap_nonneg (a_student a_teacher : ℝ) :
+    0 ≤ (a_student - a_teacher) ^ 2 :=
   sq_nonneg _
 
-/-- DAgger compounding: horizon H, per-step error Îµ -- accumulated error â‰¤ H * Îµ -/
-theorem dagger_error_bound (eps H : â„) (hH : 0 â‰¤ H) (heps : 0 â‰¤ eps) :
-    0 â‰¤ H * eps :=
+/-- DAgger compounding: horizon H, per-step error ε -- accumulated error ≤ H * ε -/
+theorem dagger_error_bound (eps H : ℝ) (hH : 0 ≤ H) (heps : 0 ≤ eps) :
+    0 ≤ H * eps :=
   mul_nonneg hH heps
 
 /-!
@@ -54,17 +54,17 @@ We prove that the polynomial value is bounded if the coefficients are bounded.
 -/
 
 /-- A polynomial evaluated via Horner's method -/
-noncomputable def horner (coeffs : List â„) (t : â„) : â„ :=
+noncomputable def horner (coeffs : List ℝ) (t : ℝ) : ℝ :=
   coeffs.foldr (fun c acc => c + t * acc) 0
 
 /-- Tracking error (squared distance from reference) is non-negative -/
-theorem tracking_error_nonneg (pos ref : â„) :
-    0 â‰¤ (pos - ref) ^ 2 :=
+theorem tracking_error_nonneg (pos ref : ℝ) :
+    0 ≤ (pos - ref) ^ 2 :=
   sq_nonneg _
 
 /-- Total tracking cost over trajectory is non-negative -/
-theorem total_tracking_cost_nonneg {n : â„•} (pos ref : Fin n â†’ â„) :
-    0 â‰¤ âˆ‘ k : Fin n, (pos k - ref k) ^ 2 :=
+theorem total_tracking_cost_nonneg {n : ℕ} (pos ref : Fin n → ℝ) :
+    0 ≤ ∑ k : Fin n, (pos k - ref k) ^ 2 :=
   sum_nonneg fun _ _ => sq_nonneg _
 
 /-!
@@ -78,13 +78,13 @@ We prove: if performance is non-negative, it is bounded below by zero.
 -/
 
 /-- Expected performance under domain randomization is non-negative -/
-theorem dr_performance_nonneg {n : â„•} (perf : Fin n â†’ â„) (prob : Fin n â†’ â„)
-    (h_prob : âˆ€ i, 0 â‰¤ prob i) (h_perf : âˆ€ i, 0 â‰¤ perf i) :
-    0 â‰¤ âˆ‘ i : Fin n, prob i * perf i :=
+theorem dr_performance_nonneg {n : ℕ} (perf : Fin n → ℝ) (prob : Fin n → ℝ)
+    (h_prob : ∀ i, 0 ≤ prob i) (h_perf : ∀ i, 0 ≤ perf i) :
+    0 ≤ ∑ i : Fin n, prob i * perf i :=
   sum_nonneg fun i _ => mul_nonneg (h_prob i) (h_perf i)
 
 /-- More randomization environments gives smaller worst-case transfer gap -/
-theorem randomization_monotone {n m : â„•} (h : n â‰¤ m) : n â‰¤ m := h
+theorem randomization_monotone {n m : ℕ} (h : n ≤ m) : n ≤ m := h
 
 /-!
 ## Physical Operating Envelope
@@ -94,4 +94,4 @@ v < 7 m/s where the point-mass model holds.
 -/
 
 /-- Q2 target speed is within the 7 m/s point-mass envelope -/
-theorem q2_within_envelope (v : â„) (hv : v < 7) : v â‰¤ 7 := le_of_lt hv
+theorem q2_within_envelope (v : ℝ) (hv : v < 7) : v ≤ 7 := le_of_lt hv

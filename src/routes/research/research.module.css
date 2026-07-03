@@ -208,6 +208,20 @@
   text-decoration: underline;
 }
 
+/* ── Track sections (each track is its own Q2 paper + supporting column) ── */
+
+.trackSection + .trackSection {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 2px solid #e0e0e0;
+}
+
+.trackHeading {
+  font-size: 1.6rem;
+  color: #1a2a4c;
+  margin-bottom: 1.5rem;
+}
+
 /* ── Responsive ────────────────────────────────────────── */
 
 @media (max-width: 960px) {

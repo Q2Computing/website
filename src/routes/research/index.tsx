@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import { type DocumentHead, Link } from "@builder.io/qwik-city";
 import styles from "./research.module.css";
 
-const supportingResearch = [
+const swarmSupportingResearch = [
   {
     num: 1,
     title: "Back to Newton's Laws: Learning Vision-Based Agile Flight via Differentiable Physics",
@@ -196,6 +196,107 @@ const supportingResearch = [
   },
 ];
 
+const reactorSupportingResearch = [
+  {
+    num: 1,
+    title: "Robotic Exploration of an Unknown Nuclear Environment Using Radiation Informed Autonomous Navigation",
+    citation: "Groves, K., Hernandez, E., West, A., Wright, T. & Lennox, B. Robotics 10, 78 (2021).",
+    summary: "Converts radiation measurements into a navigation cost signal so a ground robot can actively avoid high-dose areas while exploring an unmapped facility. Direct analogue to Q2's anomaly-observation confidence model, with dose rate replacing terrain anomaly as the observed variable.",
+    href: "https://doi.org/10.3390/robotics10020078",
+  },
+  {
+    num: 2,
+    title: "Real-Time Avoidance of Ionising Radiation Using Layered Costmaps for Mobile Robots",
+    citation: "West, A., Wright, T., Tsitsimpelis, I., Groves, K., Joyce, M. J. & Lennox, B. Front. Robot. AI 9, 862067 (2022).",
+    summary: "Layered costmap formulation for real-time radiation avoidance during exploration of poorly documented environments, informing how Q2's confidence-based path planning would need to weight an actively updated hazard field rather than a static preloaded prior.",
+    href: "https://doi.org/10.3389/frobt.2022.862067",
+  },
+  {
+    num: 3,
+    title: "Use of Gaussian Process Regression for Radiation Mapping of a Nuclear Reactor with a Mobile Robot",
+    citation: "West, A., Tsitsimpelis, I., Licata, M., Jazbec, A., Snoj, L., Joyce, M. J. & Lennox, B. Sci. Rep. 11, 13975 (2021).",
+    summary: "Interpolates sparse, noisy radiation measurements into a continuous reactor dose-rate map, benchmarked against MCNP6 transport simulation. Establishes the sensor-fusion baseline Q2's radiation-informed confidence model would need to match or improve on.",
+    href: "https://www.nature.com/articles/s41598-021-93474-4",
+  },
+  {
+    num: 4,
+    title: "RADRON: Cooperative Localization of Ionizing Radiation Sources by MAVs with Compton Cameras",
+    citation: "Stibinger, P., Baca, T., Doubravova, D., Rusnak, J., Solc, J., Jakubek, J., Stepan, P. & Saska, M. arXiv:2510.26018 (2025).",
+    summary: "Cooperative multi-drone radiation-source localization using miniature Compton cameras, bringing Q2's existing swarm-coordination and distributed-confidence background directly into the radiation-sensing domain.",
+    href: "https://arxiv.org/abs/2510.26018",
+  },
+  {
+    num: 5,
+    title: "End-to-End Navigation Stack for Nuclear Power Plant Inspection with Mobile Robot",
+    citation: "Będkowski, J. SoftwareX (2024).",
+    summary: "Open-source, feature-less LiDAR/IMU SLAM stack purpose-built for nuclear facility inspection, the closest existing analogue to the indoor, GPS-denied localization problem Q2's terrain-prior framework was designed around.",
+    href: "https://www.sciencedirect.com/science/article/pii/S2352711024001213",
+  },
+  {
+    num: 6,
+    title: "A Nuclear Power Plant Digital Twin for Developing Robot Navigation and Interaction",
+    citation: "Vairagade, H., Kim, S., Son, H. & Zhang, F. Front. Energy Res. 12, 1356624 (2024).",
+    summary: "Full-scope NPP simulator driving a 3D digital twin for training inspection robot swarms. Validates the simulation-first, zero-shot-to-physical methodology Q2 already applies to its swarm navigation work, applied instead to reactor interiors.",
+    href: "https://doi.org/10.3389/fenrg.2024.1356624",
+  },
+  {
+    num: 7,
+    title: "Radiation Tolerance Testing Methodology of Robotic Manipulator Prior to Nuclear Waste Handling",
+    citation: "Zhang, K., Hutson, C., Knighton, J., Herrmann, G. & Scott, T. Front. Robot. AI 7, 6 (2020).",
+    summary: "Controlled gamma exposure testing of a commercial manipulator, establishing a methodology for characterizing edge-compute and actuator survivability limits before physical deployment in an activated environment.",
+    href: "https://doi.org/10.3389/frobt.2020.00006",
+  },
+  {
+    num: 8,
+    title: "Detection of Simulated Fukushima Daiichi Fuel Debris Using a Remotely Operated Vehicle at the Naraha Test Facility",
+    citation: "Nancekievill, M. et al. Sensors 19, 4602 (2019).",
+    summary: "Field-validated localization system for an underwater inspection robot at a full-scale Fukushima Daiichi test mockup, grounding the reactor-robotics direction in a real deployed accident-response precedent rather than a lab demonstration only.",
+    href: "https://doi.org/10.3390/s19204602",
+  },
+  {
+    num: 9,
+    title: "Overview of the ITER Remote Maintenance Design and of the Development Activities in Europe",
+    citation: "Damiani, C. et al. Fusion Eng. Des. (2018).",
+    summary: "Defines the remote-handling architecture and 30-year operational lifespan constraints that ITER-class fusion facilities impose on maintenance robotics, establishing the scale and durability requirements this research direction has to eventually address.",
+    href: "https://www.sciencedirect.com/science/article/abs/pii/S0920379618303739",
+  },
+  {
+    num: 10,
+    title: "Mastering Autonomous Assembly in Fusion Application with Learning-by-Doing: A Peg-in-Hole Study",
+    citation: "Yin, R., Wu, H., Li, M., Cheng, Y., Song, Y. & Handroos, H. arXiv:2208.11737 (2022).",
+    summary: "Learned autonomous assembly for plasma-facing component replacement, representing the manipulation half of fusion maintenance robotics that complements Q2's navigation-focused contribution.",
+    href: "https://arxiv.org/abs/2208.11737",
+  },
+  {
+    num: 11,
+    title: "Comparison of Three Key Remote Sensing Technologies for Mobile Robot Localization in Nuclear Facilities",
+    citation: "Jonasson, E. T., Pinto, L. R. & Vale, A. Fusion Eng. Des. 172, 112691 (2021).",
+    summary: "Benchmarks depth camera, LIDAR, and mmWave RADAR for localization inside nuclear facilities, informing which sensing modalities remain viable when radiation and confined geometry degrade the options Q2's drone-domain work assumed were available.",
+    href: "https://www.sciencedirect.com/science/article/pii/S0920379621004671",
+  },
+  {
+    num: 12,
+    title: "An Intelligent Human–Machine Interface Architecture for Long-Term Remote Robot Handling in Fusion Reactor Environments",
+    citation: "Benito, T. & Barrientos, A. Appl. Sci. 14, 4814 (2024).",
+    summary: "Long-lifecycle HMI architecture (MAMIC) for coordinating evolving remote-handling equipment over a multi-decade fusion facility lifespan, framing the systems-integration problem any autonomous navigation layer has to plug into.",
+    href: "https://doi.org/10.3390/app14114814",
+  },
+  {
+    num: 13,
+    title: "Use of Robotic and Automation Systems in Small Modular and Micro Reactor Development",
+    citation: "Patel, H. K. & Rathod, P. J. Int. J. Sci. Res. 11, 1524–1527 (2022).",
+    summary: "Surveys robotic and automation applications across SMR/micro-reactor manufacturing, inspection, and maintenance, the clearest existing statement of the SMR-specific opportunity this research direction targets.",
+    href: "https://www.ijsr.net/getabstract.php?paperid=SR24517150508",
+  },
+  {
+    num: 14,
+    title: "Highly Miniaturized Robots for Inspection of Small Nuclear Piping",
+    citation: "Jog, N. M.S. thesis, Carnegie Mellon University Robotics Institute (2019).",
+    summary: "Demonstrates a robot (NanoPiper) built to operate inside 3-inch nuclear piping, using acoustic localization and miniaturized radiation sensing. Sets the miniaturization floor for edge-compute hardware operating in the tightest reactor-interior geometries.",
+    href: "https://www.ri.cmu.edu/publications/highly-miniaturized-robots-for-inspection-of-small-nuclear-piping/",
+  },
+];
+
 export default component$(() => {
   return (
     <div class={styles.page}>
@@ -207,6 +308,8 @@ export default component$(() => {
         </p>
       </div>
 
+      <div class={styles.trackSection}>
+      <h2 class={styles.trackHeading}>Autonomous Swarm Navigation</h2>
       <div class={styles.layout}>
 
         {/* ── Left: Q2 Computing original work ── */}
@@ -239,7 +342,7 @@ export default component$(() => {
               prior is geographic, not object-classified. No feature-labeled dataset of the
               environment is required. The method was developed and validated in physics-based
               digital simulation and is designed for zero-shot generalization to physical
-              deployment on low-cost edge hardware <a href="#ref-24">[24]</a>.
+              deployment on low-cost edge hardware <a href="#ref-swarm-24">[24]</a>.
             </p>
 
             <p><strong>Key contributions:</strong></p>
@@ -275,8 +378,8 @@ export default component$(() => {
           <h2>Supporting Research</h2>
 
           <ol class={styles.refList}>
-            {supportingResearch.map((ref) => (
-              <li key={ref.num} id={`ref-${ref.num}`} class={styles.refItem}>
+            {swarmSupportingResearch.map((ref) => (
+              <li key={ref.num} id={`ref-swarm-${ref.num}`} class={styles.refItem}>
                 <div class={styles.refHeader}>
                   <span class={styles.refNum}>{ref.num}.</span>
                   <span class={styles.refTitle}>{ref.title}</span>
@@ -297,6 +400,94 @@ export default component$(() => {
         </div>
 
       </div>
+      </div>
+
+      <div class={styles.trackSection}>
+      <h2 class={styles.trackHeading}>Reactor Robotics &amp; Radiation-Denied Autonomy</h2>
+      <div class={styles.layout}>
+
+        {/* ── Left: Q2 Computing original work ── */}
+        <div class={styles.q2col}>
+          <h2>Q2 Computing</h2>
+
+          <div class={styles.paper}>
+            <p class={styles.paperMeta}>
+              Justin Adams &nbsp;·&nbsp; Q2 Computing
+              <span class={styles.restrictedBadge}>Research Direction</span>
+            </p>
+
+            <h3>Radiation-Informed Autonomous Navigation for Robotic Maintenance in Fusion and Small Modular Reactor Facilities</h3>
+
+            <p>
+              An extension of Q2's GPS-denied swarm confidence framework to a new class of
+              denied signal: environments where radiation flux, not GPS, is the variable that
+              must be inferred, avoided, and navigated around. Remote maintenance and inspection
+              robots for fusion (ITER/DEMO-class) and small modular reactor facilities operate in
+              confined, activated, and communication-degraded interiors, where continuous
+              line-of-sight teleoperation is unreliable and cumulative dose exposure must be
+              minimized for both the robot and any human oversight team.
+            </p>
+
+            <p>
+              The working direction treats radiation dose-rate gradients the way the
+              swarm-navigation framework treats terrain anomalies: as successive observations
+              updating a positional and safety confidence estimate, informing path planning that
+              keeps cumulative dose and localization uncertainty within bounds without requiring
+              a live external reference signal <a href="#ref-reactor-1">[1]</a>{" "}
+              <a href="#ref-reactor-2">[2]</a>.
+            </p>
+
+            <p><strong>Working objectives:</strong></p>
+            <ul>
+              <li>Extend the Markov chain confidence model from GPS denial to radiation-informed navigation and dose-aware path planning</li>
+              <li>Unify localization confidence and radiation-safety confidence into a single decision variable for autonomous path planning in reactor interiors</li>
+              <li>Validate the approach in simulation first, consistent with Q2's existing zero-shot generalization methodology, using reactor digital-twin environments <a href="#ref-reactor-6">[6]</a></li>
+              <li>Characterize edge-compute and actuator survivability limits for mixed-field radiation environments <a href="#ref-reactor-7">[7]</a></li>
+              <li>Build a Vermont-based training and fabrication pipeline for this work with UVM and the Generator makerspace</li>
+            </ul>
+
+            <p>
+              This is an active research direction at Q2 Computing, not a completed or submitted
+              paper. Development work, including a proposed DOE INFUSE partnership with the
+              University of Vermont, is in progress. No experimental results are available for
+              public release at this stage.
+            </p>
+
+            <Link href="/research/reactor-robotics/" class={styles.paperLink}>
+              Read the full research direction and citation record →
+            </Link>
+          </div>
+        </div>
+
+        {/* ── Right: supporting research ── */}
+        <div class={styles.supportCol}>
+          <h2>Supporting Research</h2>
+
+          <ol class={styles.refList}>
+            {reactorSupportingResearch.map((ref) => (
+              <li key={ref.num} id={`ref-reactor-${ref.num}`} class={styles.refItem}>
+                <div class={styles.refHeader}>
+                  <span class={styles.refNum}>{ref.num}.</span>
+                  <span class={styles.refTitle}>{ref.title}</span>
+                </div>
+                <p class={styles.refCitation}>{ref.citation}</p>
+                <p class={styles.refSummary}>{ref.summary}</p>
+                <a href={ref.href} target="_blank" rel="noopener noreferrer" class={styles.refLink}>
+                  View source →
+                </a>
+                {ref.analysis && (
+                  <a href={ref.analysis} class={styles.refLink} style="margin-left: 1rem;">
+                    View analysis →
+                  </a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+
+      </div>
+      </div>
+
     </div>
   );
 });
