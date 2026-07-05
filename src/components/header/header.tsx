@@ -3,17 +3,16 @@ import { Link } from '@builder.io/qwik-city';
 import ImgQ2Icon from '../../media/icon.png?w=96&h=96&jsx';
 import styles from './header.module.css';
 
+const navLinks = [
+  { href: '/', text: 'Home' },
+  { href: '/about/', text: 'About Us'},
+  { href: '/services/', text: 'Services' },
+  { href: '/research/', text: 'Research'},
+  { href: '/blog/', text: 'Blog'},
+  { href: '/contact/', text: 'Contact'},
+];
+
 export default component$(() => {
-
-  const navLinks = [
-    { href: '/', text: 'Home' },
-    { href: '/about/', text: 'About Us'},
-    { href: '/services/', text: 'Services' },
-    { href: '/research/', text: 'Research'},
-    { href: '/blog/', text: 'Blog'},
-    { href: '/contact/', text: 'Contact'},
-  ];
-
   return (
     <header class={styles.header}>
       <div class={styles.wrapper}>
@@ -33,6 +32,11 @@ export default component$(() => {
             ))}
           </ul>
         </nav>
+        <div class={styles.actions}>
+          <Link href='/work-with-us/' class={styles.workBtn}>
+            Work With Us
+          </Link>
+        </div>
       </div>
     </header>
   );

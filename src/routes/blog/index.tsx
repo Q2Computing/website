@@ -9,7 +9,6 @@ export default component$(() => {
         Exploring the intersection of physics, AI, and autonomous systems.
       </p>
 
-      {/* Blog Post Entry */}
       <div class="py-6">
         <p class="text-sm text-gray-500">October 7, 2025</p>
         <h2 class="text-3xl font-semibold my-2">From Pixels to Physics: Setting Up Your Differentiable Simulation Lab</h2>
@@ -23,9 +22,6 @@ export default component$(() => {
           Read More →
         </Link>
       </div>
-
-      {/* Add more blog post entries here as you write them */}
-
     </div>
   );
 });

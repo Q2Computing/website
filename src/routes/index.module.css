@@ -1,0 +1,97 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: #080e1c;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  padding: 2rem;
+}
+
+.heroContent h1 {
+  color: #ffffff;
+  font-size: 3rem;
+  font-family: 'Georgia', serif;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  border: none;
+}
+
+.heroSub {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+}
+
+.heroBtn {
+  display: inline-block;
+  background: #007bff;
+  color: #ffffff;
+  padding: 0.85rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 18px rgba(0,120,255,0.35);
+}
+
+.heroBtn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* ── Patriot section ───────────────────────────────────── */
+
+.patriot {
+  position: relative;
+  padding: 7rem 2rem 5rem;
+  background-image: url('/images/q2-mission.jpg');
+  background-size: cover;
+  background-position: 50% center;
+  background-attachment: fixed;
+  overflow: hidden;
+  border-top: 4px solid #1a6fd4;
+  border-bottom: 4px solid #1a6fd4;
+  box-shadow: inset 0 0 60px rgba(26,111,212,0.15);
+}
+
+.patriot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(5,10,30,0.88) 0%, rgba(5,10,30,0.82) 50%, rgba(5,10,30,0.92) 100%);
+}
+
+.patriotInner {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.patriot h2 {
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+}
+
+.patriot p {
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+}
+
+@media (max-width: 768px) {
+  .patriot { background-attachment: scroll; }
+}

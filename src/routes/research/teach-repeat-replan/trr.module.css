@@ -1,0 +1,106 @@
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1.5rem;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  color: #1a2a4c;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+.meta {
+  font-size: 0.88rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.meta a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+.notice {
+  font-size: 0.85rem;
+  color: #666;
+  background: #f4f7fc;
+  border-left: 3px solid #6c8ebf;
+  padding: 0.6rem 1rem;
+  border-radius: 0 4px 4px 0;
+  margin: 0;
+}
+
+/* ── Body ──────────────────────────────────────────────── */
+
+.body h2 {
+  font-size: 1.25rem;
+  color: #1a2a4c;
+  margin-top: 2.25rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.body h3 {
+  font-size: 1.05rem;
+  color: #1a2a4c;
+  margin-top: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.body p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.body ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.body li {
+  font-size: 0.97rem;
+  color: #333;
+  line-height: 1.75;
+  margin-bottom: 0.6rem;
+}
+
+.equation {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  background: #f4f7fc;
+  border-left: 3px solid #0056b3;
+  padding: 0.6rem 1rem;
+  border-radius: 0 4px 4px 0;
+  color: #1a2a4c;
+  margin: 0.5rem 0 1rem 0;
+}
