@@ -30,23 +30,19 @@ the composition of Jacobians.
 -/
 
 /-- Chain rule: derivative of composition of two functions -/
-theorem chain_rule_composition (f g : ℝ → ℝ) (x : ℝ)
-    (hf : HasDerivAt f (f' x) (g x)) (hg : HasDerivAt g (g' x) x) :
-    HasDerivAt (f ∘ g) (f' x * g' x) x :=
-  hg.comp x hf
+theorem chain_rule_composition (f g : ℝ → ℝ) (f' g' : ℝ → ℝ) (x : ℝ)
+    (hf : HasDerivAt f (f' (g x)) (g x)) (hg : HasDerivAt g (g' x) x) :
+    HasDerivAt (f ∘ g) (f' (g x) * g' x) x :=
+  hf.comp x hg
 
 /-- The gradient of a quadratic loss (x - x*)² is 2*(x - x*) -/
 theorem quadratic_loss_deriv (x_star x : ℝ) :
     HasDerivAt (fun x => (x - x_star) ^ 2) (2 * (x - x_star)) x := by
   have h1 : HasDerivAt (fun x : ℝ => x - x_star) 1 x :=
     (hasDerivAt_id x).sub_const x_star
-  have h2 : HasDerivAt (fun x : ℝ => (x - x_star) ^ 2) (2 * (x - x_star)) x := by
-    have raw := h1.pow 2
-    simp only [show (2 : ℕ) - 1 = 1 from rfl, Nat.cast_ofNat, pow_one, mul_one] at raw
-    have hfun : (fun x : ℝ => (x - x_star) ^ 2) = (fun x : ℝ => (x - x_star) ^ 2) := rfl
-    convert raw using 2
-    ring
-  exact h2
+  have raw := h1.pow 2
+  simp only [show (2 : ℕ) - 1 = 1 from rfl, Nat.cast_ofNat, pow_one, mul_one] at raw
+  exact raw
 
 /-- Total trajectory loss: sum of per-step quadratic tracking errors -/
 theorem trajectory_loss_nonneg {n : ℕ} (x x_star : Fin n → ℝ) :

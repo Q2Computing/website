@@ -22,6 +22,31 @@
   margin: 0;
 }
 
+/* ── Column header labels (rendered once above all tracks) ── */
+
+.colHeaders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.colLabel {
+  font-size: 1.15rem;
+  font-family: 'Georgia', serif;
+  color: #1a2a4c;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #0056b3;
+  display: block;
+}
+
+.colHeaders .colLabel:last-child {
+  border-bottom-color: #6c8ebf;
+}
+
 /* ── Two-column layout ─────────────────────────────────── */
 
 .layout {
@@ -132,19 +157,6 @@
   scrollbar-color: #c0cfe0 transparent;
 }
 
-.supportCol h2 {
-  font-size: 1.15rem;
-  color: #1a2a4c;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid #6c8ebf;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 1;
-}
 
 .refList {
   list-style: none;

@@ -52,7 +52,7 @@ theorem expected_perf_le_max (perf prob : Fin n → ℝ)
         apply sum_le_sum
         intro i _
         exact mul_le_mul_of_nonneg_left (hM i) (hprob i)
-    _ = M * ∑ i : Fin n, prob i := by rw [← sum_mul]
+    _ = M * ∑ i : Fin n, prob i := by rw [← sum_mul]; ring
     _ = M := by rw [hpsum, mul_one]
 
 /-!

@@ -36,20 +36,25 @@ theorem ate_nonneg {n : ℕ} (err : Fin n → ℝ) :
 theorem ate_zero_iff {n : ℕ} (hn : 0 < n) (err : Fin n → ℝ) :
     Real.sqrt ((∑ k : Fin n, err k ^ 2) / n) = 0 ↔
     ∀ k : Fin n, err k = 0 := by
-  rw [Real.sqrt_eq_zero', le_div_iff (Nat.cast_pos.mpr hn), zero_mul]
+  rw [Real.sqrt_eq_zero']
   constructor
   · intro h
-    have hle : ∑ k : Fin n, err k ^ 2 ≤ 0 := by linarith [h]
+    have hle : ∑ k : Fin n, err k ^ 2 ≤ 0 := by
+      by_contra hlt
+      push_neg at hlt
+      have hpos : (0 : ℝ) < (∑ k : Fin n, err k ^ 2) / n :=
+        div_pos hlt (Nat.cast_pos.mpr hn)
+      linarith
     have hge : 0 ≤ ∑ k : Fin n, err k ^ 2 := sum_nonneg fun i _ => sq_nonneg _
     have heq : ∑ k : Fin n, err k ^ 2 = 0 := le_antisymm hle hge
     intro k
     have hk : err k ^ 2 = 0 :=
-      le_antisymm (by nlinarith [sum_nonneg (fun i _ => sq_nonneg (err i))]) (sq_nonneg _)
+      le_antisymm (by nlinarith [Finset.single_le_sum (s := Finset.univ) (fun i _ => sq_nonneg (err i)) (Finset.mem_univ k)]) (sq_nonneg _)
     exact pow_eq_zero_iff (by norm_num) |>.mp hk
   · intro h
     have : ∑ k : Fin n, err k ^ 2 = 0 :=
       sum_eq_zero fun k _ => by rw [h k, sq, mul_zero]
-    linarith
+    simp [this, (Nat.cast_pos.mpr hn).ne']
 
 /-- RPE: per-segment drift is non-negative -/
 theorem rpe_nonneg {n : ℕ} (drift : Fin n → ℝ) :
@@ -70,24 +75,33 @@ i and j composed with j to k gives i to k. In scalar form (position only):
 theorem relative_displacement_compose (p_i p_j p_k : ℝ) :
     (p_j - p_i) + (p_k - p_j) = p_k - p_i := by ring
 
-/-- Absolute position error decomposes into relative errors -/
-theorem abs_error_from_relative (est gt : ℝ) :
-    |est - gt| = |(est - gt)| := rfl
+/-- Absolute error is bounded by the sum of relative displacement errors -/
+theorem abs_error_from_relative (est gt ref : ℝ) :
+    |est - gt| ≤ |est - ref| + |ref - gt| := by
+  apply abs_le.mpr
+  refine ⟨?_, ?_⟩
+  · have h1 : -(est - ref) ≤ |est - ref| := (abs_neg (est - ref)) ▸ le_abs_self _
+    have h2 : -(ref - gt) ≤ |ref - gt| := (abs_neg (ref - gt)) ▸ le_abs_self _
+    linarith
+  · linarith [le_abs_self (est - ref), le_abs_self (ref - gt)]
 
 /-!
 ## Dataset Coverage
 
 TartanAir spans multiple environments. More diverse environments give
 a stronger empirical guarantee of zero-shot generalization. The formal
-claim is simply that the total number of distinct environments is additive.
+claim is that total environment count is additive across types, and that
+adding more environments is monotone in coverage cardinality.
 -/
 
 /-- Total environment count is the sum over environment types -/
-theorem total_environments {n : ℕ} (counts : Fin n → ℕ) :
-    ∑ i : Fin n, counts i = ∑ i : Fin n, counts i := rfl
+theorem total_environments {n : ℕ} (counts : Fin n → ℕ) (k : Fin n) :
+    counts k ≤ ∑ i : Fin n, counts i :=
+  Finset.single_le_sum (fun i _ => Nat.zero_le _) (Finset.mem_univ k)
 
 /-- A dataset covering more environments provides a superset of conditions -/
-theorem coverage_monotone {n m : ℕ} (h : n ≤ m) : n ≤ m := h
+theorem coverage_monotone {n m : ℕ} (h : n ≤ m) (k : ℕ) (hk : k ≤ n) : k ≤ m :=
+  Nat.le_trans hk h
 
 /-!
 ## Physical Operating Envelope

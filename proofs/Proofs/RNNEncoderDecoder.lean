@@ -78,15 +78,15 @@ theorem gru_hidden_bounds (h_prev h_cand z : ℝ)
     (hz0 : 0 ≤ z) (hz1 : z ≤ 1)
     (hprev : |h_prev| ≤ 1) (hcand : |h_cand| ≤ 1) :
     |(1 - z) * h_prev + z * h_cand| ≤ 1 := by
-  calc |(1 - z) * h_prev + z * h_cand|
-      ≤ |(1 - z) * h_prev| + |z * h_cand| := abs_add _ _
-    _ = (1 - z) * |h_prev| + z * |h_cand| := by
-        rw [abs_mul, abs_mul, abs_of_nonneg (by linarith), abs_of_nonneg hz0]
-    _ ≤ (1 - z) * 1 + z * 1 := by
-        apply add_le_add
-        · exact mul_le_mul_of_nonneg_left hprev (by linarith)
-        · exact mul_le_mul_of_nonneg_left hcand hz0
-    _ = 1 := by ring
+  have h1 : -(1 : ℝ) ≤ (1 - z) * h_prev + z * h_cand := by
+    have hp := (abs_le.mp hprev)
+    have hc := (abs_le.mp hcand)
+    nlinarith
+  have h2 : (1 - z) * h_prev + z * h_cand ≤ 1 := by
+    have hp := (abs_le.mp hprev)
+    have hc := (abs_le.mp hcand)
+    nlinarith
+  exact abs_le.mpr ⟨h1, h2⟩
 
 /-!
 ## Sequence-Level Cross-Entropy Loss
@@ -104,7 +104,7 @@ theorem token_loss_nonneg (p : ℝ) (hp0 : 0 < p) (hp1 : p ≤ 1) :
 theorem sequence_nll_nonneg {T : ℕ} (p : Fin T → ℝ)
     (hp0 : ∀ t, 0 < p t) (hp1 : ∀ t, p t ≤ 1) :
     0 ≤ -∑ t : Fin T, log (p t) := by
-  rw [neg_nonneg, ← sum_neg_distrib]
+  apply neg_nonneg.mpr
   apply sum_nonpos
   intro t _
   exact Real.log_nonpos (hp0 t).le (hp1 t)

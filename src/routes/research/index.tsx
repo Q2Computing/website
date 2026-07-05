@@ -187,13 +187,6 @@ const swarmSupportingResearch = [
     href: "https://ieeexplore.ieee.org/document/279181",
     analysis: "/research/learning-long-term-dependencies/",
   },
-  {
-    num: 24,
-    title: "Mango Pi MQ Quad",
-    citation: "mangopi.org (2023).",
-    summary: "The low-cost edge compute hardware target for Q2's physical deployment architecture, chosen for its power efficiency, compact form factor, and open ecosystem.",
-    href: "https://mangopi.org/mqquad",
-  },
 ];
 
 const reactorSupportingResearch = [
@@ -308,14 +301,17 @@ export default component$(() => {
         </p>
       </div>
 
+      <div class={styles.colHeaders}>
+        <span class={styles.colLabel}>Q2 Computing</span>
+        <span class={styles.colLabel}>External Sources</span>
+      </div>
+
       <div class={styles.trackSection}>
       <h2 class={styles.trackHeading}>Autonomous Swarm Navigation</h2>
       <div class={styles.layout}>
 
         {/* ── Left: Q2 Computing original work ── */}
         <div class={styles.q2col}>
-          <h2>Q2 Computing</h2>
-
           <div class={styles.paper}>
             <p class={styles.paperMeta}>
               October 7, 2025 &nbsp;·&nbsp; Justin Adams &nbsp;·&nbsp; Q2 Computing
@@ -342,7 +338,7 @@ export default component$(() => {
               prior is geographic, not object-classified. No feature-labeled dataset of the
               environment is required. The method was developed and validated in physics-based
               digital simulation and is designed for zero-shot generalization to physical
-              deployment on low-cost edge hardware <a href="#ref-swarm-24">[24]</a>.
+              deployment on low-cost edge hardware.
             </p>
 
             <p><strong>Key contributions:</strong></p>
@@ -375,8 +371,6 @@ export default component$(() => {
 
         {/* ── Right: supporting research ── */}
         <div class={styles.supportCol}>
-          <h2>Supporting Research</h2>
-
           <ol class={styles.refList}>
             {swarmSupportingResearch.map((ref) => (
               <li key={ref.num} id={`ref-swarm-${ref.num}`} class={styles.refItem}>
@@ -408,8 +402,6 @@ export default component$(() => {
 
         {/* ── Left: Q2 Computing original work ── */}
         <div class={styles.q2col}>
-          <h2>Q2 Computing</h2>
-
           <div class={styles.paper}>
             <p class={styles.paperMeta}>
               Justin Adams &nbsp;·&nbsp; Q2 Computing
@@ -461,8 +453,6 @@ export default component$(() => {
 
         {/* ── Right: supporting research ── */}
         <div class={styles.supportCol}>
-          <h2>Supporting Research</h2>
-
           <ol class={styles.refList}>
             {reactorSupportingResearch.map((ref) => (
               <li key={ref.num} id={`ref-reactor-${ref.num}`} class={styles.refItem}>

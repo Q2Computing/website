@@ -30,7 +30,7 @@ theorem snap_cost_nonneg {n : ℕ} (snap : Fin n → ℝ) (dt : ℝ) (hdt : 0 �
   sum_nonneg fun _ _ => mul_nonneg (sq_nonneg _) hdt
 
 /-- The jerk cost (sum of squared finite-difference accelerations) is non-negative -/
-theorem jerk_cost_nonneg {n : ℕ} (a : Fin n → ℝ) (dt : ℝ) (hdt : 0 < dt) :
+theorem jerk_cost_nonneg_alphapilot {n : ℕ} (a : Fin n → ℝ) (dt : ℝ) (hdt : 0 < dt) :
     0 ≤ ∑ k : Fin n,
       ((a k - (if h : k.val + 1 < n then a ⟨k.val + 1, h⟩ else a k)) / dt) ^ 2 :=
   sum_nonneg fun _ _ => sq_nonneg _

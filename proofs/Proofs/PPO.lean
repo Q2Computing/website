@@ -49,7 +49,7 @@ theorem clip_prevents_large_update (r A eps : ℝ) (hA : 0 < A) (heps : 0 < eps)
 /-- When A_t < 0, clipping prevents ratio from falling below 1-ε -/
 theorem clip_prevents_small_update (r A eps : ℝ) (hA : A < 0) (heps : 0 < eps)
     (hr : r < 1 - eps) :
-    r * A < max (1 - eps) (min r (1 + eps)) * A := by
+    max (1 - eps) (min r (1 + eps)) * A < r * A := by
   apply mul_lt_mul_of_neg_right _ hA
   exact lt_of_lt_of_le hr (le_max_left _ _)
 
@@ -127,7 +127,7 @@ theorem kl_nonneg {n : ℕ} (p q : Fin n → ℝ)
       linarith
     calc -(p i * log (p i / q i))
         = p i * log (q i / p i) := by
-          rw [← Real.log_inv, inv_div]
+          rw [(inv_div (p i) (q i)).symm, Real.log_inv]
           ring
       _ ≤ p i * (q i / p i - 1) := by
           apply mul_le_mul_of_nonneg_left hlog hpi.le
@@ -138,9 +138,11 @@ theorem kl_nonneg {n : ℕ} (p q : Fin n → ℝ)
       intro i _
       rw [mul_sub, mul_one, mul_comm (p i) (q i / p i), div_mul_cancel₀ _ (hp i).ne']
     rw [this, sum_sub_distrib, hq_sum, hp_sum, sub_self]
-  linarith [sum_le_sum (fun i _ => hlog_ineq i),
-            show ∑ i : Fin n, -(p i * log (p i / q i)) = -∑ i : Fin n, p i * log (p i / q i)
-              from by rw [← sum_neg_distrib]]
+  have hle : ∑ i : Fin n, -(p i * log (p i / q i)) ≤ ∑ i : Fin n, p i * (q i / p i - 1) :=
+    sum_le_sum (fun i _ => hlog_ineq i)
+  have hneg : ∑ i : Fin n, -(p i * log (p i / q i)) = -∑ i : Fin n, p i * log (p i / q i) := by
+    rw [← sum_neg_distrib]
+  linarith
 
 /-!
 ## Physical Operating Envelope

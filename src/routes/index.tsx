@@ -11,7 +11,7 @@ export default component$(() => {
         <div class={styles.heroContent}>
           <h1>Engineering built to work without you watching it</h1>
           <p class={styles.heroSub}>
-            Q2 Computing builds automation, autonomous systems, and hardware solutions
+            Q2 Computing designs automation systems, autonomous software, and hardware architectures
             for small businesses and operators who are done waiting for someone else to solve their problems
           </p>
           <a href="/work-with-us/" class={styles.heroBtn}>Work With Us</a>
@@ -21,12 +21,18 @@ export default component$(() => {
       <div class="container">
 
         <section class="section">
+          <blockquote class="mission-statement">
+            Q2 Computing generalizes mathematics as models that surround our interpretation of reality, so that machines can accomplish what humans already understand how to do well, liberating people to think about how their business can grow and thrive in sustainable ways
+          </blockquote>
+        </section>
+
+        <section class="section">
           <h2>What we deliver today</h2>
-          <p>The infrastructure keeping small businesses behind is not an accident. It was designed that way.</p>
-          <p><strong>Process automation:</strong> If your people are doing the same thing on repeat, we build the systems that liberate them. Using physics-based simulation, we can produce realizable results in days and have them operationally ready within months. We do not replace people. We teach them the power they already possess, because the human brain is faster, more resilient, more capable, and more energy efficient than any AI system ever built. Our job is to put that power to work on the problems only humans can solve, and let the machines make your people money no matter the role they currently fulfill in your organization.</p>
-          <p><strong>Robotic automation:</strong> Major tech firms have made robotic automation sound like something only large organizations can afford or deploy. We use physics-based simulation to validate and replicate those same systems using open source tooling, producing realizable results in days. You get precision manufacturing, circuit testing, and physical automation with the same outcomes, without the enterprise price tag or the vendor lock-in.</p>
-          <p><strong>Resilient autonomous systems:</strong> Most autonomous systems are designed assuming reliable infrastructure, and when that infrastructure fails, the system fails with it. We design from the ground up for degraded environments, treating GPS, communications, and power as a bonus rather than a requirement. Your systems maintain operational continuity when the grid goes down, the signal drops, or the supply chain breaks.</p>
-          <p><strong>Hardware and embedded systems:</strong> Most engineering firms stop at the software layer and hand off hardware integration to someone else, which is precisely where real problems live. We work across the full stack from circuit design and PCB layout to signal analysis and embedded deployment because the intersection of hardware and software is where the hardest problems actually are. You get a system that works end to end, not a handoff chain where nobody owns the seams.</p>
+          <p>The infrastructure keeping small businesses behind is not an accident. It was designed that way. Here is what Q2 can put in front of you right now.</p>
+          <p><strong>Software and algorithms:</strong> If your people are doing the same thing on repeat, we write the software that stops that. Process automation, AI integration, custom tooling, full-stack web applications. The deliverable is working code, not a slide deck. We scope it, build it, and hand it over with direct access to the engineer who wrote it throughout.</p>
+          <p><strong>Rapid physical prototyping:</strong> Q2 operates out of Generator, Vermont's fabrication and makerspace facility in Burlington. If your problem has a physical component, we can design, iterate, and prototype it there. 3D printing, laser cutting, electronics assembly, and mechanical fabrication are all on the table. The goal is to get something in your hands fast enough that you can make a real decision about whether to invest further, before enterprise costs are incurred.</p>
+          <p><strong>PCB design and microprocessor development:</strong> We design printed circuit boards and develop custom microprocessor architectures from schematic through layout, signal integrity analysis, and embedded firmware. If your product needs custom silicon or a purpose-built control board, we can take it from concept to a manufacturable design. The output is a complete hardware package your fabrication partner can run with.</p>
+          <p><strong>Feasibility and simulation:</strong> Before you commit budget to hardware or a full development cycle, we can model the problem in simulation, validate the approach, and tell you honestly whether the physics and the math support what you are trying to build. This is the work that prevents expensive mistakes and produces the evidence needed for a grant application, an internal investment case, or a procurement decision.</p>
         </section>
 
         <section class="section">
@@ -50,7 +56,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: "description",
-      content: "Q2 Computing builds automation, autonomous systems, and hardware solutions for small businesses and operators who are done waiting for someone else to solve their problems.",
+      content: "Q2 Computing designs automation systems, autonomous software, and hardware architectures for small businesses and operators who are done waiting for someone else to solve their problems.",
     },
   ],
 };

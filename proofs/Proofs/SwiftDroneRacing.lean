@@ -58,12 +58,7 @@ theorem ppo_clip_conservative (r A eps : ℝ) (hA : 0 ≤ A) (heps : 0 ≤ eps)
 theorem ppo_clip_eq_at_ratio_one (A eps : ℝ) (heps : 0 ≤ eps) :
     clip 1 (1 - eps) (1 + eps) = 1 := by
   unfold clip
-  simp only [min_def, max_def]
-  split_ifs with h1 h2
-  · linarith
-  · rfl
-  · rfl
-  · linarith
+  rw [min_eq_left (by linarith), max_eq_right (by linarith)]
 
 /-!
 ## Advantage Estimation
@@ -94,8 +89,8 @@ theorem gae_nonneg (delta : ℕ → ℝ) (gamma lam : ℝ)
 theorem gae_zero_discount (delta : ℕ → ℝ) (T : ℕ) (hT : 0 < T) :
     gae_finite delta 0 0 T = delta 0 := by
   unfold gae_finite
+  obtain ⟨T', rfl⟩ := Nat.exists_eq_succ_of_ne_zero hT.ne'
   simp [Finset.sum_range_succ']
-  rfl
 
 /-!
 ## Sim-to-Real Residual Model
@@ -108,7 +103,8 @@ f_sim to match real dynamics f_real:
 The residual is trained to minimize ||f_real - (f_sim + Δf)||².
 -/
 
-/-- Residual correction reduces simulation error when the residual is accurate -/
+/-- Residual correction reduces simulation error, assuming the residual's own error is smaller
+    than the uncorrected sim gap (h). This is a conditional result: no Lipschitz bound on Δf. -/
 theorem residual_reduces_error (f_real f_sim delta_f : ℝ)
     (h : |delta_f - (f_real - f_sim)| < |f_real - f_sim|) :
     |f_sim + delta_f - f_real| < |f_sim - f_real| := by

@@ -193,7 +193,7 @@ theorem accel_cost_nonneg {n : ℕ} (a : Fin n → ℝ) :
   sum_nonneg fun _ _ => sq_nonneg _
 
 /-- The jerk cost (finite difference of acceleration) is non-negative -/
-theorem jerk_cost_nonneg {n : ℕ} (a : Fin n → ℝ) (dt : ℝ) (_hdt : 0 < dt) :
+theorem jerk_cost_nonneg_newton {n : ℕ} (a : Fin n → ℝ) (dt : ℝ) (_hdt : 0 < dt) :
     0 ≤ ∑ k : Fin n, ((a k - (if h : k.val + 1 < n then a ⟨k.val + 1, h⟩ else a k)) / dt) ^ 2 :=
   sum_nonneg fun _ _ => sq_nonneg _
 

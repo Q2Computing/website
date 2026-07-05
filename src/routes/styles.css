@@ -92,6 +92,18 @@ p {
     align-items: center;
 }
 
+blockquote.mission-statement {
+    font-family: 'Georgia', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: #1a2a4c;
+    border-left: 4px solid #0056b3;
+    margin: 0;
+    padding: 1.25rem 1.75rem;
+    background: transparent;
+}
+
 .cta {
     text-align: center;
     background-color: #1a2a4c; /* Deep blue background */
@@ -120,4 +132,73 @@ p {
 .cta-button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
+}
+
+.service-section {
+    margin-bottom: 2.5rem;
+}
+
+.service-section h3 {
+    margin-top: 1.5rem;
+}
+
+.intake-prompt {
+    background-color: #f0f4fa;
+    border-left: 4px solid #0056b3;
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem 1.25rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.intake-heading {
+    font-weight: bold;
+    color: #1a2a4c;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 0.5rem;
+}
+
+.intake-questions {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+}
+
+.intake-questions li {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 0.35rem;
+    line-height: 1.5;
+}
+
+.inline-link {
+    color: #0056b3;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+.inline-link:hover {
+    color: #003d82;
+}
+
+.service-cta-footer {
+    text-align: center;
+    background-color: #1a2a4c;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.service-cta-footer p {
+    color: #e0e8f5;
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.6;
 }

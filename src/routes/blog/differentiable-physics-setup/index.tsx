@@ -17,7 +17,7 @@ export default component$(() => {
 
         <div class="prose lg:prose-xl max-w-none">
           <p>
-            Welcome to the first post in our series on building intelligent autonomous systems. The secret behind the next generation of robotics isn't just bigger datasets or faster chips—it's teaching machines the laws of physics. This is the core of <strong>differentiable physics</strong>, a paradigm that allows us to train AI in simulated worlds with unmatched speed and realism.
+            Welcome to the first post in our series on building intelligent autonomous systems. The secret behind the next generation of robotics isn't just bigger datasets or faster chips. It is teaching machines the laws of physics. This is the core of <strong>differentiable physics</strong>, a paradigm that allows us to train AI in simulated worlds with unmatched speed and realism.
           </p>
           <p>
             Inspired by the work of <strong>Yuang Zhang et al.</strong> in their paper, <em>"Back to Newton's Laws: Learning Vision-based Agile Flight via Differentiable Physics,"</em> this series will document our journey in building a similar system. Their research demonstrates how this paradigm can train quadrotors to fly with lean, efficient neural networks, and we'll be exploring those concepts from the ground up. Today, we're starting with the foundation: setting up a robust, cross-platform development environment for <strong>macOS, Windows, and Linux</strong>.
@@ -27,7 +27,7 @@ export default component$(() => {
           <p>To build our simulator, we need a few key tools. Our stack is chosen for its power, flexibility, and strong community support.</p>
           <ul>
             <li><strong>Python:</strong> The undisputed language of AI and scientific computing. We'll use Python 3.10 or newer.</li>
-            <li><strong>PyTorch:</strong> An open-source machine learning framework that excels at automatic differentiation—the mathematical engine that makes differentiable physics possible.</li>
+            <li><strong>PyTorch:</strong> An open-source machine learning framework that excels at automatic differentiation, the mathematical engine that makes differentiable physics possible.</li>
             <li><strong>Taichi Lang:</strong> A high-performance, Python-embedded language for computer graphics and simulation. Its differentiable programming backend makes it a perfect choice for getting started without having to build a complex physics engine from scratch.</li>
           </ul>
 

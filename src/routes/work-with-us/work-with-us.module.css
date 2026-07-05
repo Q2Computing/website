@@ -177,7 +177,7 @@
 .stepNumber {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #dbeafe;
+  color: #1a2a4c;
   line-height: 1;
   min-width: 3rem;
   font-family: 'Georgia', serif;
@@ -252,6 +252,138 @@
   transform: translateY(-2px);
 }
 
+/* ── Form Section ──────────────────────────────────────── */
+
+.formSection {
+  padding: 4rem 0;
+  background-color: #ffffff;
+}
+
+.serviceLabel {
+  font-size: 0.9rem;
+  color: #0056b3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.form {
+  max-width: 640px;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.fieldGroup label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a2a4c;
+}
+
+.fieldGroup input,
+.fieldGroup textarea {
+  font-size: 1rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #f8f9fa;
+  color: #333;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+
+.fieldGroup input:focus,
+.fieldGroup textarea:focus {
+  outline: none;
+  border-color: #0056b3;
+  background: #ffffff;
+}
+
+.optionalBlock {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.optionalHeading {
+  font-size: 0.95rem;
+  color: #555;
+  font-style: italic;
+  margin: 0;
+}
+
+
+.optionalTag {
+  font-weight: 400;
+  color: #888;
+  font-size: 0.88rem;
+}
+
+.submitBtn {
+  align-self: flex-start;
+  background-color: #0056b3;
+  color: #ffffff;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  font-family: inherit;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: #003d82;
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.successMsg {
+  background: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  border-radius: 0 6px 6px 0;
+  padding: 1.5rem;
+  max-width: 640px;
+}
+
+.successMsg h3 {
+  color: #15803d;
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.successMsg p {
+  color: #555;
+  margin: 0;
+}
+
+.errorMsg {
+  color: #dc2626;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
 /* ── Responsive ────────────────────────────────────────── */
 
 @media (max-width: 768px) {
@@ -262,4 +394,5 @@
   .hero h1 { font-size: 1.9rem; }
   .problemGrid { grid-template-columns: 1fr; }
   .stepNumber { font-size: 1.8rem; }
+  .fieldRow { grid-template-columns: 1fr; }
 }

@@ -87,8 +87,12 @@ We prove that positive definiteness is preserved.
 theorem schur_complement_pos (A B C : ℝ) (hA : 0 < A)
     (hdet : 0 < A * C - B ^ 2) :
     0 < C - B ^ 2 / A := by
-  rw [lt_sub_iff_add_lt, ← div_lt_iff hA]
-  have : B ^ 2 / A < C := by rw [div_lt_iff hA]; linarith
+  by_contra h
+  push_neg at h
+  have hle : C ≤ B ^ 2 / A := by linarith
+  have hmul : C * A ≤ B ^ 2 := by
+    have := mul_le_mul_of_nonneg_right hle hA.le
+    rwa [div_mul_cancel₀ _ hA.ne'] at this
   linarith
 
 /-- Marginalization preserves positive semi-definiteness: the marginal
@@ -106,9 +110,11 @@ the total information can only decrease (we lose observations). The remaining
 information is a lower bound on the full-trajectory information.
 -/
 
-/-- Marginalizing one frame retains at most as much information as before -/
-theorem sliding_window_information_monotone (J_full J_marginal : ℝ)
-    (h : J_marginal ≤ J_full) : J_marginal ≤ J_full := h
+/-- Schur complement reduces information: marginalizing block B from (A,B,C) yields C - B²/A ≤ C -/
+theorem sliding_window_information_monotone (A B C : ℝ) (hA : 0 < A) :
+    C - B ^ 2 / A ≤ C := by
+  have : 0 ≤ B ^ 2 / A := div_nonneg (sq_nonneg B) hA.le
+  linarith
 
 /-!
 ## Physical Operating Envelope

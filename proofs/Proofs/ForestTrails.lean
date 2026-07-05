@@ -75,20 +75,26 @@ theorem softmax_pos {n : ℕ} (hn : 0 < n) (z : Fin n → ℝ) (k : Fin n) :
 /-- Softmax outputs sum to 1 -/
 theorem softmax_sum_one {n : ℕ} (hn : 0 < n) (z : Fin n → ℝ) :
     ∑ i : Fin n, exp (z i) / ∑ j : Fin n, exp (z j) = 1 := by
-  rw [← sum_div, div_self (softmax_denom_pos hn z).ne']
+  have hd : (∑ j : Fin n, exp (z j)) ≠ 0 := (softmax_denom_pos hn z).ne'
+  simp_rw [div_eq_mul_inv, ← Finset.sum_mul, mul_inv_cancel₀ hd]
 
 /-- Each softmax output is < 1 when n ≥ 2 -/
 theorem softmax_lt_one {n : ℕ} (hn : 2 ≤ n) (z : Fin n → ℝ) (k : Fin n) :
     exp (z k) / ∑ i : Fin n, exp (z i) < 1 := by
   rw [div_lt_one (softmax_denom_pos (by linarith) z)]
-  apply lt_of_lt_of_le (lt_add_of_pos_right _ _)
-  · apply sum_le_sum
-    intro i _; exact le_refl _
-  · have hk' : ∃ j : Fin n, j ≠ k := by
-      rcases Fin.exists_ne k with ⟨j, hj⟩
-      exact ⟨j, hj⟩
-    obtain ⟨j, hj⟩ := hk'
-    exact sum_pos (fun i _ => exp_pos _) ⟨j, mem_univ _⟩
+  have hj : ∃ j : Fin n, j ≠ k := by
+    by_contra hall; push_neg at hall
+    have hcard : (Finset.univ : Finset (Fin n)).card ≤ 1 :=
+      Finset.card_le_one.mpr (fun a _ b _ => (hall a).trans (hall b).symm)
+    simp at hcard; omega
+  obtain ⟨j, hj⟩ := hj
+  have hle : exp (z k) + exp (z j) ≤ ∑ i : Fin n, exp (z i) := by
+    have heq : exp (z k) + exp (z j) = ∑ i ∈ ({k, j} : Finset (Fin n)), exp (z i) :=
+      by rw [Finset.sum_insert (Finset.mem_singleton.not.mpr hj.symm), Finset.sum_singleton]
+    rw [heq]
+    apply Finset.sum_le_sum_of_subset_of_nonneg (fun x _ => Finset.mem_univ x)
+    intros; exact (exp_pos _).le
+  linarith [exp_pos (z j)]
 
 /-!
 ## Trail Following Probability

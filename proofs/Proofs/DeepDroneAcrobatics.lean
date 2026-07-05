@@ -41,10 +41,14 @@ theorem student_teacher_gap_nonneg (a_student a_teacher : ℝ) :
     0 ≤ (a_student - a_teacher) ^ 2 :=
   sq_nonneg _
 
-/-- DAgger compounding: horizon H, per-step error ε -- accumulated error ≤ H * ε -/
-theorem dagger_error_bound (eps H : ℝ) (hH : 0 ≤ H) (heps : 0 ≤ eps) :
-    0 ≤ H * eps :=
-  mul_nonneg hH heps
+/-- DAgger compounding: sum of per-step errors is bounded by H * ε when each step error ≤ ε -/
+theorem dagger_error_bound {H : ℕ} (err : Fin H → ℝ) (eps : ℝ)
+    (heps : 0 ≤ eps) (hstep : ∀ i, err i ≤ eps) :
+    ∑ i : Fin H, err i ≤ H * eps := by
+  calc ∑ i : Fin H, err i
+      ≤ ∑ _i : Fin H, eps := Finset.sum_le_sum (fun i _ => hstep i)
+    _ = Finset.card Finset.univ • eps := Finset.sum_const eps
+    _ = H * eps := by simp [Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
 
 /-!
 ## Polynomial Reference Trajectory

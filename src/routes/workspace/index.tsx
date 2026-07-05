@@ -92,7 +92,7 @@ export default component$(() => {
         <div class={styles.workspace}>
           <div class={styles.workspaceHeader}>
             <span class={styles.statusDot} />
-            <span>{isOwner.value ? "Owner" : "Client"} — Connected</span>
+            <span>{isOwner.value ? "Owner" : "Client"}: Connected</span>
           </div>
           <div class={styles.messages}>
             {messages.value.length === 0 && (
@@ -123,7 +123,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Client Workspace — Q2 Computing",
+  title: "Client Workspace | Q2 Computing",
   meta: [
     {
       name: "description",

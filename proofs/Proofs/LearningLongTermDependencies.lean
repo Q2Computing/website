@@ -85,7 +85,11 @@ theorem gradient_explodes (lam gamma : ℝ) (hlam : 0 < lam) (hgamma : 0 < gamma
   | zero => simpa
   | succ k ihk =>
     rw [pow_succ]
-    exact lt_of_lt_of_le hr (le_mul_of_one_le_left h0.le (le_of_lt ihk))
+    have hlt : 1 < (lam / gamma) ^ (k + 1) := ihk (by omega)
+    have h2 : 0 < (lam / gamma) ^ (k + 1) := by linarith
+    have h3 : (lam / gamma) ^ (k + 1) * 1 < (lam / gamma) ^ (k + 1) * (lam / gamma) :=
+      mul_lt_mul_of_pos_left hr h2
+    linarith [mul_one ((lam / gamma) ^ (k + 1))]
 
 /-- Exploding gradient norm lower bound -/
 theorem gradient_explosion_bound (lam gamma grad_T : ℝ)

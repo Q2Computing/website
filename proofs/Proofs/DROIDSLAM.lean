@@ -47,8 +47,9 @@ theorem reprojection_zero_iff {n : ℕ} (err : Fin n → ℝ) (w : Fin n → ℝ
     intro k
     have hk : w k * err k ^ 2 ≤ 0 := by
       have hfk : w k * err k ^ 2 ≤ ∑ i : Fin n, w i * err i ^ 2 :=
-        Finset.single_le_sum (fun i _ => mul_nonneg (hw i).le (sq_nonneg (err i)))
-          Finset.univ (Finset.mem_univ k)
+        Finset.single_le_sum (s := Finset.univ)
+          (fun i _ => mul_nonneg (hw i).le (sq_nonneg (err i)))
+          (Finset.mem_univ k)
       linarith
     have hk2 : 0 ≤ w k * err k ^ 2 := mul_nonneg (hw k).le (sq_nonneg _)
     have hk3 : w k * err k ^ 2 = 0 := le_antisymm hk hk2
@@ -96,11 +97,12 @@ determinant AC - B² > 0, the Schur complement C - B²/A is positive.
 /-- Schur complement of positive block is positive (2×2 case) -/
 theorem schur_complement_pos (A B C : ℝ) (hA : 0 < A) (hdet : 0 < A * C - B ^ 2) :
     0 < C - B ^ 2 / A := by
-  rw [lt_sub_iff_add_lt, ← div_lt_iff hA]
-  have : B ^ 2 / A < C := by
-    rw [div_lt_iff hA]
-    linarith
-  linarith
+  rw [sub_pos]
+  by_contra h
+  push_neg at h
+  have hle : C * A ≤ B ^ 2 / A * A := mul_le_mul_of_nonneg_right h hA.le
+  have h1 : B ^ 2 / A * A = B ^ 2 := div_mul_cancel₀ _ hA.ne'
+  linarith [mul_comm A C]
 
 /-- The product A * (C - B²/A) equals det([[A,B],[B,C]]) -/
 theorem schur_times_A_eq_det (A B C : ℝ) (hA : A ≠ 0) :

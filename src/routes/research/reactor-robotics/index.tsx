@@ -45,8 +45,8 @@ const references = [
   },
   {
     num: 9,
-    text: "Damiani, C. et al. Overview of the ITER remote maintenance design and of the development activities in Europe. Fusion Eng. Des. (2018).",
-    href: "https://www.sciencedirect.com/science/article/abs/pii/S0920379618303739",
+    text: "Damiani, C. et al. Overview of the ITER remote maintenance design and of the development activities in Europe. Fusion Eng. Des. 136, 1117–1124 (2018).",
+    href: "https://doi.org/10.1016/j.fusengdes.2018.04.085",
   },
   {
     num: 10,
@@ -65,13 +65,13 @@ const references = [
   },
   {
     num: 13,
-    text: "Patel, H. K. & Rathod, P. J. Use of robotic and automation systems in small modular and micro reactor development. Int. J. Sci. Res. 11, 1524–1527 (2022).",
-    href: "https://www.ijsr.net/getabstract.php?paperid=SR24517150508",
+    text: "Villaverde, I., Urquiza, A. & Outón, J. L. A reconfigurable UGV for modular and flexible inspection tasks in nuclear sites. Robotics 13, 110 (2024).",
+    href: "https://doi.org/10.3390/robotics13070110",
   },
   {
     num: 14,
     text: "Jog, N. Highly miniaturized robots for inspection of small nuclear piping. M.S. thesis, Carnegie Mellon University Robotics Institute (2019).",
-    href: "https://www.ri.cmu.edu/publications/highly-miniaturized-robots-for-inspection-of-small-nuclear-piping/",
+    href: "https://publications.ri.cmu.edu/highly-miniaturized-robots-for-inspection-of-small-nuclear-piping/",
   },
 ];
 

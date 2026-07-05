@@ -92,14 +92,14 @@ The paper shows this reduces the absolute trajectory error. We prove the
 formal guarantee: if |delta_v - err_imu| < |err_imu|, the correction helps.
 -/
 
-/-- The correction reduces error when the residual is closer to zero than
-    the original IMU error -/
+/-- The correction reduces IMU error, given that the network residual's own error is smaller
+    than the uncorrected gap (h). Conditional result: no structural bound on delta_v output. -/
 theorem correction_reduces_error (v_true v_imu delta_v : ℝ)
     (h : |delta_v - (v_true - v_imu)| < |v_true - v_imu|) :
     |v_imu + delta_v - v_true| < |v_imu - v_true| := by
-  have : |v_imu + delta_v - v_true| = |delta_v - (v_true - v_imu)| := by ring_nf; congr 1; ring
-  have : |v_imu - v_true| = |v_true - v_imu| := abs_sub_comm v_imu v_true
-  linarith [this ▸ h]
+  have h1 : |v_imu + delta_v - v_true| = |delta_v - (v_true - v_imu)| := by congr 1; ring
+  have h2 : |v_imu - v_true| = |v_true - v_imu| := abs_sub_comm v_imu v_true
+  linarith
 
 /-!
 ## Physical Operating Envelope

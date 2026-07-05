@@ -80,19 +80,22 @@ We prove the formal identity: backward pass computes the gradient.
 theorem squared_loss_gradient (x y : ℝ) :
     HasDerivAt (fun x => (1 / 2) * (x - y) ^ 2) (x - y) x := by
   have h1 : HasDerivAt (fun x : ℝ => x - y) 1 x := (hasDerivAt_id x).sub_const y
-  have h2 : HasDerivAt (fun x : ℝ => (x - y) ^ 2) (2 * (x - y) * 1) x := h1.pow 2
-  have h3 : HasDerivAt (fun x : ℝ => (1 / 2) * (x - y) ^ 2) (1 / 2 * (2 * (x - y) * 1)) x :=
-    h2.const_mul (1 / 2)
-  have key : (1 : ℝ) / 2 * (2 * (x - y) * 1) = x - y := by ring
-  rwa [key] at h3
+  have h2 : HasDerivAt (fun x : ℝ => (x - y) ^ 2) (2 * (x - y)) x := by
+    have raw := h1.pow 2
+    simp only [show (2 : ℕ) - 1 = 1 from rfl, Nat.cast_ofNat, pow_one, mul_one] at raw
+    exact raw
+  have h3 := h2.const_mul (1 / 2 : ℝ)
+  have heq : (1 / 2 : ℝ) * (2 * (x - y)) = x - y := by ring
+  rwa [heq] at h3
 
 /-- ReLU gradient: d/dx max(0, x) = 1 if x > 0, else 0 -/
 theorem relu_gradient_pos (x : ℝ) (hx : 0 < x) :
     HasDerivAt (fun x => max 0 x) 1 x := by
   have heq : (fun x => max (0:ℝ) x) =ᶠ[nhds x] id := by
-    filter_upwards [isOpen_Ioi.mem_nhds hx] with y hy
-    simp [max_eq_right hy.le]
-  exact (hasDerivAt_id x).congr_of_eventuallyEq heq (by simp [max_eq_right hx.le])
+    filter_upwards [Ioi_mem_nhds hx] with y hy
+    simp only [id]
+    exact max_eq_right (le_of_lt hy)
+  exact (hasDerivAt_id x).congr_of_eventuallyEq heq
 
 /-!
 ## Physical Operating Envelope

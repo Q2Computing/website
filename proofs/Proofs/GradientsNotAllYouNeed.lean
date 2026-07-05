@@ -85,12 +85,15 @@ theorem geom_series_bound (gamma : ℝ) (hγ0 : 0 ≤ gamma) (hγ1 : gamma < 1)
   have hpow : 0 ≤ gamma ^ T := pow_nonneg hγ0 T
   have hsum_bound : (1 - gamma) * ∑ k ∈ Finset.range T, gamma ^ k ≤ 1 := by linarith
   have hsum_le : ∑ k ∈ Finset.range T, gamma ^ k ≤ 1 / (1 - gamma) := by
-    have h2 : (∑ k ∈ Finset.range T, gamma ^ k) * (1 - gamma) ≤ 1 := by
-      linarith [mul_comm (1 - gamma) (∑ k ∈ Finset.range T, gamma ^ k)]
-    calc ∑ k ∈ Finset.range T, gamma ^ k
-        = (∑ k ∈ Finset.range T, gamma ^ k) * (1 - gamma) / (1 - gamma) :=
-          (mul_div_cancel_right₀ _ h1.ne').symm
-      _ ≤ 1 / (1 - gamma) := (div_le_div_right h1).mpr h2
+    have h2 : (∑ k ∈ Finset.range T, gamma ^ k) * (1 - gamma) ≤ 1 :=
+      by linarith [mul_comm (1 - gamma) (∑ k ∈ Finset.range T, gamma ^ k)]
+    by_contra hlt
+    push_neg at hlt
+    have h3 : 1 / (1 - gamma) * (1 - gamma) <
+              (∑ k ∈ Finset.range T, gamma ^ k) * (1 - gamma) :=
+      mul_lt_mul_of_pos_right hlt h1
+    rw [div_mul_cancel₀ 1 h1.ne'] at h3
+    linarith
   calc ∑ k ∈ Finset.range T, gamma ^ k * g0
       = (∑ k ∈ Finset.range T, gamma ^ k) * g0 := (Finset.sum_mul _ _ _).symm
     _ ≤ (1 / (1 - gamma)) * g0 := mul_le_mul_of_nonneg_right hsum_le hg0
