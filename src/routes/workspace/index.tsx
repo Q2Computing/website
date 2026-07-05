@@ -35,7 +35,7 @@ export default component$(() => {
         const msg = JSON.parse(e.data);
         if (msg.from === "owner") isOwner.value = true;
         messages.value = [...messages.value, msg];
-      } catch {}
+      } catch (_) {}
     };
 
     socket.onerror = () => {

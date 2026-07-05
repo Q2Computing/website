@@ -189,7 +189,7 @@ const swarmSupportingResearch = [
   },
 ];
 
-const reactorSupportingResearch = [
+const reactorSupportingResearch: Array<{ num: number; title: string; citation: string; summary: string; href: string; analysis?: string }> = [
   {
     num: 1,
     title: "Robotic Exploration of an Unknown Nuclear Environment Using Radiation Informed Autonomous Navigation",

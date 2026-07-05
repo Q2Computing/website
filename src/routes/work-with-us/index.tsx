@@ -86,7 +86,7 @@ const SERVICE_CONFIG: Record<string, { name: string; hints: string[] }> = {
   },
 };
 
-const problems = [
+const _problems = [
   {
     icon: '/images/icon-automation.png',
     alt: 'Automation icon',
