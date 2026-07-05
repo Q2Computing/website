@@ -1,0 +1,144 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1.5rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: #1a2a4c;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  font-size: 0.92rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.classifiedBadge {
+  display: inline-block;
+  background: #1a2a4c;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ── Primary (left) ────────────────────────────────────── */
+
+.primary h2 {
+  font-size: 1.3rem;
+  color: #1a2a4c;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.primary p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.primary ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.primary li {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.75;
+  margin-bottom: 0.4rem;
+}
+
+/* ── References (right) ────────────────────────────────── */
+
+.references {
+  position: sticky;
+  top: 5rem;
+}
+
+.references h2 {
+  font-size: 1.1rem;
+  color: #1a2a4c;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.refList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.refItem {
+  font-size: 0.82rem;
+  color: #444;
+  line-height: 1.55;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.refNum {
+  position: absolute;
+  left: 0;
+  color: #0056b3;
+  font-weight: 700;
+}
+
+.refItem a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.refItem a:hover {
+  text-decoration: underline;
+}
+
+.primary a {
+  color: #0056b3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary a:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .references {
+    position: static;
+    border-top: 2px solid #e0e0e0;
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+}

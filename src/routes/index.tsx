@@ -1,61 +1,62 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { QuantumCanvas } from "../components/quantum-canvas/quantum-canvas";
+import styles from "./index.module.css";
 
 export default component$(() => {
   return (
     <>
+      <section class={styles.hero}>
+        <QuantumCanvas />
+        <div class={styles.heroContent}>
+          <h1>Engineering built to work without you watching it</h1>
+          <p class={styles.heroSub}>
+            Q2 Computing designs automation systems, autonomous software, and hardware architectures
+            for small businesses and operators who are done waiting for someone else to solve their problems
+          </p>
+          <a href="/work-with-us/" class={styles.heroBtn}>Work With Us</a>
+        </div>
+      </section>
+
       <div class="container">
 
-          <section class="section hero">
-              <h1>From Complex Data to Competitive Dominance</h1>
-              <p class="subheading">We don't just solve technical problems—we rationalize reality. Q2-Computing integrates elite expertise across aerospace, AI, and full-stack engineering to deliver solutions that are not only intelligent but resilient, robust, and ready for the real world.</p>
-          </section>
+        <section class="section">
+          <blockquote class="mission-statement">
+            Q2 Computing generalizes mathematics as models that surround our interpretation of reality, so that machines can accomplish what humans already understand how to do well, liberating people to think about how their business can grow and thrive in sustainable ways
+          </blockquote>
+        </section>
 
-          <section class="section approach">
-              <h2>Bridging the Gap Between Disciplines</h2>
-              <p>In today's hyper-specialized world, the most critical challenges lie at the intersection of different fields. A brilliant aerospace concept fails without robust software; a powerful AI remains useless without the electrical engineering to support it. Q2-Computing was founded on a simple principle: true innovation requires a holistic approach.</p>
-              <p>We believe the next generation of autonomy must be built on a foundation of trust. That's why we approach every problem not just as engineers, but as responsible stewards of powerful technology, ensuring that every solution we build is engineered for success from first principles.</p>
-          </section>
-          
-          <section class="section experience">
-              <h2>Battle-Tested in the Enterprise Arena</h2>
-              <p>Conceptual brilliance is not enough. Our strategies are forged from hands-on experience delivering mission-critical solutions for global technology leaders.</p>
-              <p>Working with a premier global technology consulting firm, we were at the core of developing enterprise-grade AI services that automated complex IT support resolutions—a task requiring a deep understanding of the entire web development stack. Our work extended to providing critical, data-driven insights for the titans of the semiconductor industry, helping to analyze and optimize everything from intricate metrology data to global logistics.</p>
-              <p>This experience proved a core truth: the statistical process for uncovering powerful insights is universal. We have a proven track record of applying this rigorous analytical process to solve high-stakes problems, turning vast corporate data stores into actionable intelligence and a clear competitive advantage.</p>
-          </section>
+        <section class="section">
+          <h2>What we deliver today</h2>
+          <p>The infrastructure keeping small businesses behind is not an accident. It was designed that way. Here is what Q2 can put in front of you right now.</p>
+          <p><strong>Software and algorithms:</strong> If your people are doing the same thing on repeat, we write the software that stops that. Process automation, AI integration, custom tooling, full-stack web applications. The deliverable is working code, not a slide deck. We scope it, build it, and hand it over with direct access to the engineer who wrote it throughout.</p>
+          <p><strong>Rapid physical prototyping:</strong> Q2 operates out of Generator, Vermont's fabrication and makerspace facility in Burlington. If your problem has a physical component, we can design, iterate, and prototype it there. 3D printing, laser cutting, electronics assembly, and mechanical fabrication are all on the table. The goal is to get something in your hands fast enough that you can make a real decision about whether to invest further, before enterprise costs are incurred.</p>
+          <p><strong>PCB design and microprocessor development:</strong> We design printed circuit boards and develop custom microprocessor architectures from schematic through layout, signal integrity analysis, and embedded firmware. If your product needs custom silicon or a purpose-built control board, we can take it from concept to a manufacturable design. The output is a complete hardware package your fabrication partner can run with.</p>
+          <p><strong>Feasibility and simulation:</strong> Before you commit budget to hardware or a full development cycle, we can model the problem in simulation, validate the approach, and tell you honestly whether the physics and the math support what you are trying to build. This is the work that prevents expensive mistakes and produces the evidence needed for a grant application, an internal investment case, or a procurement decision.</p>
+        </section>
 
-          <section class="section innovation">
-              <h2>The Future of Autonomy: True Resilience When Connection is Lost</h2>
-              <p>Our core innovation is a paradigm shift in autonomous navigation, born from a universal challenge: what happens when the network fails? Whether it's a first responder's drone in a hurricane-stricken area, an agricultural robot in a remote field, or a defense asset in a contested environment, the loss of GPS or communication can mean mission failure. We solve this by evaluating <strong>positional confidence</strong>.</p>
-              <p>Inspired by groundbreaking research that trained competent flight policies with lean neural networks, our "object-blind" method allows autonomous systems to interpolate their location with astonishing accuracy.</p>
-              
-              <h3>How it works:</h3>
-              <p>Instead of relying on pre-labeled objects, our software trains a neural network to rapidly observe environmental anomalies. By treating each new observation as a point in a Markov chain, a swarm can iteratively update its collective confidence in its location. This approach, honed in a digital simulation, is designed for zero-shot generalization to the real world, providing a level of resilience and adaptability that traditional systems cannot match.</p>
-              
-              <p>This technology has profound implications across all sectors:</p>
-              <ul class="benefits">
-                  <li><strong>Disaster Response & Public Safety:</strong> Drones that can map a disaster zone or find survivors long after cell towers have gone down.</li>
-                  <li><strong>Industrial & Civil Operations:</strong> High-precision tasks like automated infrastructure inspection, construction, and agriculture, using less expensive hardware without total reliance on satellite connectivity.</li>
-                  <li><strong>Defense & National Security:</strong> Ensuring operational overmatch and mission continuity for autonomous systems in DDIL (Denied, Degraded, Intermittent, and Limited) environments.</li>
-              </ul>
-          </section>
+        <section class="section">
+          <h2>Direct line to the engineer</h2>
+          <p>We agree on what needs to be built, how long it will take, and what it will cost before any work begins. You will never open an invoice that surprises you, and the scope we agree on is the scope we deliver. As work progresses, you have direct access to a private workspace with live updates so you always know exactly where things stand. No hand-offs, no translation layers, no one between you and the work being done on your behalf.</p>
+        </section>
 
-          <section class="section cta">
-              <h2>Ready to turn your most complex challenge into your greatest strength?</h2>
-              <p>Let's discuss how our integrated approach to engineering and artificial intelligence can rationalize your reality and deliver a decisive competitive edge.</p>
-              <a href="/contact/" class="cta-button">Contact Us</a>
-          </section>
+        <section class="section cta">
+          <h2>Have a problem that keeps getting handed off and never solved?</h2>
+          <p>Tell us what you are working on and we will tell you honestly if we can help.</p>
+          <a href="/work-with-us/" class="cta-button">Work With Us</a>
+        </section>
+
       </div>
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Q2-Computing",
+  title: "Q2 Computing",
   meta: [
     {
       name: "description",
-      content: "Q2-Computing software and hardware services",
+      content: "Q2 Computing designs automation systems, autonomous software, and hardware architectures for small businesses and operators who are done waiting for someone else to solve their problems.",
     },
   ],
 };

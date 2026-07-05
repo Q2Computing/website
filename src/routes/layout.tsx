@@ -6,6 +6,7 @@ import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
 
 import styles from "./styles.css?inline";
+import katexStyles from "katex/dist/katex.min.css?inline";
 
 export const useServerTimeLoader = routeLoader$(() => {
   return {
@@ -15,6 +16,7 @@ export const useServerTimeLoader = routeLoader$(() => {
 
 export default component$(() => {
   useStyles$(styles);
+  useStyles$(katexStyles);
   return (
     <>
       <Header />
