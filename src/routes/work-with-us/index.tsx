@@ -86,32 +86,6 @@ const SERVICE_CONFIG: Record<string, { name: string; hints: string[] }> = {
   },
 };
 
-const _problems = [
-  {
-    icon: '/images/icon-automation.png',
-    alt: 'Automation icon',
-    heading: 'You have a process that requires human judgment, but your best people lose hours to it every day',
-    body: 'Your best people are spending hours on tasks that follow a pattern. If a person can learn it, a machine can do it. We turn your operational data into automation that replicates that judgment at scale, without replacing the people who matter.',
-  },
-  {
-    icon: '/images/icon-resilience.png',
-    alt: 'Resilience icon',
-    heading: 'You need a system that works when the network fails',
-    body: 'GPS-denied, communication-degraded, or operating in the field with no guarantee of connectivity. We build autonomous systems engineered to maintain mission continuity when the infrastructure fails.',
-  },
-  {
-    icon: '/images/icon-hardware.png',
-    alt: 'Hardware icon',
-    heading: 'You have a hardware problem that software alone cannot fix',
-    body: 'Circuit design, PCB layout, signal analysis, embedded systems. We operate across the full stack from silicon to software. If your problem lives at the intersection of hardware and intelligence, this is where we work.',
-  },
-  {
-    icon: '/images/icon-mission.png',
-    alt: 'Mission icon',
-    heading: 'You need someone who understands both the mission and the machine',
-    body: 'Defense, public safety, critical infrastructure. We bring field-tested operational experience alongside engineering depth. We have worked in environments where failure is not an option and built systems designed to reflect that standard.',
-  },
-];
 
 const steps = [
   {
