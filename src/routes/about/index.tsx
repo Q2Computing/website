@@ -8,8 +8,8 @@ export default component$(() => {
     <>
       <section class={styles.openingBanner}>
         <div class={styles.openingInner}>
-          <p>You have been quoted, handed off, and under-delivered before. You are reading this because you want to talk to the person who will actually do the work.</p>
-          <p>The first solution proposed is almost never the best one. Q2 exists to continue finding better answers.</p>
+          <p>Small businesses solve real problems for real people. The engineering, automation, and AI that makes them unstoppable is finally within reach. What we build next will change how people actually live.</p>
+          <p>The first answer is rarely the best one. Q2 exists to keep finding better ones.</p>
         </div>
       </section>
 
