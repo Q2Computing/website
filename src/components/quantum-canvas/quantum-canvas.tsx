@@ -141,10 +141,47 @@ export const QuantumCanvas = component$(() => {
       canvas.height = H;
     };
 
-    canvas.addEventListener("mousemove", onMove);
-    canvas.addEventListener("mousedown", onDown);
+    const onTouchMove = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (!t) return;
+      const r = canvas.getBoundingClientRect();
+      mouseX = t.clientX - r.left;
+      mouseY = t.clientY - r.top;
+    };
+    const onTouchStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (!t) return;
+      const r = canvas.getBoundingClientRect();
+      mouseX = t.clientX - r.left;
+      mouseY = t.clientY - r.top;
+      if (particles.length === 0 && !wave) {
+        bigBang(mouseX, mouseY);
+        return;
+      }
+      isDown = true;
+      downAt = performance.now();
+    };
+    const onTouchEnd = () => {
+      if (!isDown) return;
+      isDown = false;
+      startTime = performance.now();
+      const burst = Math.min((performance.now() - downAt) * BURST_SCALE, BURST_CAP);
+      for (const p of particles) {
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        p.vx += (dx / d) * burst;
+        p.vy += (dy / d) * burst;
+      }
+    };
+
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
     window.addEventListener("resize", onResize);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
 
     function tick(ts: number) {
       ctx!.fillStyle = "#080e1c";
@@ -241,7 +278,7 @@ export const QuantumCanvas = component$(() => {
           if (!wave && Math.sqrt(p.vx * p.vx + p.vy * p.vy) > PHOTON_SPEED) {
             wave = { ox: p.x, oy: p.y, r: 0 };
             particles.splice(i, 1);
-            return;
+            break;
           }
         }
       }
@@ -434,10 +471,13 @@ export const QuantumCanvas = component$(() => {
 
     cleanup(() => {
       cancelAnimationFrame(raf);
-      canvas.removeEventListener("mousemove", onMove);
-      canvas.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
     });
   });
 
