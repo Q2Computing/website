@@ -8,8 +8,8 @@ export default component$(() => {
     <>
       <section class={styles.openingBanner}>
         <div class={styles.openingInner}>
-          <p>Small businesses solve real problems for real people. The engineering, automation, and AI that makes them unstoppable is finally within reach. What we build next will change how people actually live.</p>
-          <p>The first answer is rarely the best one. Q2 exists to keep finding better ones.</p>
+          <p>The next revolution in business automation is happening right here in Burlington, VT. It is being built by people who were never supposed to have access to these tools.</p>
+          <p>Q2 Computing is changing that. Are you in?</p>
         </div>
       </section>
 
@@ -17,8 +17,8 @@ export default component$(() => {
 
         <section class="section">
           <h2>Why Q2 exists</h2>
-          <p>I grew up in Barre, Vermont. Vermont's economy does not give you a margin for error, so at 19 I joined the Army. I served with 3-172nd Infantry, the Green Mountain Boys. Twelve years later, my own research showed that robots were entering the battlefield. Ukraine proved the math right. I came home to do something about it.</p>
-          <p>The organizations that need these tools most will be the last ones that can afford them. Q2 exists to close that gap.</p>
+          <p>Small businesses built this country. Then the tools to run one got priced out of reach on purpose.</p>
+          <p>We are taking them back. Q2 exists to put enterprise-grade engineering in the hands of the people doing the real work.</p>
         </section>
 
         <section class="section">
