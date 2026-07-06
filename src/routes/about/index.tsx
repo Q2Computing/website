@@ -8,8 +8,8 @@ export default component$(() => {
     <>
       <section class={styles.openingBanner}>
         <div class={styles.openingInner}>
-          <p>The next revolution in business automation is happening right here in Burlington, VT. It is being built by people who were never supposed to have access to these tools.</p>
-          <p>Q2 Computing is changing that. Are you in?</p>
+          <p>The automation gap between large organizations and small businesses is not a fair fight. It was designed to be a war of attrition.</p>
+          <p>Q2 Computing is building in Burlington, VT to change the systems citizens use in that fight.</p>
         </div>
       </section>
 
@@ -17,15 +17,18 @@ export default component$(() => {
 
         <section class="section">
           <h2>Why Q2 exists</h2>
-          <p>Small businesses built this country. Then the tools to run one got priced out of reach on purpose.</p>
-          <p>We are taking them back. Q2 exists to put enterprise-grade engineering in the hands of the people doing the real work.</p>
+          <p>Small businesses built this country. Then the tools to run one got priced out of reach, on purpose.</p>
+          <p>Not because small operators lack talent. Not because they lack drive. Because the people who built the tools decided that complexity should require scale, and that scale should require capital that only one side of the fight has access to.</p>
+          <p>The machine shop that has been running the same family name for forty years cannot afford the software that certifies the lifespan of the parts it ships. The journalist covering a conflict zone cannot prove her footage has not been altered. The farmer building his first automated irrigation system cannot access the engineering that would let him prove it works. These are not edge cases. These are the operating conditions of most of the people doing most of the real work in the American economy.</p>
+          <p>The gap was not created by accident. It is maintained by vendor lock-in, proprietary tooling, and the quiet assumption that if you cannot afford the enterprise stack, your work does not need to be verified, protected, or remembered.</p>
+          <p>Q2 exists to dismantle that assumption.</p>
         </section>
 
         <section class="section">
-          <h2>A background that spans the full stack</h2>
-          <p>Before Q2 Computing, there was a combat deployment to Iraq and a commission as a U.S. Army officer. That experience instilled something no classroom provides: what it means to design systems that have to work when conditions are worst, not when conditions are ideal. Resilience is not a feature you add at the end. It is a constraint you design around from the beginning.</p>
+          <h2>A background built for this fight</h2>
+          <p>Before Q2, there was a combat deployment to Iraq and a commission as a U.S. Army officer. That experience instilled something no classroom provides: what it means to design systems that have to work when conditions are worst, not when conditions are ideal. Resilience is not a feature you add at the end. It is a constraint you design around from the beginning.</p>
           <p>That constraint shaped the engineering education that followed. Aerospace Engineering at Boston University covered control systems, flight dynamics, and the mathematics of physical systems operating at the edge of their performance envelope. Electrical Engineering at the University of Vermont covered circuit design, signal analysis, processor architecture, FPGA programming, and the hardware-software boundary where most real engineering problems actually live. The shift into computer science and AI was not a departure from engineering. It was the recognition that software and machine learning were the highest-leverage tools available for the class of problems worth solving.</p>
-          <p>The result is a founder who can work from the transistor up: circuit design and PCB layout, embedded firmware and FPGA synthesis, AI model development and optimization, full-stack software and web applications, robotic systems integration, and autonomous navigation for environments where GPS and communications cannot be assumed. Most firms operate in one of those layers. Q2 operates across all of them, because the hardest problems are always at the seams where hardware meets firmware, firmware meets software, and software meets the physical world.</p>
+          <p>The result is a founder who can work from the transistor up: circuit design and PCB layout, embedded firmware and FPGA synthesis, AI model development and optimization, full-stack software and web applications, robotic systems integration, and autonomous navigation for environments where GPS and communications cannot be assumed. A research archive of 24 peer-reviewed works, with Lean-verified formal proofs of the mathematical foundations. Most firms operate in one layer of the stack. Q2 operates across all of them, because the hardest problems are always at the seams where hardware meets firmware, firmware meets software, and software meets the world.</p>
         </section>
 
         <section class="section">
@@ -55,9 +58,9 @@ export default component$(() => {
         </section>
 
         <section class="section">
-          <h2>Built in Vermont</h2>
-          <p>Q2 Computing is based in Vermont. The first physical proof point is underway: two BCN3D Moveo robotic arms built from open-source designs using 3D-printed structural components and off-the-shelf stepper motors. These are the foundation of a Vermont-made automation practice, built from the grassroots up, and the proving ground for the automation architectures Q2 designs for clients.</p>
-          <p>Vermont has the manufacturing base, the engineering talent, and the community density to build a local automation ecosystem. Q2's intent is to be the design and integration layer for that ecosystem, starting with the businesses that have been told precision automation is out of reach for them.</p>
+          <h2>Built in Vermont. Built for everyone who was told not to bother.</h2>
+          <p>The first physical proof point is already underway: two BCN3D Moveo robotic arms built from open-source designs, 3D-printed structural components, and off-the-shelf stepper motors. Precision automation built in a Vermont garage, not an enterprise procurement cycle. These are the proving ground for the automation architectures Q2 designs for clients, and the first step in a longer sequence: demonstrate the capability, contract with Vermont businesses, and build the manufacturing and design practice that makes this a realistic option for operators who have been written off by the enterprise automation industry.</p>
+          <p>The research direction extends further. Q2 is pursuing a partnership with the University of Vermont through the DOE INFUSE program, applying radiation-informed robotics research to nuclear and fusion facility maintenance. Vermont has the manufacturing base, the engineering talent, and the community density to build something real. Q2 intends to be part of that build.</p>
         </section>
 
         <section class="section">
