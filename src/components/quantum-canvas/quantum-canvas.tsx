@@ -35,14 +35,16 @@ export const QuantumCanvas = component$(() => {
     const LINE_DIST      = 140;
     const K              = 600;     // Coulomb constant (canvas units)
     const EPS2           = 64;      // Plummer softening (eps = 8px)
-    const BASE_MAX_SPEED = 1.1;
+    const BASE_MAX_SPEED = 10.0;
     const GRAVITY_RAMP   = 0.004;
     const GRAVITY_CAP    = 120;
     const BURST_SCALE    = 0.018;
     const BURST_CAP      = 30;
     const PHOTON_SPEED   = 420;
 
-    const HOLD_THRESHOLD = 15000;  // ms of continuous hold required to enter Phase 2
+    const COLD_CAP       = 0.015;  // Phase 1 idle speed cap
+    const WARM_THRESHOLD = 2000;   // ms hold before speed cap opens up
+    const HOLD_THRESHOLD = 15000;  // ms of continuous hold required to enter Phase 2 (fusion)
 
     let W = canvas.offsetWidth;
     let H = canvas.offsetHeight;
@@ -57,7 +59,7 @@ export const QuantumCanvas = component$(() => {
 
     for (let i = 0; i < 85; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 0.3 + Math.random() * 0.8;
+      const speed = 0.05 + Math.random() * 0.05;
       particles.push({
         x: Math.random() * W,
         y: Math.random() * H,
@@ -89,7 +91,7 @@ export const QuantumCanvas = component$(() => {
       }
       for (let i = 0; i < 85; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 0.3 + Math.random() * 0.8;
+        const speed = 0.05 + Math.random() * 0.05;
         particles.push({
           x: Math.random() * W,
           y: Math.random() * H,
@@ -243,9 +245,11 @@ export const QuantumCanvas = component$(() => {
           p.vy += (Math.random() - 0.5) * energyInject / sqrtM;
         }
 
-        // Phase 1 speed cap scaled by 1/√mass — heavier particles drift more slowly
+        // Speed cap: logarithmic ramp from COLD_CAP → BASE_MAX_SPEED over WARM_THRESHOLD
         if (!inExpPhase) {
-          const cap = BASE_MAX_SPEED / Math.sqrt(p.mass);
+          const warmT = isDown ? Math.min(held / WARM_THRESHOLD, 1) : 0;
+          const activeCap = COLD_CAP + (BASE_MAX_SPEED - COLD_CAP) * Math.log(1 + warmT * (Math.E - 1));
+          const cap = activeCap / Math.sqrt(p.mass);
           const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
           if (spd > cap) {
             p.vx = (p.vx / spd) * cap;
@@ -311,7 +315,7 @@ export const QuantumCanvas = component$(() => {
             singularityFrames = 0;
             trail.length = 0;
             const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy) || 1;
-            const cap = BASE_MAX_SPEED / Math.sqrt(p.mass);
+            const cap = COLD_CAP / Math.sqrt(p.mass);
             p.vx = (p.vx / spd) * cap;
             p.vy = (p.vy / spd) * cap;
           }
