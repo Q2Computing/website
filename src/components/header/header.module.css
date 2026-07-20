@@ -113,58 +113,77 @@
   transform: translateY(-1px);
 }
 
-/* ── Mobile nav strip ───────────────────────────────────── */
+/* ── Mobile-only elements (hidden on desktop) ───────────── */
 
-.mobileNav {
-  display: none;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  border-top: 1px solid #e5e7eb;
-  padding: 0.5rem 1rem;
-}
-
-.mobileNav::-webkit-scrollbar {
+.mobileLogo,
+.hamburger {
   display: none;
 }
 
-.mobileNav ul {
+/* ── Hamburger button ────────────────────────────────────── */
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 2;
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #374151;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.barTop  { transform: translateY(7px) rotate(45deg); }
+.barMid  { opacity: 0; }
+.barBot  { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mobile dropdown menu ───────────────────────────────── */
+
+.mobileMenu {
+}
+
+.mobileMenu ul {
   list-style: none;
   margin: 0;
-  padding: 0;
-  white-space: nowrap;
+  padding: 0.5rem 0;
 }
 
-.mobileNav ul li a {
-  display: inline-block;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.9rem;
+.mobileMenu ul li a {
+  display: block;
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #374151;
   text-decoration: none;
-  border-radius: 20px;
-  background: #f3f4f6;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.15s, color 0.15s;
 }
 
-.mobileNav ul li a:hover {
-  background: #e5e7eb;
+.mobileMenu ul li a:hover {
+  background: #f3f4f6;
   color: #1a2a4c;
 }
 
 .mobileWorkBtn {
-  display: inline-block;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.9rem;
+  display: block;
+  margin: 0.5rem 1.5rem 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #ffffff !important;
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 8px;
   background: #1a2a4c;
+  text-align: center;
   transition: background 0.2s;
-  white-space: nowrap;
 }
 
 .mobileWorkBtn:hover {
@@ -200,24 +219,40 @@
   color: #1a2a4c;
 }
 
-/* ── Small viewports: show mobile strip, hide desktop nav ── */
+/* ── Small viewports: hamburger layout ──────────────────── */
 
 @media (max-width: 768px), (orientation: landscape) and (max-height: 500px) {
-  .mobileNav {
-    display: block;
-  }
-
   .nav,
-  .actions {
+  .actions,
+  .logo {
     display: none;
   }
 
-  .header {
-    padding: 0.5rem 1.25rem;
+  .mobileLogo,
+  .hamburger {
+    display: flex;
   }
 
-  .logo a img {
-    width: 40px;
-    height: 40px;
+  .wrapper {
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Center the logo absolutely so hamburger stays right-aligned */
+  .mobileLogo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+  }
+
+  .header {
+    padding: 1.75rem 1rem;
+  }
+
+  .mobileLogo a img {
+    width: 120px;
+    height: auto;
   }
 }
