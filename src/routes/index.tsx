@@ -14,7 +14,7 @@ export default component$(() => {
             Q2 Computing designs automation systems, autonomous software, and hardware architectures
             for small businesses and operators who are done waiting for someone else to solve their problems
           </p>
-          <a href="/work-with-us/" class={styles.heroBtn}>Work With Us</a>
+
         </div>
       </section>
 
