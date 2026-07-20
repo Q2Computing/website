@@ -1,6 +1,6 @@
 import { component$, useSignal, useVisibleTask$, $ } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
-import iconUrl from '../../media/icon.svg?url';
+import ImgQ2Icon from '../../media/icon.png?w=96&h=96&jsx';
 import styles from './header.module.css';
 
 const navLinks = [
@@ -47,7 +47,7 @@ export default component$(() => {
         <div class={styles.wrapper}>
           <div class={styles.logo}>
             <a href='/'>
-              <img src={iconUrl} alt="Q2-Computing Icon" width="96" height="96" />
+              <ImgQ2Icon alt='Q2-Computing Icon'/>
             </a>
           </div>
           <nav class={styles.nav}>
