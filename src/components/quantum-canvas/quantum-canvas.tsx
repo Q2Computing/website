@@ -7,7 +7,6 @@ const MAX_LEVEL = SPECTRUM_HUES.length; // levels 1–7; 0 = white
 
 function particleColor(level: number, speed: number): string {
   if (level === 0) {
-    // White, barely tinted as speed rises
     const t = Math.min(speed / 1.5, 1);
     return `hsl(30,${(t * 10).toFixed(0)}%,${(90 + t * 7).toFixed(0)}%)`;
   }
@@ -16,6 +15,11 @@ function particleColor(level: number, speed: number): string {
   const lightness = 55 + t * 38;
   const saturation = 100 - t * 28;
   return `hsl(${hue},${saturation.toFixed(0)}%,${lightness.toFixed(0)}%)`;
+}
+
+// Quantized mass: linear atomic number (H=1, He=2, Li=3, …)
+function particleMass(level: number): number {
+  return level + 1;
 }
 
 export const QuantumCanvas = component$(() => {
@@ -30,41 +34,39 @@ export const QuantumCanvas = component$(() => {
 
     const LINE_DIST      = 140;
     const K              = 600;     // Coulomb constant (canvas units)
-    const Q              = 1.0;     // particle charge
     const EPS2           = 64;      // Plummer softening (eps = 8px)
-    const BASE_MAX_SPEED = 1.1;
+    const BASE_MAX_SPEED = 10.0;
     const GRAVITY_RAMP   = 0.004;
     const GRAVITY_CAP    = 120;
     const BURST_SCALE    = 0.018;
     const BURST_CAP      = 30;
     const PHOTON_SPEED   = 420;
 
-    // Phase timing (ms from canvas mount)
-    const FUSION_START   = 8000;   // 0–8s: pure peaceful, no fusion
-    const EXP_START      = 20000;  // 8–20s: log phase; 20s+: exp phase
-    const GUARANTEE_MS   = 38000;  // hard trigger if wave hasn't fired by 38s
+    const COLD_CAP       = 0.015;  // Phase 1 idle speed cap
+    const WARM_THRESHOLD = 2000;   // ms hold before speed cap opens up
+    const HOLD_THRESHOLD = 15000;  // ms of continuous hold required to enter Phase 2 (fusion)
 
     let W = canvas.offsetWidth;
     let H = canvas.offsetHeight;
     canvas.width = W;
     canvas.height = H;
 
-    type P = { x: number; y: number; vx: number; vy: number; level: number };
+    type P = { x: number; y: number; vx: number; vy: number; level: number; mass: number };
     type Flash = { x: number; y: number; r: number; alpha: number };
 
     const particles: P[] = [];
     const flashes: Flash[] = [];
 
-    // Spread initial particles across canvas so fusion can't cascade in frame 1
     for (let i = 0; i < 85; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 0.3 + Math.random() * 0.8;
+      const speed = 0.05 + Math.random() * 0.05;
       particles.push({
         x: Math.random() * W,
         y: Math.random() * H,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         level: 0,
+        mass: 1,
       });
     }
 
@@ -78,29 +80,25 @@ export const QuantumCanvas = component$(() => {
     let wave: { ox: number; oy: number; r: number } | null = null;
     const WAVE_SPEED = 15;
 
-    let startTime = performance.now();
-
     function bigBang(ox: number, oy: number) {
       singularity = false;
       singularityFrames = 0;
       trail.length = 0;
       particles.length = 0;
       wave = null;
-      startTime = performance.now(); // restart the narrative arc from the beginning
-      // Bloom flash at click origin
       for (let i = 0; i < 6; i++) {
         flashes.push({ x: ox, y: oy, r: 8 + i * 18, alpha: 0.9 - i * 0.12 });
       }
-      // Spawn spread across canvas so fusion can't instantly cascade
       for (let i = 0; i < 85; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 0.3 + Math.random() * 0.8;
+        const speed = 0.05 + Math.random() * 0.05;
         particles.push({
           x: Math.random() * W,
           y: Math.random() * H,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           level: 0,
+          mass: 1,
         });
       }
     }
@@ -124,14 +122,14 @@ export const QuantumCanvas = component$(() => {
     const onUp = () => {
       if (!isDown) return;
       isDown = false;
-      startTime = performance.now();
       const burst = Math.min((performance.now() - downAt) * BURST_SCALE, BURST_CAP);
       for (const p of particles) {
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const d = Math.sqrt(dx * dx + dy * dy) || 1;
-        p.vx += (dx / d) * burst;
-        p.vy += (dy / d) * burst;
+        // Burst impulse scaled by 1/mass — heavier particles kicked less
+        p.vx += (dx / d) * burst / Math.sqrt(p.mass);
+        p.vy += (dy / d) * burst / Math.sqrt(p.mass);
       }
     };
     const onResize = () => {
@@ -164,14 +162,13 @@ export const QuantumCanvas = component$(() => {
     const onTouchEnd = () => {
       if (!isDown) return;
       isDown = false;
-      startTime = performance.now();
       const burst = Math.min((performance.now() - downAt) * BURST_SCALE, BURST_CAP);
       for (const p of particles) {
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const d = Math.sqrt(dx * dx + dy * dy) || 1;
-        p.vx += (dx / d) * burst;
-        p.vy += (dy / d) * burst;
+        p.vx += (dx / d) * burst / Math.sqrt(p.mass);
+        p.vy += (dy / d) * burst / Math.sqrt(p.mass);
       }
     };
 
@@ -187,33 +184,16 @@ export const QuantumCanvas = component$(() => {
       ctx!.fillStyle = "#080e1c";
       ctx!.fillRect(0, 0, W, H);
 
-      const elapsed  = ts - startTime;
-      const tLog     = Math.max(0, elapsed - FUSION_START);        // ms into log phase
-      const tExp     = Math.max(0, elapsed - EXP_START);           // ms into exp phase
-      const inExpPhase = elapsed >= EXP_START;
+      const held = isDown ? ts - downAt : 0;
+      const inExpPhase = isDown && held >= HOLD_THRESHOLD;
+      const tExp = inExpPhase ? held - HOLD_THRESHOLD : 0;
 
-      // Idle speed cap: rises logarithmically during log phase, removed entirely in exp phase
-      const idleSpeedCap = inExpPhase
-        ? 0  // 0 = no cap
-        : BASE_MAX_SPEED * (1 + 4 * Math.log(1 + tLog / (EXP_START - FUSION_START)));
-
-      // Thermal energy injection per particle per frame
-      // Zero during the pure peaceful window (before FUSION_START)
-      const energyInject = elapsed < FUSION_START
-        ? 0
-        : inExpPhase
-          ? 0.02 * Math.exp(tExp / 7000)
-          : 0.004 * Math.log(1 + tLog / 3000);
-
-      // Collision radius: 0 (no fusion) → 12px at log start → up to 20px in exp phase
-      const collisionR   = elapsed < FUSION_START
-        ? 0
-        : inExpPhase
-          ? 12 + 8 * Math.min(tExp / 12000, 1)
-          : 12;
+      // Phase 1: constant speed cap (mass-scaled), no fusion, no energy injection
+      // Phase 2: no speed cap, exponential energy injection, fusion enabled
+      const energyInject = inExpPhase ? 0.02 * Math.exp(tExp / 7000) : 0;
+      const collisionR   = inExpPhase ? 12 + 8 * Math.min(tExp / 12000, 1) : 0;
       const collisionD2  = collisionR * collisionR;
 
-      const held = isDown ? ts - downAt : 0;
       const fissionBoost = held > 60000 ? 1 + (held - 60000) / 10000 : 1;
       const gravity = Math.min(held * GRAVITY_RAMP, GRAVITY_CAP) * 0.08 * fissionBoost;
       const n = particles.length;
@@ -222,47 +202,58 @@ export const QuantumCanvas = component$(() => {
       for (let i = 0; i < n; i++) {
         const p = particles[i];
 
+        // Particle–particle Coulomb: charge = mass, inertia = mass
         for (let j = i + 1; j < n; j++) {
           const q = particles[j];
           const dx = p.x - q.x;
           const dy = p.y - q.y;
           const softD2 = dx * dx + dy * dy + EPS2;
           const d = Math.sqrt(softD2);
-          const f = (K * Q * Q) / (softD2 * d);
-          p.vx += dx * f; p.vy += dy * f;
-          q.vx -= dx * f; q.vy -= dy * f;
+          // Force magnitude: K * qi * qj / r^2  (charge = mass)
+          const fMag = (K * p.mass * q.mass) / (softD2 * d);
+          // Acceleration = F / own_mass
+          p.vx += (dx * fMag) / p.mass;
+          p.vy += (dy * fMag) / p.mass;
+          q.vx -= (dx * fMag) / q.mass;
+          q.vy -= (dy * fMag) / q.mass;
         }
 
-        // Mouse: 2q repulsion idle, gravity when held
+        // Mouse: gravity when held (mass-independent), repulsion when idle (mass-scaled)
         const mdx = p.x - mouseX;
         const mdy = p.y - mouseY;
         const md2 = mdx * mdx + mdy * mdy;
         if (md2 > 0.01) {
           const md = Math.sqrt(md2);
           if (isDown && gravity > 0) {
+            // Gravitational attraction: mass-independent (equivalence principle)
             p.vx -= (mdx / md) * gravity;
             p.vy -= (mdy / md) * gravity;
           } else {
             const smd2 = md2 + EPS2;
             const smd = Math.sqrt(smd2);
-            const f = (K * Q * 2 * Q) / (smd2 * smd);
-            p.vx += mdx * f;
-            p.vy += mdy * f;
+            // Mouse charge fixed at 2; particle charge = mass; accel = F / p.mass
+            const fMag = (K * 2 * p.mass) / (smd2 * smd);
+            p.vx += (mdx * fMag) / p.mass;  // simplifies: K*2/(smd2*smd) — mass-independent
+            p.vy += (mdy * fMag) / p.mass;
           }
         }
 
-        // Thermal injection (zero in pure peaceful phase)
+        // Thermal injection: divided by √mass (equipartition — heavier = harder to excite)
         if (energyInject > 0) {
-          p.vx += (Math.random() - 0.5) * energyInject;
-          p.vy += (Math.random() - 0.5) * energyInject;
+          const sqrtM = Math.sqrt(p.mass);
+          p.vx += (Math.random() - 0.5) * energyInject / sqrtM;
+          p.vy += (Math.random() - 0.5) * energyInject / sqrtM;
         }
 
-        // Speed cap: lifted progressively, removed entirely in exp phase
-        if (!isDown && idleSpeedCap > 0) {
+        // Speed cap: logarithmic ramp from COLD_CAP → BASE_MAX_SPEED over WARM_THRESHOLD
+        if (!inExpPhase) {
+          const warmT = isDown ? Math.min(held / WARM_THRESHOLD, 1) : 0;
+          const activeCap = COLD_CAP + (BASE_MAX_SPEED - COLD_CAP) * Math.log(1 + warmT * (Math.E - 1));
+          const cap = activeCap / Math.sqrt(p.mass);
           const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-          if (spd > idleSpeedCap) {
-            p.vx = (p.vx / spd) * idleSpeedCap;
-            p.vy = (p.vy / spd) * idleSpeedCap;
+          if (spd > cap) {
+            p.vx = (p.vx / spd) * cap;
+            p.vy = (p.vy / spd) * cap;
           }
         }
 
@@ -273,25 +264,10 @@ export const QuantumCanvas = component$(() => {
           if (p.x > W)  { p.x = W;  p.vx = -Math.abs(p.vx); }
           if (p.y < 0)  { p.y = 0;  p.vy =  Math.abs(p.vy); }
           if (p.y > H)  { p.y = H;  p.vy = -Math.abs(p.vy); }
-
-          // Photon limit: particle tears spacetime, launches the shockwave
-          if (!wave && Math.sqrt(p.vx * p.vx + p.vy * p.vy) > PHOTON_SPEED) {
-            wave = { ox: p.x, oy: p.y, r: 0 };
-            particles.splice(i, 1);
-            break;
-          }
         }
       }
 
-      // ── Hard guarantee: force shockwave at 38s if not already triggered ──
-      if (!wave && elapsed > GUARANTEE_MS && particles.length > 0) {
-        const p = particles[0];
-        const angle = Math.atan2(p.vy, p.vx) || Math.random() * Math.PI * 2;
-        p.vx = Math.cos(angle) * (PHOTON_SPEED + 1);
-        p.vy = Math.sin(angle) * (PHOTON_SPEED + 1);
-      }
-
-      // ── Fusion (gated: only after FUSION_START and when collisionD2 > 0) ──
+      // ── Fusion (Phase 2 only: collisionD2 is 0 in Phase 1) ──────────────
       if (collisionD2 > 0) {
         const dead = new Set<number>();
         const born: P[] = [];
@@ -307,15 +283,19 @@ export const QuantumCanvas = component$(() => {
             if (dx * dx + dy * dy < collisionD2) {
               dead.add(i);
               dead.add(j);
-              const mx = (pi.x + pj.x) / 2;
-              const my = (pi.y + pj.y) / 2;
+              const mi = pi.mass, mj = pj.mass, mt = mi + mj;
+              const mx = (mi * pi.x + mj * pj.x) / mt;
+              const my = (mi * pi.y + mj * pj.y) / mt;
+              // Mass adds directly: H+He→Li, He+He→Be. Level = combined mass - 1
+              const newLevel = Math.min(mt - 1, MAX_LEVEL);
               born.push({
                 x: mx, y: my,
-                vx: (pi.vx + pj.vx) / 2,
-                vy: (pi.vy + pj.vy) / 2,
-                level: Math.min(Math.max(pi.level, pj.level) + 1, MAX_LEVEL),
+                vx: (mi * pi.vx + mj * pj.vx) / mt,
+                vy: (mi * pi.vy + mj * pj.vy) / mt,
+                level: newLevel,
+                mass: particleMass(newLevel),
               });
-              flashes.push({ x: mx, y: my, r: 6, alpha: 1.0 });
+              flashes.push({ x: mx, y: my, r: 6 + newLevel * 2, alpha: 1.0 });
               break;
             }
           }
@@ -325,32 +305,43 @@ export const QuantumCanvas = component$(() => {
         born.forEach(p => particles.push(p));
       }
 
-      // ── Singularity ───────────────────────────────────────
+      // ── Singularity (Phase 3 gate) ────────────────────────
       if (particles.length === 1) {
         const p = particles[0];
-        if (!singularity) {
-          singularity = true;
-          singularityFrames = 0;
-          const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy) || 1;
-          p.vx = (p.vx / spd) * 4;
-          p.vy = (p.vy / spd) * 4;
-        }
-        p.vx *= 1.035;
-        p.vy *= 1.035;
-        singularityFrames++;
+        if (!inExpPhase) {
+          // Hold released — abort singularity, lone particle returns to Phase 1
+          if (singularity) {
+            singularity = false;
+            singularityFrames = 0;
+            trail.length = 0;
+            const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy) || 1;
+            const cap = COLD_CAP / Math.sqrt(p.mass);
+            p.vx = (p.vx / spd) * cap;
+            p.vy = (p.vy / spd) * cap;
+          }
+        } else {
+          if (!singularity) {
+            singularity = true;
+            singularityFrames = 0;
+            const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy) || 1;
+            p.vx = (p.vx / spd) * 4;
+            p.vy = (p.vy / spd) * 4;
+          }
+          p.vx *= 1.035;
+          p.vy *= 1.035;
+          singularityFrames++;
+          trail.push({ x: p.x, y: p.y });
+          if (trail.length > 30) trail.shift();
 
-        trail.push({ x: p.x, y: p.y });
-        if (trail.length > 30) trail.shift();
-
-        if (
-          p.x < -60 || p.x > W + 60 ||
-          p.y < -60 || p.y > H + 60 ||
-          singularityFrames > SINGULARITY_TIMEOUT
-        ) {
-          particles.length = 0;
-          singularity = false;
-          singularityFrames = 0;
-          trail.length = 0;
+          const exited = p.x < -60 || p.x > W + 60 || p.y < -60 || p.y > H + 60;
+          const timedOut = singularityFrames > SINGULARITY_TIMEOUT;
+          if (exited || timedOut) {
+            if (exited) wave = { ox: p.x, oy: p.y, r: 0 }; // Phase 3 supernova
+            particles.length = 0;
+            singularity = false;
+            singularityFrames = 0;
+            trail.length = 0;
+          }
         }
       } else {
         singularity = false;
@@ -361,7 +352,6 @@ export const QuantumCanvas = component$(() => {
       if (wave) {
         wave.r += WAVE_SPEED;
 
-        // Consume any particle the wave front has passed over
         for (let i = particles.length - 1; i >= 0; i--) {
           const dx = particles[i].x - wave.ox;
           const dy = particles[i].y - wave.oy;
@@ -371,7 +361,6 @@ export const QuantumCanvas = component$(() => {
           }
         }
 
-        // Once wave has cleared the canvas diagonal, seed new orange particles on a grid
         const maxR = Math.sqrt(W * W + H * H);
         if (wave.r > maxR + WAVE_SPEED) {
           const cols = Math.round(Math.sqrt(85 * W / H));
@@ -387,10 +376,10 @@ export const QuantumCanvas = component$(() => {
               vx: (Math.random() - 0.5) * 1.5,
               vy: (Math.random() - 0.5) * 1.5,
               level: 0,
+              mass: 1,
             });
           }
           wave = null;
-          startTime = performance.now(); // restart the narrative arc for the new generation
           singularity = false;
           singularityFrames = 0;
           trail.length = 0;
@@ -434,7 +423,7 @@ export const QuantumCanvas = component$(() => {
       // ── Draw particles ────────────────────────────────────
       for (const p of particles) {
         const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        const radius = 2.5 + p.level * 0.4;
+        const radius = 2.5 + p.level * 0.6;
         ctx!.beginPath();
         ctx!.arc(p.x, p.y, radius, 0, Math.PI * 2);
         ctx!.fillStyle = particleColor(p.level, spd);
@@ -444,19 +433,16 @@ export const QuantumCanvas = component$(() => {
       // ── Draw wave ring ────────────────────────────────────
       if (wave) {
         const r = wave.r;
-        // Far outer halo
         ctx!.beginPath();
         ctx!.arc(wave.ox, wave.oy, r, 0, Math.PI * 2);
         ctx!.strokeStyle = "rgba(140,210,255,0.18)";
         ctx!.lineWidth = 80;
         ctx!.stroke();
-        // Mid glow
         ctx!.beginPath();
         ctx!.arc(wave.ox, wave.oy, r, 0, Math.PI * 2);
         ctx!.strokeStyle = "rgba(200,235,255,0.45)";
         ctx!.lineWidth = 36;
         ctx!.stroke();
-        // Bright leading edge
         ctx!.beginPath();
         ctx!.arc(wave.ox, wave.oy, r, 0, Math.PI * 2);
         ctx!.strokeStyle = "rgba(255,255,255,0.92)";
@@ -464,10 +450,25 @@ export const QuantumCanvas = component$(() => {
         ctx!.stroke();
       }
 
+      // ── Draw singularity trail ────────────────────────────
+      if (singularity && trail.length > 1) {
+        ctx!.beginPath();
+        ctx!.moveTo(trail[0].x, trail[0].y);
+        for (let i = 1; i < trail.length; i++) {
+          ctx!.lineTo(trail[i].x, trail[i].y);
+        }
+        ctx!.strokeStyle = "rgba(255,220,80,0.5)";
+        ctx!.lineWidth = 2;
+        ctx!.stroke();
+      }
+
       raf = requestAnimationFrame(tick);
     }
 
     raf = requestAnimationFrame(tick);
+
+    // ── Remove unused var warning ─────────────────────────
+    void PHOTON_SPEED;
 
     cleanup(() => {
       cancelAnimationFrame(raf);

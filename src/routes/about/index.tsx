@@ -2,6 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import heroStyles from '../index.module.css';
 import styles from './about.module.css';
+import { swarmPaperCount, totalPaperCount, leanProofCount } from '../../data/research';
 
 export default component$(() => {
   return (
@@ -28,7 +29,7 @@ export default component$(() => {
           <h2>A background built for this fight</h2>
           <p>Before Q2, there was a combat deployment to Iraq and a commission as a U.S. Army officer. That experience instilled something no classroom provides: what it means to design systems that have to work when conditions are worst, not when conditions are ideal. Resilience is not a feature you add at the end. It is a constraint you design around from the beginning.</p>
           <p>That constraint shaped the engineering education that followed. Aerospace Engineering at Boston University covered control systems, flight dynamics, and the mathematics of physical systems operating at the edge of their performance envelope. Electrical Engineering at the University of Vermont covered circuit design, signal analysis, processor architecture, FPGA programming, and the hardware-software boundary where most real engineering problems actually live. The shift into computer science and AI was not a departure from engineering. It was the recognition that software and machine learning were the highest-leverage tools available for the class of problems worth solving.</p>
-          <p>The result is a founder who can work from the transistor up: circuit design and PCB layout, embedded firmware and FPGA synthesis, AI model development and optimization, full-stack software and web applications, robotic systems integration, and autonomous navigation for environments where GPS and communications cannot be assumed. A research archive of 24 peer-reviewed works, with Lean-verified formal proofs of the mathematical foundations. Most firms operate in one layer of the stack. Q2 operates across all of them, because the hardest problems are always at the seams where hardware meets firmware, firmware meets software, and software meets the world.</p>
+          <p>The result is a founder who can work from the transistor up: circuit design and PCB layout, embedded firmware and FPGA synthesis, AI model development and optimization, full-stack software and web applications, robotic systems integration, and autonomous navigation for environments where GPS and communications cannot be assumed. A research archive of {totalPaperCount} peer-reviewed works, with {leanProofCount} Lean 4 machine-verified proofs of the mathematical foundations. Most firms operate in one layer of the stack. Q2 operates across all of them, because the hardest problems are always at the seams where hardware meets firmware, firmware meets software, and software meets the world.</p>
         </section>
 
         <section class="section">
@@ -48,24 +49,24 @@ export default component$(() => {
 
           <p><strong>Communications-denied autonomous systems</strong></p>
           <p>Skepticism about autonomous systems is rational. The leading implementations are opaque, overpromised, and built to work only when every assumption holds. That skepticism does not change the trajectory. Autonomous systems will be deployed whether the people affected by them trust them or not. The only variable is the quality of the engineering behind them.</p>
-          <p>Q2's navigation framework was designed for denied, disrupted, intermittent, and limited (DDIL) environments from the start, treating GPS and live communication as a bonus rather than a requirement. The result is an architecture that maintains operational continuity when the grid goes down, the signal drops, or the supply chain breaks. This work has been submitted to the U.S. Army Civil Engineering Working Group and is backed by a 23-paper research archive with Lean-verified formal proofs.</p>
+          <p>Q2's navigation framework was designed for denied, disrupted, intermittent, and limited (DDIL) environments from the start, treating GPS and live communication as a bonus rather than a requirement. The result is an architecture that maintains operational continuity when the grid goes down, the signal drops, or the supply chain breaks. This work has been submitted to the U.S. Army Civil Engineering Working Group and is backed by a {swarmPaperCount}-paper research archive with {leanProofCount} Lean 4 machine-verified proofs.</p>
         </section>
 
         <section class="section">
           <h2>The efficiency thesis</h2>
           <p>The insight that became Q2's core research direction came from a practical experiment: simulate a land navigation mission between two points. What emerged was not a solution. It was the observation that the leading approaches from major software companies were consuming an enormous amount of computational resources to accomplish something that should have been tractable at a fraction of the cost. Brute-force scale was being substituted for principled design.</p>
-          <p>The peer-reviewed literature confirmed it. Lean neural networks trained on the physical geometry of their environment, rather than on massive labeled recognition datasets, could navigate competently at a fraction of the computational overhead. That finding generalized: across AI, hardware, and software, the most efficient solution is almost never the first one proposed. Q2 exists to find the better one.</p>
+          <p>The peer-reviewed literature confirmed it. Lean neural networks trained on the physical geometry of their environment, rather than on massive labeled recognition datasets, could navigate competently at a fraction of the computational overhead. That finding generalized: across AI, hardware, and software, the most efficient solution is almost never the first one proposed. Q2 exists to continue finding better ones.</p>
         </section>
 
         <section class="section">
-          <h2>Built in Vermont. Built for everyone who was told not to bother.</h2>
+          <h2>Built in Vermont, built for everyone who was told not to bother</h2>
           <p>The first physical proof point is already underway: two BCN3D Moveo robotic arms built from open-source designs, 3D-printed structural components, and off-the-shelf stepper motors. Precision automation built in a Vermont garage, not an enterprise procurement cycle. These are the proving ground for the automation architectures Q2 designs for clients, and the first step in a longer sequence: demonstrate the capability, contract with Vermont businesses, and build the manufacturing and design practice that makes this a realistic option for operators who have been written off by the enterprise automation industry.</p>
           <p>The research direction extends further. Q2 is pursuing a partnership with the University of Vermont through the DOE INFUSE program, applying radiation-informed robotics research to nuclear and fusion facility maintenance. Vermont has the manufacturing base, the engineering talent, and the community density to build something real. Q2 intends to be part of that build.</p>
         </section>
 
         <section class="section">
           <h2>Commitment to the research frontier</h2>
-          <p>Q2 maintains a public research archive covering every paper that directly informed its methodology: 24 peer-reviewed works across autonomous navigation and reactor robotics, each with full citation and a plain-language analysis of exactly how it connects to Q2's work. Formal Lean 4 proofs of the mathematical foundations are published alongside the archive, providing machine-checkable verification of the core theoretical claims.</p>
+          <p>Q2 maintains a public research archive covering every paper that directly informed its methodology: {totalPaperCount} peer-reviewed works across autonomous navigation and reactor robotics, each with full citation and a plain-language analysis of exactly how it connects to Q2's work. {leanProofCount} Lean 4 machine-verified proofs of the mathematical foundations are published alongside the archive, providing machine-checkable verification of the core theoretical claims.</p>
           <p>The research section is not a reading list. It is an accountability record for every claim Q2 makes about what the underlying science actually supports. Future publications will be released in the same section as they become available. The <a href="/research/" class="cta-link">full archive is here</a>.</p>
         </section>
 
