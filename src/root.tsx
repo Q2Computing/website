@@ -23,6 +23,12 @@ export default component$(() => {
           />
         )}
         <RouterHead />
+        {/* Cloudflare Turnstile — loaded on all pages, only activates on work-with-us */}
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v1/api.js?render=explicit&onload=__onTurnstileLoad"
+          async
+          defer
+        />
       </head>
       <body lang="en">
         {/* The RouterOutlet renders the content of your current page */}
