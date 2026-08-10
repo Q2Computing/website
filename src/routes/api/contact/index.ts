@@ -17,7 +17,11 @@
 
 import type { RequestHandler } from "@builder.io/qwik-city";
 
-const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v1/siteverify";
+// v0, not v1 — same version as the widget script (/turnstile/v0/api.js).
+// The v1 path 404s with an empty body, which surfaced as "Unexpected end of
+// JSON input" and a 503 on every submission. Verified against the live
+// endpoint 2026-08-10.
+const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 const FORMSPREE        = process.env.FORMSPREE_ENDPOINT ?? "https://formspree.io/f/xbjnryey";
 
 // Cloudflare's "always passes" test secret. Convenient for dev, catastrophic in
