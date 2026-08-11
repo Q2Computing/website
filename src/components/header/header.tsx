@@ -19,7 +19,7 @@ const isSmallViewport = () =>
 export default component$(() => {
   const hidden = useSignal(false);
   const menuOpen = useSignal(false);
-  const lockUntil = useSignal(0); // ms timestamp — prevents re-hide after peek tap
+  const lockUntil = useSignal(0); // ms timestamp, prevents re-hide after peek tap
 
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
@@ -102,7 +102,7 @@ export default component$(() => {
         )}
       </header>
 
-      {/* Peek tab — fixed at top of viewport, visible only when header is hidden */}
+      {/* Peek tab, fixed at top of viewport, visible only when header is hidden */}
       {hidden.value && (
         <button class={styles.peekBtn} aria-label="Show navigation" onClick$={restoreHeader}>
           <svg width="18" height="11" viewBox="0 0 18 11" fill="none" aria-hidden="true">

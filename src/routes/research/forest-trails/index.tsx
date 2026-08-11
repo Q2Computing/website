@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>A Machine Learning Approach to Visual Perception of Forest Trails for Mobile Robots</h1>
         <p class={styles.meta}>
           Giusti, A. et al.
-          &nbsp;·&nbsp; IEEE Robot. Autom. Lett. 1, 661–667 (2015) &nbsp;·&nbsp;
+          &nbsp;·&nbsp; IEEE Robot. Autom. Lett. 1, 661-667 (2015) &nbsp;·&nbsp;
           <a href="https://ieeexplore.ieee.org/document/7358076" target="_blank" rel="noopener noreferrer">Paper</a>
         </p>
         <p class={styles.notice}>

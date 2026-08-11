@@ -5,12 +5,12 @@ import styles from "./swarm.module.css";
 const references = [
   {
     num: 1,
-    text: "Gao, F. et al. Teach-repeat-replan: A complete and robust system for aggressive flight in complex environments. IEEE Trans. Robot. 36, 1526–1545 (2020).",
+    text: "Gao, F. et al. Teach-repeat-replan: A complete and robust system for aggressive flight in complex environments. IEEE Trans. Robot. 36, 1526-1545 (2020).",
     href: "https://arxiv.org/abs/1907.00520",
   },
   {
     num: 2,
-    text: "Zhou, X., Wang, Z., Ye, H., Xu, C. & Gao, F. Ego-planner: An esdf-free gradient-based local planner for quadrotors. IEEE Robot. Autom. Lett. 6, 478–485 (2020).",
+    text: "Zhou, X., Wang, Z., Ye, H., Xu, C. & Gao, F. Ego-planner: An esdf-free gradient-based local planner for quadrotors. IEEE Robot. Autom. Lett. 6, 478-485 (2020).",
     href: "https://arxiv.org/abs/2008.08835",
   },
   {
@@ -25,17 +25,17 @@ const references = [
   },
   {
     num: 5,
-    text: "Zhang, Z. & Scaramuzza, D. Perception-aware receding horizon navigation for MAVs. in 2018 IEEE International Conference on Robotics and Automation (ICRA) 2534–2541 (IEEE, 2018).",
+    text: "Zhang, Z. & Scaramuzza, D. Perception-aware receding horizon navigation for MAVs. in 2018 IEEE International Conference on Robotics and Automation (ICRA) 2534-2541 (IEEE, 2018).",
     href: "https://ieeexplore.ieee.org/document/8460684",
   },
   {
     num: 6,
-    text: "Delmerico, J., Cieslewski, T., Rebecq, H., Faessler, M. & Scaramuzza, D. Are we ready for autonomous drone racing? the uzh-fpv drone racing dataset. in 2019 International Conference on Robotics and Automation (ICRA) 6713–6719 (IEEE, 2019).",
+    text: "Delmerico, J., Cieslewski, T., Rebecq, H., Faessler, M. & Scaramuzza, D. Are we ready for autonomous drone racing? the uzh-fpv drone racing dataset. in 2019 International Conference on Robotics and Automation (ICRA) 6713-6719 (IEEE, 2019).",
     href: "https://ieeexplore.ieee.org/document/8793887",
   },
   {
     num: 7,
-    text: "Wang, W. et al. Tartanair: A dataset to push the limits of visual slam. in 2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 4909–4916 (IEEE, 2020).",
+    text: "Wang, W. et al. Tartanair: A dataset to push the limits of visual slam. in 2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 4909-4916 (IEEE, 2020).",
     href: "https://arxiv.org/abs/2003.14338",
   },
   {
@@ -45,12 +45,12 @@ const references = [
   },
   {
     num: 9,
-    text: "Cioffi, G., Bauersfeld, L., Kaufmann, E. & Scaramuzza, D. Learned inertial odometry for autonomous drone racing. IEEE Robot. Autom. Lett. 8, 2684–2691 (2023).",
+    text: "Cioffi, G., Bauersfeld, L., Kaufmann, E. & Scaramuzza, D. Learned inertial odometry for autonomous drone racing. IEEE Robot. Autom. Lett. 8, 2684-2691 (2023).",
     href: "https://ieeexplore.ieee.org/document/10015592",
   },
   {
     num: 10,
-    text: "Kaufmann, E. et al. Champion-level drone racing using deep reinforcement learning. Nature 620, 982–987 (2023).",
+    text: "Kaufmann, E. et al. Champion-level drone racing using deep reinforcement learning. Nature 620, 982-987 (2023).",
     href: "https://www.nature.com/articles/s41586-023-06419-4",
   },
   {
@@ -75,12 +75,12 @@ const references = [
   },
   {
     num: 15,
-    text: "Giusti, A. et al. A machine learning approach to visual perception of forest trails for mobile robots. IEEE Robot. Autom. Lett. 1, 661–667 (2015).",
+    text: "Giusti, A. et al. A machine learning approach to visual perception of forest trails for mobile robots. IEEE Robot. Autom. Lett. 1, 661-667 (2015).",
     href: "https://ieeexplore.ieee.org/document/7358076",
   },
   {
     num: 16,
-    text: "Shi, B., Bai, X. & Yao, C. An end-to-end trainable neural network for image-based sequence recognition and its application to scene text recognition. IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298–2304 (2016).",
+    text: "Shi, B., Bai, X. & Yao, C. An end-to-end trainable neural network for image-based sequence recognition and its application to scene text recognition. IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298-2304 (2016).",
     href: "https://arxiv.org/abs/1507.05717",
   },
   {
@@ -90,7 +90,7 @@ const references = [
   },
   {
     num: 18,
-    text: "Qin, T., Li, P. & Shen, S. VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator. IEEE Trans. Robot. 34, 1004–1020 (2018).",
+    text: "Qin, T., Li, P. & Shen, S. VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator. IEEE Trans. Robot. 34, 1004-1020 (2018).",
     href: "https://arxiv.org/abs/1708.03852",
   },
   {
@@ -100,7 +100,7 @@ const references = [
   },
   {
     num: 20,
-    text: "Loquercio, A., Kaufmann, E., Ranftl, R., Dosovitskiy, A., Koltun, V. & Scaramuzza, D. Deep drone racing: From simulation to reality with domain randomization. IEEE Trans. Robot. 36, 1–14 (2019).",
+    text: "Loquercio, A., Kaufmann, E., Ranftl, R., Dosovitskiy, A., Koltun, V. & Scaramuzza, D. Deep drone racing: From simulation to reality with domain randomization. IEEE Trans. Robot. 36, 1-14 (2019).",
     href: "https://arxiv.org/abs/1905.09294",
   },
   {
@@ -110,7 +110,7 @@ const references = [
   },
   {
     num: 22,
-    text: "Bengio, Y., Simard, P. & Frasconi, P. Learning long-term dependencies with gradient descent is difficult. IEEE Trans. Neural Netw. 5, 157–166 (1994).",
+    text: "Bengio, Y., Simard, P. & Frasconi, P. Learning long-term dependencies with gradient descent is difficult. IEEE Trans. Neural Netw. 5, 157-166 (1994).",
     href: "https://ieeexplore.ieee.org/document/279181",
   },
   {

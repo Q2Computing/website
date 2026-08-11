@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>Learned Inertial Odometry for Autonomous Drone Racing</h1>
         <p class={styles.meta}>
           Cioffi, G., Bauersfeld, L., Kaufmann, E. &amp; Scaramuzza, D.
-          &nbsp;·&nbsp; IEEE Robot. Autom. Lett. 8, 2684–2691 (2023) &nbsp;·&nbsp;
+          &nbsp;·&nbsp; IEEE Robot. Autom. Lett. 8, 2684-2691 (2023) &nbsp;·&nbsp;
           <a href="https://ieeexplore.ieee.org/document/10015592" target="_blank" rel="noopener noreferrer">Paper</a>
         </p>
         <p class={styles.notice}>

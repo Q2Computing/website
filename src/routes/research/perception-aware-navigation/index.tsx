@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>Perception-Aware Receding Horizon Navigation for MAVs</h1>
         <p class={styles.meta}>
           Zhang, Z. &amp; Scaramuzza, D.
-          &nbsp;·&nbsp; ICRA 2534–2541 (IEEE, 2018) &nbsp;·&nbsp;
+          &nbsp;·&nbsp; ICRA 2534-2541 (IEEE, 2018) &nbsp;·&nbsp;
           <a href="https://ieeexplore.ieee.org/document/8460684" target="_blank" rel="noopener noreferrer">Paper</a>
         </p>
         <p class={styles.notice}>

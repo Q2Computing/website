@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>Deep Drone Racing: From Simulation to Reality with Domain Randomization</h1>
         <p class={styles.meta}>
           Loquercio, A. et al.
-          &nbsp;·&nbsp; IEEE Trans. Robot. 36, 1–14 (2019) &nbsp;·&nbsp;
+          &nbsp;·&nbsp; IEEE Trans. Robot. 36, 1-14 (2019) &nbsp;·&nbsp;
           <a href="https://arxiv.org/abs/1905.09727" target="_blank" rel="noopener noreferrer">Paper</a>
         </p>
         <p class={styles.notice}>

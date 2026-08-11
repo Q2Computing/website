@@ -3,7 +3,7 @@ import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 // Quantized visible spectrum for fusion products: orange → yellow → lime → cyan → blue → indigo → violet
 // Level 0 is white (pure ground state). Level 1+ climbs the spectrum via fusion.
 const SPECTRUM_HUES = [30, 55, 82, 165, 200, 255, 290];
-const MAX_LEVEL = SPECTRUM_HUES.length; // levels 1–7; 0 = white
+const MAX_LEVEL = SPECTRUM_HUES.length; // levels 1-7; 0 = white
 
 function particleColor(level: number, speed: number): string {
   if (level === 0) {
@@ -127,7 +127,7 @@ export const QuantumCanvas = component$(() => {
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const d = Math.sqrt(dx * dx + dy * dy) || 1;
-        // Burst impulse scaled by 1/mass — heavier particles kicked less
+        // Burst impulse scaled by 1/mass, heavier particles kicked less
         p.vx += (dx / d) * burst / Math.sqrt(p.mass);
         p.vy += (dy / d) * burst / Math.sqrt(p.mass);
       }
@@ -202,7 +202,7 @@ export const QuantumCanvas = component$(() => {
       for (let i = 0; i < n; i++) {
         const p = particles[i];
 
-        // Particle–particle Coulomb: charge = mass, inertia = mass
+        // Particle-particle Coulomb: charge = mass, inertia = mass
         for (let j = i + 1; j < n; j++) {
           const q = particles[j];
           const dx = p.x - q.x;
@@ -233,12 +233,12 @@ export const QuantumCanvas = component$(() => {
             const smd = Math.sqrt(smd2);
             // Mouse charge fixed at 2; particle charge = mass; accel = F / p.mass
             const fMag = (K * 2 * p.mass) / (smd2 * smd);
-            p.vx += (mdx * fMag) / p.mass;  // simplifies: K*2/(smd2*smd) — mass-independent
+            p.vx += (mdx * fMag) / p.mass;  // simplifies: K*2/(smd2*smd), mass-independent
             p.vy += (mdy * fMag) / p.mass;
           }
         }
 
-        // Thermal injection: divided by √mass (equipartition — heavier = harder to excite)
+        // Thermal injection: divided by √mass (equipartition, heavier = harder to excite)
         if (energyInject > 0) {
           const sqrtM = Math.sqrt(p.mass);
           p.vx += (Math.random() - 0.5) * energyInject / sqrtM;
@@ -309,7 +309,7 @@ export const QuantumCanvas = component$(() => {
       if (particles.length === 1) {
         const p = particles[0];
         if (!inExpPhase) {
-          // Hold released — abort singularity, lone particle returns to Phase 1
+          // Hold released, abort singularity, lone particle returns to Phase 1
           if (singularity) {
             singularity = false;
             singularityFrames = 0;

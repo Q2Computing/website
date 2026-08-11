@@ -13,7 +13,7 @@ export default component$(() => {
         </p>
         <h1>EGO-Planner: An ESDF-Free Gradient-Based Local Planner for Quadrotors</h1>
         <p class={styles.meta}>
-          Zhou, X., Wang, Z., Xu, C. &amp; Gao, F. &nbsp;·&nbsp; IEEE Robot. Autom. Lett. 6, 478–485 (2021) &nbsp;·&nbsp;
+          Zhou, X., Wang, Z., Xu, C. &amp; Gao, F. &nbsp;·&nbsp; IEEE Robot. Autom. Lett. 6, 478-485 (2021) &nbsp;·&nbsp;
           <a href="https://arxiv.org/abs/2008.08835" target="_blank" rel="noopener noreferrer">Paper</a>
           &nbsp;·&nbsp;
           <a href="https://github.com/ZJU-FAST-Lab/ego-planner" target="_blank" rel="noopener noreferrer">Code</a>
@@ -33,7 +33,7 @@ export default component$(() => {
           answer is an Euclidean Signed Distance Field (ESDF): a precomputed 3D grid where every
           voxel stores its distance to the nearest obstacle and the gradient pointing away from it.
           ESDF works well but is expensive. Updating the field after sensor observations takes
-          20–100ms and touches the entire map volume, most of which the trajectory never visits.
+          20-100ms and touches the entire map volume, most of which the trajectory never visits.
         </p>
         <p>
           EGO-Planner eliminates the ESDF entirely. Instead of asking the map for distances,
@@ -112,9 +112,9 @@ export default component$(() => {
         <h2>Empirical observations</h2>
         <ul>
           <li>
-            <strong>Planning time:</strong> EGO-Planner completed replanning cycles in 2–6ms
-            on an Intel NUC (i7, 8th gen). ESDF-based baselines required 20–100ms for equivalent
-            map sizes, a 10–20x speedup
+            <strong>Planning time:</strong> EGO-Planner completed replanning cycles in 2-6ms
+            on an Intel NUC (i7, 8th gen). ESDF-based baselines required 20-100ms for equivalent
+            map sizes, a 10-20x speedup
           </li>
           <li>
             <strong>Flight speed:</strong> Real-world experiments confirmed stable autonomous
@@ -132,7 +132,7 @@ export default component$(() => {
           </li>
           <li>
             <strong>Replanning frequency:</strong> The sub-10ms planning time enabled
-            replanning at 10–20Hz, sufficient for real-time obstacle avoidance at the
+            replanning at 10-20Hz, sufficient for real-time obstacle avoidance at the
             tested flight speeds
           </li>
           <li>

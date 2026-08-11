@@ -45,7 +45,7 @@ const references = [
   },
   {
     num: 9,
-    text: "Damiani, C. et al. Overview of the ITER remote maintenance design and of the development activities in Europe. Fusion Eng. Des. 136, 1117–1124 (2018).",
+    text: "Damiani, C. et al. Overview of the ITER remote maintenance design and of the development activities in Europe. Fusion Eng. Des. 136, 1117-1124 (2018).",
     href: "https://doi.org/10.1016/j.fusengdes.2018.04.085",
   },
   {
@@ -60,7 +60,7 @@ const references = [
   },
   {
     num: 12,
-    text: "Benito, T. & Barrientos, A. An intelligent human–machine interface architecture for long-term remote robot handling in fusion reactor environments. Appl. Sci. 14, 4814 (2024).",
+    text: "Benito, T. & Barrientos, A. An intelligent human-machine interface architecture for long-term remote robot handling in fusion reactor environments. Appl. Sci. 14, 4814 (2024).",
     href: "https://doi.org/10.3390/app14114814",
   },
   {
