@@ -3,7 +3,7 @@ import { useLocation } from '@builder.io/qwik-city';
 
 // Cloudflare Turnstile site key.
 // Replace with your real key from dash.cloudflare.com > Turnstile.
-// The value below is the test key that always passes — safe to keep in dev/preview.
+// The value below is the test key that always passes, safe to keep in dev/preview.
 const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import styles from './work-with-us.module.css';
@@ -131,7 +131,17 @@ export default component$(() => {
   const turnstileToken = useSignal('');
   const turnstileWidgetId = useSignal<string | null>(null);
 
-  // Mount Turnstile invisible widget after hydration
+  // Mount Turnstile invisible widget after hydration.
+  //
+  // eagerness must be 'load'. The default strategy is an intersection observer
+  // on the host element, and this widget renders at size:invisible with no
+  // dimensions, so it never intersects and the task never runs. When that
+  // happened, mount() was never called AND __onTurnstileLoad was never
+  // assigned, so Cloudflare's own ready signal had nowhere to go either:
+  //   "[Cloudflare Turnstile] Unable to find onload callback
+  //    '__onTurnstileLoad' ... got 'undefined'"
+  // The result was a form whose Send button could never obtain a token.
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const win = window as any;
     const mount = () => {
@@ -143,18 +153,20 @@ export default component$(() => {
         'expired-callback': () => { turnstileToken.value = ''; },
         'error-callback':   () => {
           turnstileToken.value = '';
-          errorMsg.value = 'Human verification failed — please refresh and try again';
+          errorMsg.value = 'Human verification failed. Please refresh and try again';
         },
       });
       turnstileWidgetId.value = id;
     };
-    // Turnstile script may already be loaded (injected in root.tsx)
+    // Turnstile script may already be loaded (injected in root.tsx).
+    // If not, hand mount() to Cloudflare's onload callback, which the script
+    // tag names via ?onload=__onTurnstileLoad.
     if ((window as any).turnstile) {
       mount();
     } else {
       (window as any).__onTurnstileLoad = mount;
     }
-  });
+  }, { strategy: 'document-ready' });
 
   useTask$(({ track }) => {
     const search = track(() => loc.url.search);
@@ -193,7 +205,7 @@ export default component$(() => {
       if (win.turnstile && turnstileWidgetId.value !== null) {
         win.turnstile.execute(turnstileWidgetId.value);
       }
-      errorMsg.value = 'Verifying you are human — please click Send again in a moment';
+      errorMsg.value = 'Verifying you are human. Click Send again in a moment';
       return;
     }
 
@@ -361,7 +373,7 @@ export default component$(() => {
                 </div>
               )}
 
-              {/* Invisible Turnstile widget — mounts here, never shows UI unless challenge required */}
+              {/* Invisible Turnstile widget, mounts here and never shows UI unless a challenge is required */}
               <div id="turnstile-container" />
 
               {errorMsg.value && <p class={styles.errorMsg}>{errorMsg.value}</p>}
