@@ -1,5 +1,10 @@
-import { component$, useSignal, useTask$, $ } from '@builder.io/qwik';
+import { component$, useSignal, useTask$, useVisibleTask$, $ } from '@builder.io/qwik';
 import { useLocation } from '@builder.io/qwik-city';
+
+// Cloudflare Turnstile site key.
+// Replace with your real key from dash.cloudflare.com > Turnstile.
+// The value below is the test key that always passes, safe to keep in dev/preview.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import styles from './work-with-us.module.css';
 
@@ -123,6 +128,45 @@ export default component$(() => {
   const submitted = useSignal(false);
   const submitting = useSignal(false);
   const errorMsg = useSignal('');
+  const turnstileToken = useSignal('');
+  const turnstileWidgetId = useSignal<string | null>(null);
+
+  // Mount Turnstile invisible widget after hydration.
+  //
+  // eagerness must be 'load'. The default strategy is an intersection observer
+  // on the host element, and this widget renders at size:invisible with no
+  // dimensions, so it never intersects and the task never runs. When that
+  // happened, mount() was never called AND __onTurnstileLoad was never
+  // assigned, so Cloudflare's own ready signal had nowhere to go either:
+  //   "[Cloudflare Turnstile] Unable to find onload callback
+  //    '__onTurnstileLoad' ... got 'undefined'"
+  // The result was a form whose Send button could never obtain a token.
+  // eslint-disable-next-line qwik/no-use-visible-task
+  useVisibleTask$(() => {
+    const win = window as any;
+    const mount = () => {
+      if (!win.turnstile) return;
+      const id = win.turnstile.render('#turnstile-container', {
+        sitekey:  TURNSTILE_SITE_KEY,
+        size:     'invisible',
+        callback: (token: string) => { turnstileToken.value = token; },
+        'expired-callback': () => { turnstileToken.value = ''; },
+        'error-callback':   () => {
+          turnstileToken.value = '';
+          errorMsg.value = 'Human verification failed. Please refresh and try again';
+        },
+      });
+      turnstileWidgetId.value = id;
+    };
+    // Turnstile script may already be loaded (injected in root.tsx).
+    // If not, hand mount() to Cloudflare's onload callback, which the script
+    // tag names via ?onload=__onTurnstileLoad.
+    if ((window as any).turnstile) {
+      mount();
+    } else {
+      (window as any).__onTurnstileLoad = mount;
+    }
+  }, { strategy: 'document-ready' });
 
   useTask$(({ track }) => {
     const search = track(() => loc.url.search);
@@ -151,15 +195,29 @@ export default component$(() => {
 
   const handleSubmit = $(async (e: SubmitEvent) => {
     e.preventDefault();
-    submitting.value = true;
     errorMsg.value = '';
+
+    // If we don't have a token yet, trigger the invisible challenge first.
+    // The callback will set turnstileToken.value; the user re-clicks or we
+    // auto-resubmit via the callback (simpler: just ask them to click again).
+    const win = window as any;
+    if (!turnstileToken.value) {
+      if (win.turnstile && turnstileWidgetId.value !== null) {
+        win.turnstile.execute(turnstileWidgetId.value);
+      }
+      errorMsg.value = 'Verifying you are human. Click Send again in a moment';
+      return;
+    }
+
+    submitting.value = true;
 
     const cfg = SERVICE_CONFIG[slug.value] ?? null;
     const payload: Record<string, string> = {
       first_name: firstName.value,
-      last_name: lastName.value,
-      email: email.value,
-      message: message.value,
+      last_name:  lastName.value,
+      email:      email.value,
+      message:    message.value,
+      'cf-turnstile-response': turnstileToken.value,
     };
     if (cfg) payload['service'] = cfg.name;
 
@@ -174,15 +232,21 @@ export default component$(() => {
     }
 
     try {
-      const res = await fetch('https://formspree.io/f/xbjnryey', {
-        method: 'POST',
+      const res = await fetch('/api/contact', {
+        method:  'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
+        body:    JSON.stringify(payload),
       });
       if (res.ok) {
         submitted.value = true;
       } else {
-        errorMsg.value = 'Submission failed. Please try again or email directly.';
+        const data = await res.json().catch(() => ({}));
+        errorMsg.value = (data as any).error ?? 'Submission failed. Please try again or email directly.';
+        // Reset token so Turnstile re-challenges on next attempt
+        turnstileToken.value = '';
+        if (win.turnstile && turnstileWidgetId.value !== null) {
+          win.turnstile.reset(turnstileWidgetId.value);
+        }
       }
     } catch {
       errorMsg.value = 'A network error occurred. Please try again.';
@@ -308,6 +372,9 @@ export default component$(() => {
                   ))}
                 </div>
               )}
+
+              {/* Invisible Turnstile widget, mounts here and never shows UI unless a challenge is required */}
+              <div id="turnstile-container" />
 
               {errorMsg.value && <p class={styles.errorMsg}>{errorMsg.value}</p>}
 
