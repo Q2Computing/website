@@ -1,3 +1,16 @@
 [build]
 publish = "dist"
 command = "npm run build"
+
+[build.environment]
+  # Netlify's secrets scanner fails the build when a configured environment
+  # variable's value appears in build output. PUBLIC_TURNSTILE_SITE_KEY is
+  # meant to appear there: Vite inlines PUBLIC_* variables into the client
+  # bundle so the browser can render the Turnstile widget, and Cloudflare site
+  # keys are public by design (they are visible in page source on every site
+  # using Turnstile).
+  #
+  # Only this key is exempt. TURNSTILE_SECRET_KEY is deliberately NOT listed:
+  # if that ever appeared in build output the build SHOULD fail, and that is
+  # exactly the case this scanner exists to catch.
+  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_TURNSTILE_SITE_KEY"
