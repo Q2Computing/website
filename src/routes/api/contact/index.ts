@@ -3,12 +3,12 @@
  *
  * Server-side handler for the work-with-us form.
  * Security layers:
- *   1. Verify Cloudflare Turnstile token — rejects bots before touching Formspree
+ *   1. Verify Cloudflare Turnstile token, rejects bots before touching Formspree
  *   2. Proxy valid submissions to Formspree
  *
  * Env vars required in production:
- *   TURNSTILE_SECRET_KEY  — from dash.cloudflare.com > Turnstile
- *   FORMSPREE_ENDPOINT    — your Formspree form URL (optional override)
+ *   TURNSTILE_SECRET_KEY: from dash.cloudflare.com > Turnstile
+ *   FORMSPREE_ENDPOINT: your Formspree form URL (optional override)
  *
  * Test keys (safe to commit, never pass real traffic):
  *   Site key  1x00000000000000000000AA  (always passes)
@@ -17,7 +17,7 @@
 
 import type { RequestHandler } from "@builder.io/qwik-city";
 
-// v0, not v1 — same version as the widget script (/turnstile/v0/api.js).
+// v0, not v1, same version as the widget script (/turnstile/v0/api.js).
 // The v1 path 404s with an empty body, which surfaced as "Unexpected end of
 // JSON input" and a 503 on every submission. Verified against the live
 // endpoint 2026-08-10.
@@ -26,7 +26,7 @@ const FORMSPREE        = process.env.FORMSPREE_ENDPOINT ?? "https://formspree.io
 
 // Cloudflare's "always passes" test secret. Convenient for dev, catastrophic in
 // production: with it, every request verifies successfully, so the form looks
-// protected while accepting every bot — and nothing errors to tell you.
+// protected while accepting every bot, and nothing errors to tell you.
 const TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA";
 
 // Fail closed in production. The test fallback only applies outside production,
@@ -92,8 +92,11 @@ export const onPost: RequestHandler = async (ev) => {
     return;
   }
 
-  // ── 2. Proxy to Formspree (omit the Turnstile token) ──────────────────────
-  const { "cf-turnstile-response": _drop, ...formPayload } = body;
+  // 2. Proxy to Formspree, omitting the Turnstile token.
+  // Built by copy-and-delete rather than a destructuring discard, which would
+  // create an unused binding and fail lint.
+  const formPayload: Record<string, unknown> = { ...body };
+  delete formPayload["cf-turnstile-response"];
 
   const formspreeRes = await fetch(FORMSPREE, {
     method:  "POST",
