@@ -23,9 +23,9 @@ export default component$(() => {
           />
         )}
         <RouterHead />
-        {/* Cloudflare Turnstile — loaded on all pages, only activates on work-with-us */}
+        {/* Cloudflare Turnstile, loaded on all pages, only activates on work-with-us */}
         <script
-          src="https://challenges.cloudflare.com/turnstile/v1/api.js?render=explicit&onload=__onTurnstileLoad"
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__onTurnstileLoad"
           async
           defer
         />
