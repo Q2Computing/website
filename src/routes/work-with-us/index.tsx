@@ -133,11 +133,11 @@ export default component$(() => {
 
   // Mount Turnstile invisible widget after hydration.
   //
-  // eagerness must be 'load'. The default strategy is an intersection observer
-  // on the host element, and this widget renders at size:invisible with no
-  // dimensions, so it never intersects and the task never runs. When that
-  // happened, mount() was never called AND __onTurnstileLoad was never
-  // assigned, so Cloudflare's own ready signal had nowhere to go either:
+  // strategy must be 'document-ready'. The default is an intersection observer
+  // on the host element, and this widget renders invisibly with no dimensions,
+  // so it never intersects and the task never runs. When that happened,
+  // mount() was never called AND __onTurnstileLoad was never assigned, so
+  // Cloudflare's own ready signal had nowhere to go either:
   //   "[Cloudflare Turnstile] Unable to find onload callback
   //    '__onTurnstileLoad' ... got 'undefined'"
   // The result was a form whose Send button could never obtain a token.
@@ -148,7 +148,11 @@ export default component$(() => {
       if (!win.turnstile) return;
       const id = win.turnstile.render('#turnstile-container', {
         sitekey:  TURNSTILE_SITE_KEY,
-        size:     'invisible',
+        // No size parameter. Turnstile accepts only "compact", "flexible" or
+        // "normal"; passing "invisible" threw an uncaught TurnstileError on
+        // every page load. It rendered regardless, because Turnstile falls
+        // back to the mode configured on the widget in the Cloudflare
+        // dashboard, which is where invisible behaviour is set.
         callback: (token: string) => { turnstileToken.value = token; },
         'expired-callback': () => { turnstileToken.value = ''; },
         'error-callback':   () => {
