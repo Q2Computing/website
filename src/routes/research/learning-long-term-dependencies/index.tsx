@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>Learning Long-Term Dependencies with Gradient Descent Is Difficult</h1>
         <p class={styles.meta}>
           Bengio, Y., Simard, P. &amp; Frasconi, P.
-          &nbsp;·&nbsp; IEEE Trans. Neural Netw. 5, 157–166 (1994) &nbsp;·&nbsp;
+          &nbsp;·&nbsp; IEEE Trans. Neural Netw. 5, 157-166 (1994) &nbsp;·&nbsp;
           <a href="https://ieeexplore.ieee.org/document/279181" target="_blank" rel="noopener noreferrer">Paper</a>
         </p>
         <p class={styles.notice}>

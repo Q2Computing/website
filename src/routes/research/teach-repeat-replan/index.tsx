@@ -13,7 +13,7 @@ export default component$(() => {
         </p>
         <h1>Teach-Repeat-Replan: A Complete and Robust System for Aggressive Flight in Complex Environments</h1>
         <p class={styles.meta}>
-          Gao, F. et al. &nbsp;·&nbsp; IEEE Trans. Robot. 36, 1526–1545 (2020) &nbsp;·&nbsp;
+          Gao, F. et al. &nbsp;·&nbsp; IEEE Trans. Robot. 36, 1526-1545 (2020) &nbsp;·&nbsp;
           <a href="https://arxiv.org/abs/1907.00520" target="_blank" rel="noopener noreferrer">Paper</a>
           &nbsp;·&nbsp;
           <a href="https://github.com/HKUST-Aerial-Robotics/Teach-Repeat-Replan" target="_blank" rel="noopener noreferrer">Code</a>

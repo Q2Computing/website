@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>An End-to-End Trainable Neural Network for Image-Based Sequence Recognition</h1>
         <p class={styles.meta}>
           Shi, B., Bai, X. &amp; Yao, C.
-          &nbsp;·&nbsp; IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298–2304 (2016) &nbsp;·&nbsp;
+          &nbsp;·&nbsp; IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298-2304 (2016) &nbsp;·&nbsp;
           <a href="https://arxiv.org/abs/1507.05717" target="_blank" rel="noopener noreferrer">Paper</a>
         </p>
         <p class={styles.notice}>

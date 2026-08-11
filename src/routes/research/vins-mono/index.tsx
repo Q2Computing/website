@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator</h1>
         <p class={styles.meta}>
           Qin, T., Li, P. &amp; Shen, S.
-          &nbsp;·&nbsp; IEEE Trans. Robot. 34, 1004–1020 (2018) &nbsp;·&nbsp;
+          &nbsp;·&nbsp; IEEE Trans. Robot. 34, 1004-1020 (2018) &nbsp;·&nbsp;
           <a href="https://arxiv.org/abs/1708.03852" target="_blank" rel="noopener noreferrer">Paper</a>
         </p>
         <p class={styles.notice}>

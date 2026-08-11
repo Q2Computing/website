@@ -14,7 +14,7 @@ export default component$(() => {
         <h1>Champion-Level Drone Racing Using Deep Reinforcement Learning</h1>
         <p class={styles.meta}>
           Kaufmann, E., Bauersfeld, L., Loquercio, A., Müller, M., Koltun, V. &amp; Scaramuzza, D.
-          &nbsp;·&nbsp; Nature 620, 982–987 (2023) &nbsp;·&nbsp; Received 5 January 2023
+          &nbsp;·&nbsp; Nature 620, 982-987 (2023) &nbsp;·&nbsp; Received 5 January 2023
           &nbsp;·&nbsp;
           <a href="https://www.nature.com/articles/s41586-023-06419-4" target="_blank" rel="noopener noreferrer">Paper (Open Access)</a>
         </p>

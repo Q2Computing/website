@@ -19,7 +19,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 2,
     title: "Teach-Repeat-Replan: A Complete and Robust System for Aggressive Flight in Complex Environments",
-    citation: "Gao, F. et al. IEEE Trans. Robot. 36, 1526–1545 (2020).",
+    citation: "Gao, F. et al. IEEE Trans. Robot. 36, 1526-1545 (2020).",
     summary: "Establishes the complete autonomous flight stack (global planning, local re-planning, and VIO localization) that defines the infrastructure problem Q2's work is designed to operate without.",
     href: "https://arxiv.org/abs/1907.00520",
     analysis: "/research/teach-repeat-replan/",
@@ -27,7 +27,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 3,
     title: "EGO-Planner: An ESDF-Free Gradient-Based Local Planner for Quadrotors",
-    citation: "Zhou, X., Wang, Z., Ye, H., Xu, C. & Gao, F. IEEE Robot. Autom. Lett. 6, 478–485 (2020).",
+    citation: "Zhou, X., Wang, Z., Ye, H., Xu, C. & Gao, F. IEEE Robot. Autom. Lett. 6, 478-485 (2020).",
     summary: "Demonstrates gradient-based local planning without expensive distance field computation, directly informing the efficiency constraints of Q2's edge-compute deployment target.",
     href: "https://arxiv.org/abs/2008.08835",
     analysis: "/research/ego-planner/",
@@ -51,7 +51,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 6,
     title: "Perception-Aware Receding Horizon Navigation for MAVs",
-    citation: "Zhang, Z. & Scaramuzza, D. ICRA 2534–2541 (IEEE, 2018).",
+    citation: "Zhang, Z. & Scaramuzza, D. ICRA 2534-2541 (IEEE, 2018).",
     summary: "Integrates perception quality directly into trajectory optimization, a complementary approach to Q2's anomaly-observation confidence model.",
     href: "https://ieeexplore.ieee.org/document/8460684",
     analysis: "/research/perception-aware-navigation/",
@@ -67,7 +67,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 8,
     title: "TartanAir: A Dataset to Push the Limits of Visual SLAM",
-    citation: "Wang, W. et al. IROS 4909–4916 (IEEE, 2020).",
+    citation: "Wang, W. et al. IROS 4909-4916 (IEEE, 2020).",
     summary: "Diverse simulation dataset spanning degraded visual conditions, validating the simulation-first approach Q2 uses for zero-shot physical generalization.",
     href: "https://arxiv.org/abs/2003.14338",
     analysis: "/research/tartanair/",
@@ -83,7 +83,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 10,
     title: "Learned Inertial Odometry for Autonomous Drone Racing",
-    citation: "Cioffi, G., Bauersfeld, L., Kaufmann, E. & Scaramuzza, D. IEEE Robot. Autom. Lett. 8, 2684–2691 (2023).",
+    citation: "Cioffi, G., Bauersfeld, L., Kaufmann, E. & Scaramuzza, D. IEEE Robot. Autom. Lett. 8, 2684-2691 (2023).",
     summary: "Inertial-only odometry for drone racing validates dead-reckoning under GPS denial, directly informing Q2's sensor-minimal navigation assumption.",
     href: "https://ieeexplore.ieee.org/document/10015592",
     analysis: "/research/learned-inertial-odometry/",
@@ -91,7 +91,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 11,
     title: "Champion-Level Drone Racing Using Deep Reinforcement Learning",
-    citation: "Kaufmann, E. et al. Nature 620, 982–987 (2023).",
+    citation: "Kaufmann, E. et al. Nature 620, 982-987 (2023).",
     summary: "Sets the upper bound of learned flight policy capability at human-champion level, demonstrating that PPO-trained policies with empirical sim-to-real residual models can achieve world-champion performance on embedded hardware.",
     href: "https://www.nature.com/articles/s41586-023-06419-4",
     analysis: "/research/swift-drone-racing/",
@@ -131,7 +131,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 16,
     title: "A Machine Learning Approach to Visual Perception of Forest Trails for Mobile Robots",
-    citation: "Giusti, A. et al. IEEE Robot. Autom. Lett. 1, 661–667 (2015).",
+    citation: "Giusti, A. et al. IEEE Robot. Autom. Lett. 1, 661-667 (2015).",
     summary: "Early demonstration of visual navigation policy learning in unstructured environments with no pre-labeled map, a direct analogue to Q2's object-blind positional confidence approach.",
     href: "https://ieeexplore.ieee.org/document/7358076",
     analysis: "/research/forest-trails/",
@@ -139,7 +139,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 17,
     title: "An End-to-End Trainable Neural Network for Image-Based Sequence Recognition",
-    citation: "Shi, B., Bai, X. & Yao, C. IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298–2304 (2016).",
+    citation: "Shi, B., Bai, X. & Yao, C. IEEE Trans. Pattern Anal. Mach. Intell. 39, 2298-2304 (2016).",
     summary: "End-to-end sequence recognition architecture that informs the temporal modeling of successive anomaly observations in Q2's Markov chain confidence framework.",
     href: "https://arxiv.org/abs/1507.05717",
     analysis: "/research/crnn-sequence-recognition/",
@@ -155,7 +155,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 19,
     title: "VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator",
-    citation: "Qin, T., Li, P. & Shen, S. IEEE Trans. Robot. 34, 1004–1020 (2018).",
+    citation: "Qin, T., Li, P. & Shen, S. IEEE Trans. Robot. 34, 1004-1020 (2018).",
     summary: "The most widely deployed GPS-denied localization baseline in the field. Informs Q2's multi-sensor integration approach: low-resolution camera frames evaluating terrain conformation with computationally simple algorithms improve positional accuracy and precision beyond inertial sensing alone.",
     href: "https://arxiv.org/abs/1708.03852",
     analysis: "/research/vins-mono/",
@@ -171,7 +171,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 21,
     title: "Deep Drone Racing: From Simulation to Reality with Domain Randomization",
-    citation: "Loquercio, A. et al. IEEE Trans. Robot. 36, 1–14 (2019).",
+    citation: "Loquercio, A. et al. IEEE Trans. Robot. 36, 1-14 (2019).",
     summary: "Domain randomization for sim-to-real transfer in aggressive flight, directly informing Q2's zero-shot generalization methodology from digital simulation to physical deployment.",
     href: "https://arxiv.org/abs/1905.09727",
     analysis: "/research/deep-drone-racing/",
@@ -187,7 +187,7 @@ export const swarmSupportingResearch: ResearchRef[] = [
   {
     num: 23,
     title: "Learning Long-Term Dependencies with Gradient Descent Is Difficult",
-    citation: "Bengio, Y., Simard, P. & Frasconi, P. IEEE Trans. Neural Netw. 5, 157–166 (1994).",
+    citation: "Bengio, Y., Simard, P. & Frasconi, P. IEEE Trans. Neural Netw. 5, 157-166 (1994).",
     summary: "Foundational characterization of the vanishing gradient problem in recurrent networks, directly relevant to Q2's Markov chain formulation for iterative confidence updating across distributed nodes.",
     href: "https://ieeexplore.ieee.org/document/279181",
     analysis: "/research/learning-long-term-dependencies/",
@@ -274,7 +274,7 @@ export const reactorSupportingResearch: ResearchRef[] = [
   },
   {
     num: 12,
-    title: "An Intelligent Human–Machine Interface Architecture for Long-Term Remote Robot Handling in Fusion Reactor Environments",
+    title: "An Intelligent Human-Machine Interface Architecture for Long-Term Remote Robot Handling in Fusion Reactor Environments",
     citation: "Benito, T. & Barrientos, A. Appl. Sci. 14, 4814 (2024).",
     summary: "Long-lifecycle HMI architecture (MAMIC) for coordinating evolving remote-handling equipment over a multi-decade fusion facility lifespan, framing the systems-integration problem any autonomous navigation layer has to plug into.",
     href: "https://doi.org/10.3390/app14114814",
@@ -282,7 +282,7 @@ export const reactorSupportingResearch: ResearchRef[] = [
   {
     num: 13,
     title: "Use of Robotic and Automation Systems in Small Modular and Micro Reactor Development",
-    citation: "Patel, H. K. & Rathod, P. J. Int. J. Sci. Res. 11, 1524–1527 (2022).",
+    citation: "Patel, H. K. & Rathod, P. J. Int. J. Sci. Res. 11, 1524-1527 (2022).",
     summary: "Surveys robotic and automation applications across SMR/micro-reactor manufacturing, inspection, and maintenance, the clearest existing statement of the SMR-specific opportunity this research direction targets.",
     href: "https://www.ijsr.net/getabstract.php?paperid=SR24517150508",
   },
@@ -300,5 +300,5 @@ export const reactorPaperCount = reactorSupportingResearch.length;
 export const totalPaperCount = swarmPaperCount + reactorPaperCount;
 
 // Lean 4 machine-verified proofs published alongside the research archive.
-// Incremented manually as proofs are completed — always lags totalPaperCount.
+// Incremented manually as proofs are completed, always lags totalPaperCount.
 export const leanProofCount = 24;
