@@ -134,6 +134,91 @@ blockquote.mission-statement {
     transform: translateY(-2px);
 }
 
+/* Vermont small business band.
+   Deliberately warmer than the navy used elsewhere on the site. The rest of
+   this page reads as corporate procurement, which is correct for its audience
+   and wrong for this one. */
+.vermont-band {
+    background-color: #f2f8f3;
+    border: 1px solid #cfe3d4;
+    border-left: 5px solid #2f7d4f;
+    border-radius: 0 8px 8px 0;
+    padding: 1.75rem 2rem 2rem;
+    margin: 0 0 3rem;
+}
+
+.vermont-heading {
+    color: #1f5a39;
+    font-size: 1.4rem;
+    margin: 0 0 0.75rem;
+    border-bottom: none;
+}
+
+.vermont-lede {
+    font-size: 1rem;
+    color: #5a6b60;
+    margin-bottom: 1.25rem;
+    line-height: 1.55;
+}
+
+.vermont-band p {
+    color: #3a4a40;
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
+}
+
+/* The one line that has to land if nothing else is read */
+.vermont-hook {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1f5a39;
+    margin-bottom: 1rem;
+}
+
+.vermont-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+}
+
+.vermont-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.55rem;
+    color: #3a4a40;
+    line-height: 1.5;
+}
+
+.vermont-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #2f7d4f;
+}
+
+.vermont-list strong {
+    color: #1f5a39;
+}
+
+.vermont-compare {
+    font-size: 0.95rem;
+    color: #5a6b60;
+    border-top: 1px solid #cfe3d4;
+    padding-top: 0.9rem;
+}
+
+.vermont-band .cta-button {
+    background-color: #2f7d4f;
+}
+
+.vermont-band .cta-button:hover {
+    background-color: #245f3c;
+}
+
 .service-section {
     margin-bottom: 2.5rem;
 }

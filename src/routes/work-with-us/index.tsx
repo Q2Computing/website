@@ -9,6 +9,22 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import styles from './work-with-us.module.css';
 
 const SERVICE_CONFIG: Record<string, { name: string; hints: string[] }> = {
+  // Plain language on purpose. Every other entry here assumes an engineering
+  // vocabulary, which is right for those audiences and wrong for this one.
+  //
+  // Deliberately scoped to the website and nothing else. These prompts do not
+  // ask what the business does, what the idea is, or anything about the plan
+  // behind it. First contact only needs enough to start a conversation, and
+  // asking for more invites a reading nobody benefits from. Detailed scoping
+  // happens later, in an engagement, where both sides have terms.
+  'vermont-small-business': {
+    name: 'Vermont Small Business Website',
+    hints: [
+      'Anything you have online right now, even just a social account. Nothing yet is a perfectly normal answer',
+      'Any websites you like the look of',
+      'Roughly when you would like it up, if you have a date in mind',
+    ],
+  },
   'autonomous-navigation': {
     name: 'Autonomous Navigation Architecture',
     hints: [
@@ -119,6 +135,7 @@ export default component$(() => {
   const loc = useLocation();
   const slug = useSignal(loc.url.searchParams.get('service') ?? '');
   const serviceConfig = SERVICE_CONFIG[slug.value] ?? null;
+  const isSmallBusiness = slug.value === 'vermont-small-business';
 
   const firstName = useSignal('');
   const lastName = useSignal('');
@@ -131,11 +148,13 @@ export default component$(() => {
   const turnstileToken = useSignal('');
   const turnstileWidgetId = useSignal<string | null>(null);
 
-  // Mount Turnstile invisible widget after hydration.
+  // Mount the Turnstile widget after hydration.
   //
-  // strategy must be 'document-ready'. The default is an intersection observer
-  // on the host element, and this widget renders invisibly with no dimensions,
-  // so it never intersects and the task never runs. When that happened,
+  // strategy must be 'document-ready'. The default is an intersection observer,
+  // and the target container is empty until Turnstile renders into it, so it
+  // has no dimensions to intersect with. That is circular: the task has to run
+  // to create the widget, but the observer waits for size the widget would have
+  // provided. The task therefore never ran at all. When that happened,
   // mount() was never called AND __onTurnstileLoad was never assigned, so
   // Cloudflare's own ready signal had nowhere to go either:
   //   "[Cloudflare Turnstile] Unable to find onload callback
@@ -152,7 +171,9 @@ export default component$(() => {
         // "normal"; passing "invisible" threw an uncaught TurnstileError on
         // every page load. It rendered regardless, because Turnstile falls
         // back to the mode configured on the widget in the Cloudflare
-        // dashboard, which is where invisible behaviour is set.
+        // dashboard. That widget is configured in Managed mode, so it renders
+        // visibly and auto-verifies clean traffic, which is why a token is
+        // present before the visitor touches Send.
         callback: (token: string) => { turnstileToken.value = token; },
         'expired-callback': () => { turnstileToken.value = ''; },
         'error-callback':   () => {
@@ -201,7 +222,7 @@ export default component$(() => {
     e.preventDefault();
     errorMsg.value = '';
 
-    // If we don't have a token yet, trigger the invisible challenge first.
+    // If we don't have a token yet, trigger the challenge first.
     // The callback will set turnstileToken.value; the user re-clicks or we
     // auto-resubmit via the callback (simpler: just ask them to click again).
     const win = window as any;
@@ -262,34 +283,73 @@ export default component$(() => {
   return (
     <div class={styles.page}>
 
-      <section class={styles.hero}>
-        <div class={styles.heroInner}>
-          <h1>The Future of Automation Starts With Your Data</h1>
-          <p class={styles.heroSub}>
-            Do you have a difficult, sensitive, or repetitive task that demands your most capable people?
-            Q2 Computing turns the operational data from your daily workflows into automation that
-            liberates your best minds for the work only they can do.
-          </p>
-        </div>
-      </section>
+      {/*
+        Small business visitors get a plain title instead of the hero, and skip
+        the engagement process entirely. The hero is written for enterprise
+        buyers and the four steps end in "Engagement agreement", which is the
+        wall that makes a first-time business owner feel out of her depth. She
+        arrives here having already read the offer, so repeating a pitch adds
+        nothing. The h1 stays so the page keeps a document outline.
+      */}
+      {isSmallBusiness ? (
+        <section class={styles.simpleHeader}>
+          <h1>Let us build your website</h1>
+        </section>
+      ) : (
+        <>
+          <section class={styles.hero}>
+            <div class={styles.heroInner}>
+              <h1>The Future of Automation Starts With Your Data</h1>
+              <p class={styles.heroSub}>
+                Do you have a difficult, sensitive, or repetitive task that demands your most capable people?
+                Q2 Computing turns the operational data from your daily workflows into automation that
+                liberates your best minds for the work only they can do.
+              </p>
+            </div>
+          </section>
 
-      <section class={styles.process}>
-        <div class={styles.container}>
-          <h2>How an engagement works</h2>
-          <p class={styles.sectionSub}>Direct, transparent, and built around your timeline.</p>
-          <div class={styles.steps}>
-            {steps.map((s) => (
-              <div key={s.number} class={styles.step}>
-                <span class={styles.stepNumber}>{s.number}</span>
-                <div>
-                  <h3>{s.title}</h3>
-                  <p>{s.body}</p>
-                </div>
+          <section class={styles.process}>
+            <div class={styles.container}>
+              <h2>How an engagement works</h2>
+              <p class={styles.sectionSub}>Direct, transparent, and built around your timeline.</p>
+              <div class={styles.steps}>
+                {steps.map((s) => (
+                  <div key={s.number} class={styles.step}>
+                    <span class={styles.stepNumber}>{s.number}</span>
+                    <div>
+                      <h3>{s.title}</h3>
+                      <p>{s.body}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/*
+        Someone arriving here directly has never seen the services page, so the
+        offer has to be restated rather than linked to blindly. Hidden on the
+        small business path itself, where it would be telling them what they
+        already chose.
+      */}
+      {!isSmallBusiness && (
+        <div class={styles.container}>
+          <aside class="vermont-band">
+            <h2 class="vermont-heading">Vermont small business? This is for you</h2>
+            <p class="vermont-hook">We build your website. You do not pay us.</p>
+            <ul class="vermont-list">
+              <li><strong>Your first 20 hours are free.</strong> That is usually a whole site</li>
+              <li><strong>You pay about $12 a year</strong> for a domain. Hosting costs next to nothing</li>
+              <li><strong>One at a time.</strong> You get an email with your place in line</li>
+            </ul>
+            <a href="/work-with-us/?service=vermont-small-business" class="cta-button">
+              Start here instead
+            </a>
+          </aside>
         </div>
-      </section>
+      )}
 
       <section class={styles.formSection}>
         <div class={styles.container}>
@@ -348,7 +408,17 @@ export default component$(() => {
               </div>
 
               <div class={styles.fieldGroup}>
-                <label for="message">What are you working on?</label>
+                {/*
+                  "What are you working on?" invites someone to describe plans
+                  and unreleased work. For a small business the honest question
+                  is about what already exists, which is both easier to answer
+                  and asks for nothing speculative.
+                */}
+                <label for="message">
+                  {isSmallBusiness
+                    ? 'Describe the product or service you provide'
+                    : 'What are you working on?'}
+                </label>
                 <textarea
                   id="message"
                   rows={5}
