@@ -396,3 +396,27 @@
   .stepNumber { font-size: 1.8rem; }
   .fieldRow { grid-template-columns: 1fr; }
 }
+
+/* Plain page title for the small business path.
+   Replaces the enterprise hero, which uses a full-bleed background image and
+   7rem of padding to make an argument this visitor has already heard. */
+.simpleHeader {
+  padding: 3rem 2rem 1rem;
+  text-align: center;
+}
+
+.simpleHeader h1 {
+  font-size: 2rem;
+  margin: 0;
+  color: #1a2a4c;
+}
+
+@media (max-width: 600px) {
+  .simpleHeader {
+    padding: 2rem 1.25rem 0.5rem;
+  }
+
+  .simpleHeader h1 {
+    font-size: 1.6rem;
+  }
+}

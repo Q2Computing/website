@@ -8,6 +8,41 @@ export default component$(() => {
       <h1>Our Services</h1>
       <p class="page-subtitle">We offer a spectrum of high-impact services designed to solve complex challenges by integrating cutting-edge research with principled, multi-disciplinary engineering.</p>
 
+      {/*
+        Placed above the technical sections on purpose. A small business owner
+        who has to scroll past three sections of defense and enterprise jargon
+        to find herself has already concluded the absence was about her.
+      */}
+      {/*
+        Written to be scanned, not read. Every fact here is load-bearing and
+        was fought for one correction at a time, but the audience decides in
+        seconds whether this is for them. Bullets over paragraphs.
+      */}
+      <section class="vermont-band">
+        <h2 class="vermont-heading">Vermont small business? This is for you</h2>
+
+        <p class="vermont-lede">
+          Ignore the rest of this page. It is written for defense clients, not a list of
+          who deserves help
+        </p>
+
+        <p class="vermont-hook">We build your website. You do not pay us.</p>
+
+        <ul class="vermont-list">
+          <li><strong>Your first 20 hours are free.</strong> That is usually a whole site</li>
+          <li><strong>You pay about $12 a year</strong> for a domain. Hosting costs next to nothing</li>
+          <li><strong>Need more than that?</strong> We agree on a rate before we spend it</li>
+          <li><strong>One at a time.</strong> You get an email with your place in line</li>
+          <li><strong>A free address works too</strong> if you would rather not buy a domain yet</li>
+        </ul>
+
+        <p class="vermont-compare">Most website builders charge $200 to $350 a year</p>
+
+        <a href="/work-with-us/?service=vermont-small-business" class="cta-button">
+          Work With Us
+        </a>
+      </section>
+
       <section class="service-section">
         <h2>Autonomous Systems &amp; Robotics</h2>
         <p>Leveraging our core research in physics-informed, object-blind navigation, we design autonomous systems that maintain operational continuity in the most challenging environments: GPS-denied, communication-degraded, and infrastructure-independent.</p>
