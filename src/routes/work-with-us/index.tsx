@@ -16,7 +16,7 @@ const SERVICE_CONFIG: Record<string, { name: string; hints: string[] }> = {
   // ask what the business does, what the idea is, or anything about the plan
   // behind it. First contact only needs enough to start a conversation, and
   // asking for more invites a reading nobody benefits from. Detailed scoping
-  // happens later, in an engagement, where both sides have terms.
+  // happens later, in a project, where both sides have terms.
   'vermont-small-business': {
     name: 'Vermont Small Business Website',
     hints: [
@@ -121,13 +121,13 @@ const steps = [
   },
   {
     number: '03',
-    title: 'Engagement agreement',
+    title: 'Project agreement',
     body: 'We agree on deliverables, timeline, and rate. No subcontractors, no hand-offs. You get direct access to the person solving your problem.',
   },
   {
     number: '04',
     title: 'Real-time workspace access',
-    body: 'Once engaged, you get access to a private workspace where you receive live updates as work progresses. You always know exactly where your project stands.',
+    body: 'Once the agreement is signed, you get access to a private workspace where you receive live updates as work progresses. You always know exactly where your project stands.',
   },
 ];
 
@@ -285,8 +285,8 @@ export default component$(() => {
 
       {/*
         Small business visitors get a plain title instead of the hero, and skip
-        the engagement process entirely. The hero is written for enterprise
-        buyers and the four steps end in "Engagement agreement", which is the
+        the project process entirely. The hero is written for enterprise
+        buyers and the four steps end in "Project agreement", which is the
         wall that makes a first-time business owner feel out of her depth. She
         arrives here having already read the offer, so repeating a pitch adds
         nothing. The h1 stays so the page keeps a document outline.
@@ -310,7 +310,7 @@ export default component$(() => {
 
           <section class={styles.process}>
             <div class={styles.container}>
-              <h2>How an engagement works</h2>
+              <h2>How a project works</h2>
               <p class={styles.sectionSub}>Direct, transparent, and built around your timeline.</p>
               <div class={styles.steps}>
                 {steps.map((s) => (
@@ -470,7 +470,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Q2 Computing turns operational data into automation that liberates your best people from repetitive work. Direct engineering engagement, no hand-offs.',
+      content: 'Q2 Computing turns operational data into automation that liberates your best people from repetitive work. You work directly with the engineer, no hand-offs.',
     },
   ],
 };
