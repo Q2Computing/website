@@ -62,7 +62,7 @@ export default component$(() => {
         <div class={styles.gate}>
           <div class={styles.gateCard}>
             <h1>Client Workspace</h1>
-            <p>This workspace is for active clients with a signed engagement. Enter your access token to connect.</p>
+            <p>This workspace is for active clients with a signed project agreement. Enter your access token to connect.</p>
             <p class={styles.freeConsult}>
               No token yet? Start with a <a href="/contact/">free consult via email</a> and we'll take it from there.
             </p>

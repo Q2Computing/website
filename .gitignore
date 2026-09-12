@@ -61,3 +61,22 @@ aws-exports.js
 
 # OS artifacts
 Thumbs.db
+
+# Protected
+#
+# This repo is public. Everything below lives in the working tree for local
+# convenience and belongs to a private repo, so a `git add .` must not be able
+# to reach it.
+#
+# Portal builds and source. Q2Computing/Q2-Portal is the home for these.
+/tools/q2-portal/
+/tools/portal/
+/tools/portal-ui/
+
+# Local Supabase stack config. supabase/.temp/linked-project.json names the
+# live hosted project and its organization by id.
+/supabase/
+
+# SBIR and SAM.gov opportunity monitor, including the reports and state it
+# writes. Q2Computing/sam-gov-monitor is the home for this.
+/tools/sbir-monitor/

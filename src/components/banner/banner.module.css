@@ -1,39 +1,61 @@
+/* Cookie notice.
+   Sized for two short lines of copy plus a dismiss button. The previous rules
+   assumed a single sentence at max-width 200px with the button beside it, which
+   left no room for naming the third party involved. */
+
 .banner {
   position: fixed;
   bottom: 20px;
-  left: 80%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 200px;
+  right: 20px;
+  width: calc(100% - 40px);
+  max-width: 340px;
   background-color: #ffffff;
   color: #333;
-  padding: 1.5rem;
+  padding: 1.25rem;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
   z-index: 1000;
   border: 1px solid #e5e7eb;
   font-family: sans-serif;
-  flex-wrap: wrap;
+}
+
+.headline {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Scales with the headline so it never drifts out of proportion */
+.cookie {
+  width: 1.5em;
+  height: 1.5em;
+  flex: 0 0 auto;
+  transform: rotate(-12deg);
 }
 
 .text {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  flex-grow: 1;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #555;
 }
 
 .button {
+  align-self: flex-end;
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.4rem;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
@@ -44,14 +66,17 @@
   background-color: #0056b3;
 }
 
+.button:focus-visible {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
 @media (max-width: 600px) {
   .banner {
-    flex-direction: column;
-    text-align: center;
     bottom: 10px;
     left: 10px;
     right: 10px;
     width: auto;
-    transform: none;
+    max-width: none;
   }
 }
