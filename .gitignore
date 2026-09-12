@@ -61,3 +61,6 @@ aws-exports.js
 
 # OS artifacts
 Thumbs.db
+
+# Protected
+/tools/q2-portal/
